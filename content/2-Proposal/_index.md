@@ -1,5 +1,6 @@
 ---
 title: "Proposal"
+menuTitle: "Proposal"
 weight: 2
 chapter: false
 disableTitle: true
@@ -243,7 +244,7 @@ distinguish forecast, estimated architecture cost, and actual incurred cost.
 The planned personal deliverables are the seven core API routes and their
 service/data rules, updated API contract/Postman artifacts, automated and manual
 test evidence, CloudWatch validation notes, and the corresponding proposal,
-worklog, and technical blog drafts. Multipart, progress undo, thumbnail import,
+worklog, and three published technical articles. Multipart, progress undo, thumbnail import,
 and the Admin log-reader are supporting codebase extensions unless mentor/PR
 evidence confirms they belong to the personal contribution.
 

@@ -1,5 +1,6 @@
 ---
 title: "Đề xuất dự án"
+menuTitle: "Proposal"
 weight: 2
 chapter: false
 disableTitle: true
@@ -234,7 +235,7 @@ forecast, estimated architecture cost và actual incurred cost.
 
 Sản phẩm cá nhân dự kiến gồm bảy API cốt lõi và quy tắc service/data liên quan,
 API contract/Postman artifact cập nhật, automated/manual test evidence, ghi chú
-kiểm tra CloudWatch, proposal, worklog và ba bản nháp blog. Multipart, hoàn tác
+kiểm tra CloudWatch, proposal, worklog và ba bài blog kỹ thuật đã đăng. Multipart, hoàn tác
 progress, import thumbnail và Admin log-reader chỉ là extension codebase nếu
 chưa có bằng chứng mentor/PR xác nhận đóng góp cá nhân.
 

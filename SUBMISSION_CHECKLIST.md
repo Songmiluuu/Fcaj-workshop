@@ -21,10 +21,13 @@ dưới đây cần dữ liệu thực tế của Nguyễn Song Minh Luân và k
       kết quả đo được; hiện báo cáo mới có kế hoạch log.
 - [ ] Bổ sung ngân sách/ước tính từ AWS Pricing Calculator và chi phí thực tế từ
       Cost Explorer (đã che account); hiện chưa có số tiền được Luân xác nhận.
-- [ ] Xác nhận sự kiện thực sự đã tham dự; thêm ảnh/video cá nhân và cảm nhận tại
-      `content/4-EventParticipated/`; xóa sự kiện không tham dự.
-- [ ] Đăng đủ 3 bài lên AWS Study Group; thay trạng thái “draft/pending” bằng URL
-      public thật trong `content/3-BlogsPosted/`.
+- [x] Đã xác nhận hai sự kiện thực sự tham dự và hoàn thiện cảm nhận: FCAJ
+      Community Day theo hình thức online và FCAJ x Agentic AI Build Week 2026.
+- [ ] Bổ sung ảnh/video minh chứng sự kiện do Luân sở hữu nếu hồ sơ bắt buộc phải
+      có ảnh; che badge, QR code và dữ liệu cá nhân của người khác.
+- [x] Đã thay mục Blogs Posted bằng đúng ba bài kỹ thuật Luân xác nhận đã đăng.
+- [ ] Bổ sung URL public và ngày đăng thật của cả ba bài vào
+      `content/3-BlogsPosted/`; tài liệu đầu vào hiện không chứa hai thông tin này.
 - [ ] Kiểm tra link demo/source của nhóm trong `config.toml` và trang chủ; thay bằng
       repository/URL chính thức nếu nhóm dùng địa chỉ khác.
 - [ ] Xin mentor xác nhận việc dùng worklog 10 giai đoạn (giai đoạn cuối 13 ngày),
@@ -41,13 +44,13 @@ dưới đây cần dữ liệu thực tế của Nguyễn Song Minh Luân và k
 - [x] Chạy full backend suite trong môi trường sạch từ `requirements-dev.txt`
       (`bcrypt==4.0.1`): 26/26 pass ngày 30/07/2026.
 - [x] Build Hugo Extended 0.134.3 không warning/error với base `/` và base dạng
-      GitHub Project Pages; audit 4.373 internal reference không có link hỏng hoặc
-      thoát prefix (30/07/2026).
+      GitHub Project Pages; audit link nội bộ không có đích hỏng hoặc link thoát
+      project prefix (30/07/2026).
 - [x] Mở `/` và `/vi/` bằng headless Chromium ở viewport mobile; search/clear,
       menu, chuyển ngôn ngữ và năm link tải trên trang chủ đều hoạt động, không có
       console/page error (30/07/2026).
-- [ ] Kiểm tra `YOUR_*` chỉ còn ở lệnh Git mẫu trong README và ví dụ cấu hình
-      workshop; hoàn thiện hoặc xóa toàn bộ placeholder sự kiện trước khi nộp.
+- [x] Kiểm tra `YOUR_*` chỉ còn ở lệnh Git mẫu trong README và ví dụ cấu hình
+      workshop; không còn placeholder trong phần blog hoặc sự kiện.
 - [x] Quét source report không thấy secret, credential file, account/resource ID
       thật hoặc đường dẫn workstation; Postman để trống token/upload ID.
 - [ ] Bật GitHub Pages bằng GitHub Actions và mở URL public trên điện thoại.

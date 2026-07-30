@@ -1,5 +1,6 @@
 ---
-title: "API Workshop"
+title: "Workshop"
+menuTitle: "Workshop"
 weight: 5
 chapter: true
 pre: "<b>5.</b>"

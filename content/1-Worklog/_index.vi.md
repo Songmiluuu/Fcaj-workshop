@@ -1,5 +1,6 @@
 ---
 title: "Nhật ký công việc"
+menuTitle: "Worklog"
 weight: 1
 chapter: false
 pre: "<b>1.</b>"

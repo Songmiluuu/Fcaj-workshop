@@ -45,13 +45,13 @@ chapter: false
 <div class="report-contents">
 <h2>Nội dung báo cáo</h2>
 <ol>
-<li><a href="1-worklog/">Kế hoạch 10 giai đoạn được dựng lại</a></li>
-<li><a href="2-proposal/">Đề xuất dự án</a></li>
-<li><a href="3-blogsposted/">Bản nháp blog kỹ thuật</a></li>
-<li><a href="4-eventparticipated/">Minh chứng sự kiện chờ xác nhận</a></li>
-<li><a href="5-workshop/">Workshop thực hành API</a></li>
-<li><a href="6-self-evaluation/">Tự đánh giá</a></li>
-<li><a href="7-feedback/">Chia sẻ và góp ý</a></li>
+<li><a href="1-worklog/">Worklog</a></li>
+<li><a href="2-proposal/">Proposal</a></li>
+<li><a href="3-blogsposted/">Blogs Posted</a></li>
+<li><a href="4-eventparticipated/">Events Participated</a></li>
+<li><a href="5-workshop/">Workshop</a></li>
+<li><a href="6-self-evaluation/">Self-Assessment</a></li>
+<li><a href="7-feedback/">Sharing and Feedback</a></li>
 </ol>
 </div>
 

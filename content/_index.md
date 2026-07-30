@@ -45,13 +45,13 @@ chapter: false
 <div class="report-contents">
 <h2>Report contents</h2>
 <ol>
-<li><a href="1-worklog/">10-period reconstructed work plan</a></li>
-<li><a href="2-proposal/">Project proposal</a></li>
-<li><a href="3-blogsposted/">Technical blog drafts</a></li>
-<li><a href="4-eventparticipated/">Event evidence pending confirmation</a></li>
-<li><a href="5-workshop/">Hands-on API workshop</a></li>
-<li><a href="6-self-evaluation/">Self-evaluation</a></li>
-<li><a href="7-feedback/">Sharing and feedback</a></li>
+<li><a href="1-worklog/">Worklog</a></li>
+<li><a href="2-proposal/">Proposal</a></li>
+<li><a href="3-blogsposted/">Blogs Posted</a></li>
+<li><a href="4-eventparticipated/">Events Participated</a></li>
+<li><a href="5-workshop/">Workshop</a></li>
+<li><a href="6-self-evaluation/">Self-Assessment</a></li>
+<li><a href="7-feedback/">Sharing and Feedback</a></li>
 </ol>
 </div>
 

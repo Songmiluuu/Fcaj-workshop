@@ -6,12 +6,13 @@ Postman và kiểm tra log trên Amazon CloudWatch.
 
 ## Nội dung đã có
 
-- Đúng 7 nhóm nội dung trong quy định: Worklog, Proposal, Blogs, Events,
-  Workshop, Self-evaluation và Feedback.
+- Đúng 7 nhóm nội dung trong quy định: Worklog, Proposal, Blogs Posted, Events
+  Participated, Workshop, Self-Assessment và Sharing and Feedback.
 - 10 giai đoạn worklog bao phủ 01/06/2026–15/08/2026; trạng thái được chốt tại
   ngày 30/07/2026.
 - Bản tiếng Anh và tiếng Việt cho toàn bộ nội dung chính.
 - Postman collection, OpenAPI snapshot và test matrix riêng cho phần API được giao.
+- Ba bài blog đã đăng và hai bài thu hoạch sự kiện theo thông tin Luân cung cấp.
 - GitHub Actions tự build và deploy GitHub Pages.
 - Không chứa `.git`/remote/history của repository tham khảo.
 

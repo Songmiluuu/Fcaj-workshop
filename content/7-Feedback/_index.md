@@ -1,11 +1,12 @@
 ---
-title: "Sharing and feedback"
+title: "Sharing and Feedback"
+menuTitle: "Sharing and Feedback"
 weight: 7
 chapter: false
 pre: "<b>7.</b>"
 ---
 
-# Sharing and feedback
+# Sharing and Feedback
 
 > **Interim reflection as of July 30, 2026.** The internship ends on August 15,
 > 2026. These comments describe my experience so far and may be updated after

@@ -1,11 +1,12 @@
 ---
-title: "Self-evaluation"
+title: "Self-Assessment"
+menuTitle: "Self-Assessment"
 weight: 6
 chapter: false
 pre: "<b>6.</b>"
 ---
 
-# Self-evaluation
+# Self-Assessment
 
 > **Assessment date: July 30, 2026.** My internship runs from June 1 to
 > August 15, 2026, so this is an interim self-evaluation rather than a claim of
