@@ -1,0 +1,19 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - wget -q https://github.com/gohugoio/hugo/releases/download/v0.134.3/hugo_extended_0.134.3_linux-amd64.tar.gz
+        - echo '951159f83e7b9e259b60fbc8c92dfc88ccc827f3e1a67461be13b76577edddde  hugo_extended_0.134.3_linux-amd64.tar.gz' | sha256sum --check --strict
+        - tar -xzf hugo_extended_0.134.3_linux-amd64.tar.gz hugo
+        - chmod +x hugo
+        - ./hugo version
+    build:
+      commands:
+        - ./hugo --gc --minify --baseURL "/"
+  artifacts:
+    baseDirectory: public
+    files:
+      - '**/*'
+  cache:
+    paths: []

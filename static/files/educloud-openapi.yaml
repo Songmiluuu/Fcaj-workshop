@@ -1,0 +1,382 @@
+openapi: 3.0.3
+info:
+  title: EduCloud API — Luân's internship scope
+  version: 1.0.0
+  description: |
+    Evidence-oriented API contract for Enrollment, Progress, Upload, and
+    CloudWatch verification. The running FastAPI Swagger page at /docs remains
+    authoritative if the application changes.
+servers:
+  - url: http://127.0.0.1:8001/api
+    description: Local FastAPI development server
+security:
+  - bearerAuth: []
+tags:
+  - name: Enrollment
+  - name: Progress
+  - name: Upload
+  - name: Monitoring
+paths:
+  /courses/{course_id}/enroll:
+    post:
+      tags: [Enrollment]
+      summary: Enroll the authenticated Student in a published course
+      parameters:
+        - $ref: '#/components/parameters/CourseId'
+      responses:
+        '200':
+          description: New or existing enrollment returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnrollmentResponse'
+        '401': { $ref: '#/components/responses/Unauthenticated' }
+        '403': { description: Student role required }
+        '404': { description: Course not found }
+        '409': { description: Course is not published or its final assessment is not ready }
+  /my-courses:
+    get:
+      tags: [Enrollment]
+      summary: Load the authenticated Student dashboard
+      responses:
+        '200':
+          description: Enrolled courses and DB-derived counters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MyCoursesResponse'
+        '401': { $ref: '#/components/responses/Unauthenticated' }
+        '403': { description: Student role required }
+  /lessons/{lesson_id}/complete:
+    post:
+      tags: [Progress]
+      summary: Mark an enrolled lesson complete
+      parameters:
+        - $ref: '#/components/parameters/LessonId'
+      responses:
+        '200':
+          description: Completion state saved idempotently
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompletionResponse'
+        '401': { $ref: '#/components/responses/Unauthenticated' }
+        '403': { description: Student is not enrolled }
+        '404': { description: Lesson not found }
+    delete:
+      tags: [Progress]
+      summary: Mark a lesson incomplete
+      parameters:
+        - $ref: '#/components/parameters/LessonId'
+      responses:
+        '200':
+          description: Completion state removed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompletionResponse'
+        '401': { $ref: '#/components/responses/Unauthenticated' }
+        '403': { description: Student is not enrolled }
+        '404': { description: Lesson not found }
+        '409': { description: A certified course cannot be marked incomplete }
+  /courses/{course_id}/progress:
+    get:
+      tags: [Progress]
+      summary: Calculate course progress from stored lesson records
+      parameters:
+        - $ref: '#/components/parameters/CourseId'
+      responses:
+        '200':
+          description: Current progress
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProgressResponse'
+        '401': { $ref: '#/components/responses/Unauthenticated' }
+        '403': { description: Student is not enrolled }
+  /upload/course-thumbnail:
+    post:
+      tags: [Upload]
+      summary: Upload a course thumbnail (10 MiB maximum)
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FileUpload'
+      responses:
+        '200': { $ref: '#/components/responses/UploadSucceeded' }
+        '401': { $ref: '#/components/responses/Unauthenticated' }
+        '403': { description: Course owner or Admin required }
+        '413': { description: File exceeds 10 MiB }
+        '415': { description: Allowed types are JPG, JPEG, PNG, and WebP }
+        '502': { description: Storage service failed }
+  /upload/lesson-material:
+    post:
+      tags: [Upload]
+      summary: Upload a lesson material (50 MiB maximum)
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FileUpload'
+      responses:
+        '200': { $ref: '#/components/responses/UploadSucceeded' }
+        '401': { $ref: '#/components/responses/Unauthenticated' }
+        '403': { description: Course owner or Admin required }
+        '413': { description: File exceeds 50 MiB }
+        '415': { description: Allowed types are PDF, Office documents, TXT, and ZIP }
+        '502': { description: Storage service failed }
+  /upload/video:
+    post:
+      tags: [Upload]
+      summary: Upload a video through the backend (500 MiB maximum)
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FileUpload'
+      responses:
+        '200': { $ref: '#/components/responses/UploadSucceeded' }
+        '401': { $ref: '#/components/responses/Unauthenticated' }
+        '403': { description: Course owner or Admin required }
+        '413': { description: File exceeds 500 MiB }
+        '415': { description: Allowed types are MP4, WebM, and MOV }
+        '502': { description: Storage service failed }
+  /upload/video/multipart/start:
+    post:
+      tags: [Upload]
+      summary: Start a presigned multipart S3 upload
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MultipartStart'
+      responses:
+        '200':
+          description: Strategy, key, upload ID, and 10 MiB part size
+        '400': { description: Invalid request }
+        '401': { $ref: '#/components/responses/Unauthenticated' }
+        '403': { description: Course owner or Admin required }
+        '415': { description: Unsupported video type }
+        '502': { description: Unable to start S3 upload }
+  /upload/video/multipart/part:
+    post:
+      tags: [Upload]
+      summary: Create a one-hour presigned URL for one video part
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MultipartPart'
+      responses:
+        '200': { description: Presigned S3 URL returned }
+        '400': { description: Invalid course-scoped object key }
+        '401': { $ref: '#/components/responses/Unauthenticated' }
+        '403': { description: Course owner or Admin required }
+        '502': { description: Unable to generate presigned URL }
+  /upload/video/multipart/complete:
+    post:
+      tags: [Upload]
+      summary: Complete a multipart S3 upload
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MultipartComplete'
+      responses:
+        '200': { $ref: '#/components/responses/UploadSucceeded' }
+        '400': { description: Invalid key or duplicate part number }
+        '401': { $ref: '#/components/responses/Unauthenticated' }
+        '403': { description: Course owner or Admin required }
+        '502': { description: Unable to complete S3 upload }
+  /upload/video/multipart/abort:
+    post:
+      tags: [Upload]
+      summary: Abort an incomplete multipart S3 upload
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MultipartAbort'
+      responses:
+        '200': { description: Multipart upload cancelled }
+        '400': { description: Invalid course-scoped object key }
+        '401': { $ref: '#/components/responses/Unauthenticated' }
+        '403': { description: Course owner or Admin required }
+        '502': { description: Unable to abort S3 upload }
+  /admin/cloudwatch-logs:
+    get:
+      tags: [Monitoring]
+      summary: Load recent events from the configured CloudWatch log group
+      responses:
+        '200':
+          description: Recent log events, newest first
+        '401': { $ref: '#/components/responses/Unauthenticated' }
+        '403': { description: Admin role required }
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    CourseId:
+      name: course_id
+      in: path
+      required: true
+      schema: { type: integer, minimum: 1 }
+    LessonId:
+      name: lesson_id
+      in: path
+      required: true
+      schema: { type: integer, minimum: 1 }
+  responses:
+    Unauthenticated:
+      description: Missing, expired, or invalid bearer token
+    UploadSucceeded:
+      description: File metadata and delivery URL returned
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UploadResponse'
+  schemas:
+    ApiEnvelope:
+      type: object
+      required: [success, message, data]
+      properties:
+        success: { type: boolean }
+        message: { type: string }
+        data: {}
+    EnrollmentResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiEnvelope'
+        - type: object
+          properties:
+            data:
+              type: object
+              required: [id, course_id, status]
+              properties:
+                id: { type: integer }
+                course_id: { type: integer }
+                status: { type: string, example: active }
+    MyCoursesResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiEnvelope'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                active_courses: { type: integer }
+                lessons_completed: { type: integer }
+                completed_courses: { type: integer }
+                courses:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id: { type: integer }
+                      title: { type: string }
+                      completed_lessons: { type: integer }
+                      total_lessons: { type: integer }
+                      percentage: { type: integer, minimum: 0, maximum: 100 }
+                      assessment_required: { type: boolean }
+                      assessment_passed: { type: boolean }
+                      ready_for_assessment: { type: boolean }
+    CompletionResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiEnvelope'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                lesson_id: { type: integer }
+                course_id: { type: integer }
+                is_completed: { type: boolean }
+                certificate_issued: { type: boolean }
+                certificate_code: { type: string, nullable: true }
+    ProgressResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiEnvelope'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                course_id: { type: integer }
+                completed_lessons: { type: integer }
+                total_lessons: { type: integer }
+                percentage: { type: integer, minimum: 0, maximum: 100 }
+                completed_lesson_ids:
+                  type: array
+                  items: { type: integer }
+    FileUpload:
+      type: object
+      required: [course_id, file]
+      properties:
+        course_id: { type: integer }
+        file: { type: string, format: binary }
+    UploadResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiEnvelope'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                url: { type: string, format: uri }
+                filename: { type: string }
+                content_type: { type: string }
+                size: { type: integer }
+                storage: { type: string, enum: [local, s3] }
+    MultipartStart:
+      type: object
+      required: [course_id, filename, content_type, size]
+      properties:
+        course_id: { type: integer }
+        filename: { type: string, example: lesson.mp4 }
+        content_type: { type: string, example: video/mp4 }
+        size: { type: integer, minimum: 1, maximum: 524288000 }
+    MultipartPart:
+      type: object
+      required: [course_id, key, upload_id, part_number]
+      properties:
+        course_id: { type: integer }
+        key: { type: string }
+        upload_id: { type: string }
+        part_number: { type: integer, minimum: 1, maximum: 10000 }
+    CompletedPart:
+      type: object
+      required: [part_number, etag]
+      properties:
+        part_number: { type: integer, minimum: 1, maximum: 10000 }
+        etag: { type: string }
+    MultipartComplete:
+      allOf:
+        - $ref: '#/components/schemas/MultipartStart'
+        - type: object
+          required: [key, upload_id, parts]
+          properties:
+            key: { type: string }
+            upload_id: { type: string }
+            parts:
+              type: array
+              minItems: 1
+              maxItems: 10000
+              items:
+                $ref: '#/components/schemas/CompletedPart'
+    MultipartAbort:
+      type: object
+      required: [course_id, key, upload_id]
+      properties:
+        course_id: { type: integer }
+        key: { type: string }
+        upload_id: { type: string }

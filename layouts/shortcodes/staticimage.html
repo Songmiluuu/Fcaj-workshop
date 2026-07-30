@@ -1,0 +1,3 @@
+{{- $path := .Get "path" -}}
+{{- $alt := .Get "alt" -}}
+<img src="{{ $path | relURL }}" alt="{{ $alt }}" loading="lazy" decoding="async">

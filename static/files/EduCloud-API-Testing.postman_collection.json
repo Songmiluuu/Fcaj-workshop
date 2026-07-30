@@ -1,0 +1,618 @@
+{
+  "info": {
+    "_postman_id": "e6f9f3b8-284f-4b43-8f6c-a8959d6f77e0",
+    "name": "EduCloud API — Enrollment, Progress, Upload & Logs",
+    "description": "Scoped test collection for Nguyễn Song Minh Luân's internship responsibility. Set valid Student, Instructor, and Admin JWTs before running. No credentials are included. Run enrollment before progress. Multipart video upload additionally requires uploading each part directly to its presigned S3 URL and copying the returned ETag.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Enrollment",
+      "item": [
+        {
+          "name": "Enroll in published course",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{student_token}}",
+                "type": "text"
+              }
+            ],
+            "url": "{{base_url}}/courses/{{course_id}}/enroll",
+            "description": "Student-only. The course must be published and have a published final assessment. Repeating the request must return the existing enrollment instead of creating a duplicate."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "const body = pm.response.json();",
+                  "pm.test('Success envelope', () => { pm.expect(body.success).to.eql(true); pm.expect(body.data.course_id).to.eql(Number(pm.collectionVariables.get('course_id'))); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get my enrolled courses",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{student_token}}",
+                "type": "text"
+              }
+            ],
+            "url": "{{base_url}}/my-courses",
+            "description": "Returns DB-derived course cards and counters for the authenticated Student."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "const data = pm.response.json().data;",
+                  "pm.test('Dashboard shape', () => { pm.expect(data.courses).to.be.an('array'); pm.expect(data.active_courses).to.be.a('number'); pm.expect(data.lessons_completed).to.be.a('number'); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Negative — enroll without token",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{base_url}}/courses/{{course_id}}/enroll",
+            "description": "Authentication must be rejected."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 401', () => pm.response.to.have.status(401));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Negative — Instructor cannot enroll",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{instructor_token}}",
+                "type": "text"
+              }
+            ],
+            "url": "{{base_url}}/courses/{{course_id}}/enroll",
+            "description": "Only Student role may enroll."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 403', () => pm.response.to.have.status(403));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "2. Progress",
+      "item": [
+        {
+          "name": "Mark lesson complete",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{student_token}}",
+                "type": "text"
+              }
+            ],
+            "url": "{{base_url}}/lessons/{{lesson_id}}/complete",
+            "description": "Requires the Student to be enrolled in the lesson's course."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "const data = pm.response.json().data;",
+                  "pm.test('Lesson completed', () => { pm.expect(data.is_completed).to.eql(true); pm.expect(data.lesson_id).to.eql(Number(pm.collectionVariables.get('lesson_id'))); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get course progress",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{student_token}}",
+                "type": "text"
+              }
+            ],
+            "url": "{{base_url}}/courses/{{course_id}}/progress",
+            "description": "Returns completed count, total count, percentage, and completed lesson IDs from PostgreSQL."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "const data = pm.response.json().data;",
+                  "pm.test('Valid progress metrics', () => { pm.expect(data.completed_lessons).to.be.a('number'); pm.expect(data.total_lessons).to.be.a('number'); pm.expect(data.percentage).to.be.within(0, 100); pm.expect(data.completed_lesson_ids).to.be.an('array'); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Undo lesson completion",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{student_token}}",
+                "type": "text"
+              }
+            ],
+            "url": "{{base_url}}/lessons/{{lesson_id}}/complete",
+            "description": "Returns 409 if a certificate has already made completion immutable."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200 or certificate guard 409', () => pm.expect(pm.response.code).to.be.oneOf([200, 409]));",
+                  "if (pm.response.code === 200) { pm.test('Lesson is incomplete', () => pm.expect(pm.response.json().data.is_completed).to.eql(false)); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Negative — progress for a course not enrolled",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{student_token}}",
+                "type": "text"
+              }
+            ],
+            "url": "{{base_url}}/courses/{{not_enrolled_course_id}}/progress",
+            "description": "Use a real course that the Student has not enrolled in."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 403', () => pm.response.to.have.status(403));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "3. Upload",
+      "item": [
+        {
+          "name": "Upload course thumbnail",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{instructor_token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "course_id",
+                  "value": "{{course_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": [],
+                  "description": "JPG/JPEG/PNG/WebP, maximum 10 MiB"
+                }
+              ]
+            },
+            "url": "{{base_url}}/upload/course-thumbnail",
+            "description": "Requires course ownership or Admin. Identical thumbnails reuse a SHA-256 content-addressed object name."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "const data = pm.response.json().data;",
+                  "pm.test('Upload metadata', () => { pm.expect(data.url).to.be.a('string').and.not.empty; pm.expect(data.storage).to.be.oneOf(['local', 's3']); pm.expect(data.size).to.be.a('number'); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Upload lesson material",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{instructor_token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "course_id",
+                  "value": "{{course_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": [],
+                  "description": "PDF/DOC/DOCX/PPT/PPTX/TXT/ZIP, maximum 50 MiB"
+                }
+              ]
+            },
+            "url": "{{base_url}}/upload/lesson-material"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('URL returned', () => pm.expect(pm.response.json().data.url).to.be.a('string').and.not.empty);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Upload video through backend",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{instructor_token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "course_id",
+                  "value": "{{course_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": [],
+                  "description": "MP4/WebM/MOV, maximum 500 MiB"
+                }
+              ]
+            },
+            "url": "{{base_url}}/upload/video",
+            "description": "Works with local storage and S3. Use multipart requests below for large browser-to-S3 uploads."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Video URL returned', () => pm.expect(pm.response.json().data.url).to.be.a('string').and.not.empty);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Multipart — start video upload",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{instructor_token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"course_id\": {{course_id}},\n  \"filename\": \"{{video_filename}}\",\n  \"content_type\": \"{{video_content_type}}\",\n  \"size\": {{video_size}}\n}"
+            },
+            "url": "{{base_url}}/upload/video/multipart/start",
+            "description": "When UPLOAD_STORAGE=s3, starts a multipart upload with 10 MiB parts. Otherwise the API returns strategy=backend."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "const data = pm.response.json().data;",
+                  "if (data.strategy === 's3_multipart') { pm.collectionVariables.set('video_key', data.key); pm.collectionVariables.set('upload_id', data.upload_id); pm.collectionVariables.set('part_size', String(data.part_size)); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Multipart — authorize one part",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{instructor_token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"course_id\": {{course_id}},\n  \"key\": \"{{video_key}}\",\n  \"upload_id\": \"{{upload_id}}\",\n  \"part_number\": {{part_number}}\n}"
+            },
+            "url": "{{base_url}}/upload/video/multipart/part",
+            "description": "Returns a one-hour S3 presigned URL. PUT the binary part to that URL and copy the response ETag into the etag variable."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Presigned URL returned', () => pm.expect(pm.response.json().data.url).to.match(/^https:\\/\\//));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Multipart — complete video upload",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{instructor_token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"course_id\": {{course_id}},\n  \"key\": \"{{video_key}}\",\n  \"upload_id\": \"{{upload_id}}\",\n  \"filename\": \"{{video_filename}}\",\n  \"content_type\": \"{{video_content_type}}\",\n  \"size\": {{video_size}},\n  \"parts\": [\n    { \"part_number\": {{part_number}}, \"etag\": \"{{etag}}\" }\n  ]\n}"
+            },
+            "url": "{{base_url}}/upload/video/multipart/complete",
+            "description": "The backend sorts parts and rejects duplicate part numbers before asking S3 to complete the upload."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('S3 result', () => { const data = pm.response.json().data; pm.expect(data.storage).to.eql('s3'); pm.expect(data.url).to.be.a('string').and.not.empty; });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Multipart — abort video upload",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{instructor_token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"course_id\": {{course_id}},\n  \"key\": \"{{video_key}}\",\n  \"upload_id\": \"{{upload_id}}\"\n}"
+            },
+            "url": "{{base_url}}/upload/video/multipart/abort",
+            "description": "Use this after a failed/cancelled upload to avoid leaving incomplete multipart parts in S3."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "4. CloudWatch evidence",
+      "item": [
+        {
+          "name": "Get recent CloudWatch log events",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}",
+                "type": "text"
+              }
+            ],
+            "url": "{{base_url}}/admin/cloudwatch-logs",
+            "description": "Admin-only. Requires AWS_MONITORING_ENABLED=true and AWS_CLOUDWATCH_LOG_GROUP. The application reads recent events; Elastic Beanstalk log streaming must be configured separately."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Success envelope', () => pm.expect(pm.response.json().success).to.eql(true));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8001/api",
+      "type": "string"
+    },
+    {
+      "key": "student_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "instructor_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "admin_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "course_id",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "not_enrolled_course_id",
+      "value": "2",
+      "type": "string"
+    },
+    {
+      "key": "lesson_id",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "video_filename",
+      "value": "lesson.mp4",
+      "type": "string"
+    },
+    {
+      "key": "video_content_type",
+      "value": "video/mp4",
+      "type": "string"
+    },
+    {
+      "key": "video_size",
+      "value": "1048576",
+      "type": "string"
+    },
+    {
+      "key": "video_key",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "upload_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "part_size",
+      "value": "10485760",
+      "type": "string"
+    },
+    {
+      "key": "part_number",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "etag",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}

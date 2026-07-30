@@ -1,0 +1,28 @@
+EduCloud selected assigned-area/supporting verification
+Date: 2026-07-30
+Environment: Windows, Python 3.11.9, pytest 8.3.5
+Dependencies: backend/requirements-dev.txt in an isolated target
+EduCloud source revision: 62d80279500c4e11de31e05fd876d50a370b461e
+
+Selected node IDs:
+tests/test_enrollment_progress.py::test_enrollment_progress_and_dashboard_use_database_rows
+tests/test_course_lesson_api.py::test_instructor_can_upload_lesson_files
+tests/test_course_lesson_api.py::test_upload_rejects_unsupported_file_type
+tests/test_course_lesson_api.py::test_duplicate_thumbnail_upload_reuses_the_same_object
+tests/test_course_lesson_api.py::test_instructor_can_complete_presigned_video_upload
+tests/test_course_lesson_api.py::test_video_multipart_rejects_another_course_key
+tests/test_monitoring.py::test_cloudwatch_logs_reads_tail_of_latest_active_stream
+
+Collected: 7
+tests/test_enrollment_progress.py .
+tests/test_course_lesson_api.py .....
+tests/test_monitoring.py .
+
+Result: 7 passed in 1.46s
+
+Scope note:
+These selected nodes exercise enrollment/progress, direct uploads, unsupported
+extension rejection, duplicate thumbnails, and supporting multipart/CloudWatch
+extensions. Some individual tests also traverse shared EduCloud functions. The
+result proves current local code behavior, not personal authorship or a live AWS
+integration run.

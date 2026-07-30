@@ -1,0 +1,20 @@
+public/
+public-project-pages-smoke/
+resources/
+.hugo_build.lock
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.zip
+.chrome-*/
+*-preview.png
+__pycache__/
+*.pyc
+
+# Raw/private evidence must never be committed. Copy only redacted derivatives
+# into static/images/workshop or static/images/events.
+private-evidence/
+secrets/
+.env
+.env.*

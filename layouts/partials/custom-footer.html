@@ -1,0 +1,72 @@
+{{ if .Site.Params.showVisitedLinks }}
+<script>
+  (function () {
+    var prefix = "educloud-report-visited:";
+
+    function normalizeUrl(url) {
+      if (!url) return "";
+      try {
+        var parsed = new URL(url, window.location.origin);
+        return parsed.pathname.replace(/\/index\.html$/, "/");
+      } catch (error) {
+        return String(url).replace(/\/index\.html$/, "/");
+      }
+    }
+
+    function markVisited(url) {
+      var normalized = normalizeUrl(url);
+      if (!normalized) return;
+      try {
+        localStorage.setItem(prefix + normalized, "1");
+      } catch (error) {}
+      jQuery('[data-nav-id="' + normalized + '"]').addClass("visited");
+    }
+
+    function restoreVisited() {
+      var currentUrl = normalizeUrl(jQuery("body").data("url"));
+      markVisited(currentUrl);
+
+      try {
+        for (var key in sessionStorage) {
+          if (sessionStorage.getItem(key) === "1") markVisited(key);
+        }
+      } catch (error) {}
+
+      try {
+        for (var index = 0; index < localStorage.length; index++) {
+          var storageKey = localStorage.key(index);
+          if (storageKey && storageKey.indexOf(prefix) === 0) {
+            jQuery('[data-nav-id="' + storageKey.slice(prefix.length) + '"]').addClass("visited");
+          }
+        }
+      } catch (error) {}
+    }
+
+    function clearVisited() {
+      try {
+        Object.keys(localStorage)
+          .filter(function (key) { return key.indexOf(prefix) === 0; })
+          .forEach(function (key) { localStorage.removeItem(key); });
+      } catch (error) {}
+      jQuery("#sidebar li.visited").removeClass("visited");
+      markVisited(jQuery("body").data("url"));
+    }
+
+    jQuery(function () {
+      restoreVisited();
+      document.querySelectorAll("[data-clear-history-toggle]").forEach(function (button) {
+        button.addEventListener("click", function () {
+          try {
+            Object.keys(localStorage)
+              .filter(function (key) { return key.indexOf(prefix) === 0; })
+              .forEach(function (key) { localStorage.removeItem(key); });
+          } catch (error) {}
+        }, true);
+      });
+      jQuery("[data-clear-history-toggle]").on("click", function () {
+        window.setTimeout(clearVisited, 0);
+      });
+    });
+  })();
+</script>
+{{ end }}

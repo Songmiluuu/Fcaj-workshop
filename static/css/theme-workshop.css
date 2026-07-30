@@ -1,0 +1,868 @@
+:root {
+  --MAIN-TEXT-color: #1f2933; /* High-contrast body text */
+  --MAIN-TITLES-TEXT-color: #41566f; /* Accessible slate headings */
+  --MAIN-LINK-color: #146eb4; /* AWS blue */
+  --MAIN-LINK-HOVER-color: #0b568f; /* Darker hover/focus state */
+  --MAIN-ANCHOR-color: #146eb4; /* Anchors on titles */
+
+  --MENU-HEADER-BG-color: #283e5b; /* Background color of menu header */
+  --MENU-HEADER-BORDER-color: #435c7c; /*Color of menu header border */
+
+  --MENU-SEARCH-BG-color: #202c3c; /* Search field background color (by default borders + icons) */
+  --MENU-SEARCH-BOX-color: #6f88a7; /* Visible 3:1+ search field boundary */
+  --MENU-SEARCH-BOX-ICONS-color: #dbe7f5; /* High-contrast search text and icons */
+
+  --MENU-SECTIONS-ACTIVE-BG-color: #0a0c0e; /* Background color of the active section and its childs */
+  --MENU-SECTIONS-BG-color: #1c222a; /* Background color of other sections */
+  --MENU-SECTIONS-LINK-color: #ccc; /* Color of links in menu */
+  --MENU-SECTIONS-LINK-HOVER-color: #e6e6e6; /* Color of links in menu, when hovered */
+  --MENU-SECTION-ACTIVE-CATEGORY-color: #6b7280; /* Accessible active category text */
+  --MENU-SECTION-ACTIVE-CATEGORY-BG-color: #fff; /* Color of background for the active category (only) */
+
+  --MENU-VISITED-color: #33a1ff; /* Color of 'page visited' icons in menu */
+  --MENU-SECTION-HR-color: #20272b; /* Color of <hr> separator in menu */
+}
+
+.educloud-sidebar-logo {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  color: #fff !important;
+  text-decoration: none;
+}
+
+.educloud-sidebar-logo img {
+  display: block;
+  width: 150px;
+  max-height: 54px;
+  object-fit: contain;
+}
+
+.educloud-sidebar-logo span {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.educloud-sidebar-logo small {
+  color: #a9bed8;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.educloud-footer {
+  color: #c8d2df;
+  font-size: 0.7rem;
+  line-height: 1.5;
+}
+
+.educloud-footer strong {
+  color: #ff9900;
+}
+
+#body img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Landing page for the EduCloud workshop. Keep the architecture readable
+   without allowing a wide source image to dominate the entire page. */
+#body img[src$="/images/educloud-aws-architecture.png"] {
+  display: block;
+  width: min(100%, 920px);
+  max-height: none;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+.architecture-image {
+  border: 1px solid #d5dbdb;
+  box-shadow: 0 4px 18px rgba(35, 47, 62, 0.12);
+}
+
+#top-bar {
+  background: #f5f5f5;
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #f0f0f0;
+  box-shadow: none;
+}
+
+.is-sticky #top-bar {
+  z-index: 1000 !important;
+  border-color: #edf0f4;
+  box-shadow: 0 3px 12px rgba(35, 47, 62, 0.14) !important;
+}
+
+#body #breadcrumbs {
+  width: 100%;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  min-height: 58px;
+  position: static;
+  top: auto;
+  transform: none;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+#body #breadcrumbs .links {
+  display: inline;
+  font-size: 1.12rem;
+  line-height: 1.25;
+}
+
+#sidebar-toggle-span,
+#toc-menu {
+  display: inline-flex !important;
+  align-items: center;
+  min-height: 28px;
+}
+
+#sidebar-toggle,
+#toc-menu i {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media only all and (min-width: 60em) {
+  #sidebar-toggle-span {
+    display: none !important;
+  }
+
+  #toc-menu {
+    margin-left: 0 !important;
+  }
+}
+
+.proposal-hero-title {
+  max-width: 1040px;
+  margin: 34px auto 42px;
+  color: #778ba5;
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  font-weight: 400;
+  line-height: 1.35;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+#body-inner > h1 {
+  margin: 32px 0 44px;
+  color: #778ba5 !important;
+  font-size: clamp(3rem, 4.3vw, 4rem);
+  font-weight: 400;
+  line-height: 1.15;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+#body-inner h2 {
+  color: #778ba5 !important;
+  font-weight: 400;
+}
+
+.blog-list-title {
+  margin-top: 34px;
+  margin-bottom: 12px;
+  color: var(--MAIN-LINK-color) !important;
+  font-size: clamp(2rem, 2.65vw, 2.65rem);
+  line-height: 1.22;
+}
+
+.blog-list-title a {
+  color: var(--MAIN-LINK-color) !important;
+  text-decoration: none;
+}
+
+.blog-list-title a:hover {
+  color: var(--MAIN-LINK-HOVER-color) !important;
+  text-decoration: underline;
+}
+
+.blog-list-title a::after {
+  content: " \f0c1";
+  font-family: "Font Awesome 5 Free";
+  font-size: 0.55em;
+  font-weight: 900;
+  vertical-align: 0.18em;
+}
+
+.event-hero-title {
+  max-width: 1120px;
+  margin: 34px auto 42px;
+  color: #778ba5;
+  font-size: clamp(2.4rem, 4vw, 4rem);
+  font-weight: 400;
+  line-height: 1.35;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.event-list-title {
+  margin-top: 34px;
+  margin-bottom: 18px;
+  color: var(--MAIN-LINK-color) !important;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.event-list-title a {
+  color: var(--MAIN-LINK-color) !important;
+  text-decoration: none;
+}
+
+.event-list-title a:hover {
+  color: var(--MAIN-LINK-HOVER-color) !important;
+  text-decoration: underline;
+}
+
+#body-inner table {
+  width: 100%;
+}
+
+#body-inner table th {
+  background: #f7f7f7;
+}
+
+body {
+  color: var(--MAIN-TEXT-color) !important;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+#body,
+#body .padding,
+#body-inner,
+.internship-profile,
+.student-information,
+.student-information-lines {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.student-detail-row,
+.student-detail-row a,
+.project-demo-access,
+.contribution-card {
+  overflow-wrap: anywhere;
+}
+
+textarea:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="text"]:focus,
+input[type="url"]:focus,
+input[type="color"]:focus,
+input[type="date"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+select[multiple="multiple"]:focus {
+  border-color: transparent;
+  box-shadow: none;
+}
+
+#toc-menu {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid #c45500;
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 10000;
+  top: 12px;
+  left: 12px;
+  padding: 10px 14px;
+  transform: translateY(-160%);
+  border-radius: 4px;
+  background: #ffffff;
+  color: #172333;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.28);
+  font-weight: 700;
+  transition: transform 180ms ease-out;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+h2,
+h3,
+h4,
+h5 {
+  color: var(--MAIN-TITLES-TEXT-color) !important;
+}
+
+a {
+  color: var(--MAIN-LINK-color);
+}
+
+.anchor {
+  color: var(--MAIN-ANCHOR-color);
+}
+
+a:hover {
+  color: var(--MAIN-LINK-HOVER-color);
+}
+
+#sidebar ul li.visited > a .read-icon {
+  color: var(--MENU-VISITED-color);
+}
+
+/* Keep the visited marker attached to its own menu item.  The theme's
+   float-based marker can spill onto the next row when a long blog title
+   wraps, which makes two checks appear beside the following item. */
+#sidebar ul li > a {
+  position: relative;
+  padding-right: 24px !important;
+  line-height: 1.45;
+  max-height: 2.9em;
+  overflow: hidden;
+}
+
+#sidebar ul li > a .read-icon {
+  float: none;
+  position: absolute;
+  top: 7px;
+  right: 0;
+  min-width: 16px;
+  margin: 0;
+  text-align: right;
+}
+
+/* Active links are expanded by the Learn theme with a 1rem negative
+   right margin. Offset their marker so active and inactive rows share the
+   same vertical alignment. */
+#sidebar ul li.active > a .read-icon {
+  right: 16px;
+}
+
+#sidebar #footer {
+  padding-top: 20px !important;
+}
+
+#sidebar #footer h2.github-title {
+  font-size: 20px;
+  color: #fd9827 !important;
+  margin: 10px 0px 5px;
+  padding: 0px;
+  font-weight: normal !important;
+  margin-top: 10px;
+  padding-top: 30px;
+  border-top: 1px dotted #384657;
+}
+
+#sidebar #footer h3.github-title {
+  font-size: 14px;
+  margin: 10px 0px 5px;
+  padding: 0px;
+  text-transform: uppercase;
+  letter-spacing: 0.15px;
+}
+
+#sidebar #footer h5.copyright,
+#sidebar #footer p.build-number {
+  font-size: 10px;
+  letter-spacing: 0.15px;
+  line-height: 150% !important;
+}
+
+#body a.highlight:after {
+  display: block;
+  content: "";
+  height: 1px;
+  width: 0%;
+  -webkit-transition: width 0.5s ease;
+  -moz-transition: width 0.5s ease;
+  -ms-transition: width 0.5s ease;
+  transition: width 0.5s ease;
+  background-color: var(--MAIN-LINK-HOVER-color);
+}
+#sidebar {
+  background-color: var(--MENU-SECTIONS-BG-color);
+}
+#sidebar #header-wrapper {
+  background: var(--MENU-HEADER-BG-color);
+  color: var(--MENU-SEARCH-BOX-color);
+  border-color: var(--MENU-HEADER-BORDER-color);
+}
+#sidebar .searchbox {
+  border-color: var(--MENU-SEARCH-BOX-color);
+  background: var(--MENU-SEARCH-BG-color);
+}
+#sidebar ul.topics > li.parent,
+#sidebar ul.topics > li.active {
+  background: var(--MENU-SECTIONS-ACTIVE-BG-color);
+}
+#sidebar .searchbox * {
+  color: var(--MENU-SEARCH-BOX-ICONS-color);
+}
+
+.searchbox button[data-search-clear] {
+  position: absolute;
+  top: 0;
+  right: 2px;
+  display: inline-flex;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+}
+
+.searchbox button[data-search-clear]:hover,
+.searchbox button[data-search-clear]:focus-visible {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+#sidebar a {
+  color: var(--MENU-SECTIONS-LINK-color);
+}
+
+#sidebar a:hover {
+  color: var(--MENU-SECTIONS-LINK-HOVER-color);
+}
+
+#sidebar ul.topics li > a b {
+  display: inline-block;
+  margin-right: 0.22rem;
+}
+
+#sidebar ul li.active > a {
+  background: var(--MENU-SECTION-ACTIVE-CATEGORY-BG-color);
+  color: var(--MENU-SECTION-ACTIVE-CATEGORY-color) !important;
+}
+
+#sidebar hr {
+  border-color: var(--MENU-SECTION-HR-color);
+}
+
+#navigation a.nav-prev,
+#navigation a.nav-next {
+  color: #c45500 !important;
+}
+
+#navigation a.nav-prev:hover,
+#navigation a.nav-next:hover {
+  color: #8b3f00 !important;
+}
+
+div.notices p:first-child:before {
+  position: absolute;
+  top: 2px;
+  color: #fff;
+  font-family: "Font Awesome\ 5 Free";
+  content: #f06a;
+  font-weight: 900; /* Fix version 5.0.9 */
+  left: 10px;
+}
+
+body {
+  color: var(--MAIN-TEXT-color) !important;
+  font-family: "Amazon Ember", "Work Sans", sans-serif;
+  text-align: left;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: var(--MAIN-TITLES-TEXT-color) !important;
+  font-family: "Amazon Ember", "Montserrat", sans-serif;
+}
+
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default,
+.ui-button,
+html .ui-button.ui-state-disabled:hover,
+html .ui-button.ui-state-disabled:active {
+  border: 1px solid #dddddd;
+  font-weight: normal;
+  color: #454545;
+}
+
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active,
+a.ui-button:active,
+.ui-button:active,
+.ui-button.ui-state-active:hover {
+  border: 1px solid var(--MENU-HEADER-BG-color);
+  background: var(--MENU-HEADER-BG-color);
+  font-weight: normal;
+  color: #fff;
+}
+
+.ui-widget.ui-widget-content {
+  border: 1px solid #eeeeee;
+}
+
+.ui-widget-header {
+  border: 1px solid #eeeeee;
+}
+
+.hljs {
+  background-color: none;
+}
+
+pre {
+  background-color: var(--MENU-SECTIONS-BG-color) !important;
+}
+
+div.notices.info p {
+  border-top: 30px solid #fd9827;
+  background: #fff2db;
+}
+
+.internship-sidebar-footer {
+  color: #c8d2df;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  text-align: left;
+}
+
+.internship-sidebar-footer strong,
+.internship-sidebar-footer span,
+.internship-sidebar-footer em {
+  display: block;
+}
+
+.internship-sidebar-footer strong {
+  margin-top: 20px;
+  color: #c8d2df;
+}
+
+.internship-sidebar-footer span,
+.internship-sidebar-footer em {
+  color: #ff9900;
+}
+
+.internship-sidebar-footer .internship-team-link {
+  display: inline-block;
+  color: #ff9900;
+  text-decoration: none;
+}
+
+.internship-sidebar-footer .internship-team-link:hover em {
+  color: #ffb84d;
+  text-decoration: underline;
+}
+
+.internship-profile {
+  width: 100%;
+  padding-top: 8px;
+}
+
+.internship-profile > h1 {
+  margin: 22px 0 45px;
+  color: #778ba5 !important;
+  font-size: clamp(2.4rem, 4.2vw, 3.5rem);
+  font-weight: 400;
+  letter-spacing: 0.015em;
+  text-align: center;
+}
+
+.student-information {
+  margin-right: 6.5%;
+  margin-left: 6.5%;
+}
+
+.student-information > h2 {
+  margin: 0 0 18px;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.student-information-lines {
+  padding-left: 22px;
+  font-size: 1.05rem;
+}
+
+.student-detail-row {
+  display: block;
+  margin-bottom: 17px;
+  line-height: 1.7;
+}
+
+.student-photo {
+  position: relative;
+  display: flex;
+  width: min(340px, 82%);
+  min-height: 430px;
+  margin: 65px auto 0;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.student-photo > img {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  max-height: 500px;
+  object-fit: contain;
+  object-position: center bottom;
+  opacity: 0;
+}
+
+.student-photo.has-photo > img {
+  opacity: 1;
+}
+
+.student-photo-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 2px dashed #b8c2cf;
+  background: #f7f8fa;
+  color: #41566f;
+  text-align: center;
+}
+
+.student-photo-placeholder i {
+  font-size: 5rem;
+}
+
+.student-photo-placeholder span {
+  font-size: 0.85rem;
+}
+
+.student-photo.has-photo .student-photo-placeholder {
+  display: none;
+}
+
+.report-contents {
+  margin: 45px 6.5% 80px;
+}
+
+.contribution-card {
+  margin: 45px 6.5% 0;
+  padding: clamp(22px, 3vw, 34px);
+  border: 1px solid #d7e0e8;
+  border-top: 5px solid #ff9900;
+  border-radius: 8px;
+  background: linear-gradient(145deg, #ffffff 0%, #f4f7fa 100%);
+  box-shadow: 0 10px 28px rgba(35, 47, 62, 0.1);
+}
+
+.contribution-card h2 {
+  margin: 8px 0 14px;
+  color: #263f59 !important;
+  font-size: clamp(1.65rem, 3vw, 2.2rem);
+  font-weight: 600;
+}
+
+.contribution-card p {
+  margin-bottom: 18px;
+}
+
+.contribution-eyebrow {
+  color: #8b5200;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.endpoint-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.endpoint-chips code {
+  padding: 7px 10px;
+  border: 1px solid #cdd9e4;
+  border-radius: 5px;
+  background: #eef4f8;
+  color: #173f61;
+  font-size: 0.82rem;
+}
+
+.evidence-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin: 28px 0;
+}
+
+.evidence-placeholder {
+  display: flex;
+  min-height: 180px;
+  padding: 22px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border: 2px dashed #91a4b7;
+  border-radius: 8px;
+  background: #f6f8fa;
+  color: #3c5268;
+  text-align: center;
+}
+
+.evidence-placeholder i {
+  color: #146eb4;
+  font-size: 2.2rem;
+}
+
+.evidence-placeholder span {
+  font-size: 0.9rem;
+}
+
+#body-inner table {
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+#body-inner pre {
+  overflow-x: auto;
+}
+
+.report-contents h2 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.report-contents ol {
+  margin-left: 28px;
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.report-contents li {
+  padding-left: 2px;
+}
+
+.project-demo-access {
+  margin: -40px 6.5% 80px;
+  padding: 24px 28px;
+  border-left: 5px solid #ff9900;
+  background: #f5f6f7;
+  box-shadow: 0 1px 3px rgba(35, 47, 62, 0.12);
+}
+
+.project-demo-access h2 {
+  margin: 0 0 16px;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.project-demo-access h3 {
+  margin: 24px 0 12px;
+  font-size: 1.35rem;
+}
+
+.project-demo-access ul {
+  margin: 0 0 14px 24px;
+}
+
+.project-demo-access li {
+  margin-bottom: 8px;
+}
+
+.project-demo-access p {
+  margin-bottom: 0;
+  color: #59636e;
+}
+
+@media (max-width: 767px) {
+  #body,
+  #body .padding,
+  #body-inner,
+  .internship-profile {
+    width: 100%;
+  }
+
+  .internship-profile > h1 {
+    margin-bottom: 30px;
+    max-width: 100%;
+    font-size: clamp(1.75rem, 8vw, 2.15rem);
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+    white-space: normal;
+  }
+
+  .student-information {
+    width: 100%;
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .student-information > h2 {
+    font-size: 1.65rem;
+  }
+
+  .student-information-lines {
+    padding-left: 0;
+    font-size: 1rem;
+  }
+
+  .student-photo {
+    min-height: 380px;
+    margin-top: 35px;
+  }
+
+  .contribution-card {
+    margin: 35px 0 0;
+  }
+
+  .evidence-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .report-contents {
+    margin: 30px 0 60px;
+  }
+
+  .project-demo-access {
+    margin: -25px 0 60px;
+    padding: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

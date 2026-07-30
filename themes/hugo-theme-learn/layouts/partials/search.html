@@ -1,0 +1,16 @@
+<div class="searchbox">
+    <label for="search-by" aria-hidden="true"><i class="fas fa-search" aria-hidden="true"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="{{T "Search-placeholder"}}" aria-label="{{T "Search-placeholder"}}">
+    <button type="button" data-search-clear="" aria-label="{{ if eq .Page.Lang "vi" }}Xóa tìm kiếm{{ else }}Clear search{{ end }}"><i class="fas fa-times" aria-hidden="true"></i></button>
+</div>
+{{ $assetBusting := not .Site.Params.disableAssetsBusting }}
+<script type="text/javascript" src="{{"js/lunr.min.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
+<script type="text/javascript" src="{{"js/auto-complete.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
+<script type="text/javascript">
+    {{ if hugo.IsMultilingual }}
+        var baseurl = "{{.Site.BaseURL}}{{.Site.LanguagePrefix}}";
+    {{ else }}
+        var baseurl = "{{.Site.BaseURL}}";
+    {{ end }}
+</script>
+<script type="text/javascript" src="{{"js/search.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>

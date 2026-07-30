@@ -1,0 +1,19 @@
+<div class="internship-sidebar-footer">
+  {{ if eq .Page.Lang "vi" }}
+    <strong>Sinh viên thực hiện</strong>
+    <span>Nguyễn Song Minh Luân</span>
+    <em>API Enrollment · Progress · Upload · Testing</em>
+    <strong>Cập nhật lần cuối</strong>
+  {{ else }}
+    <strong>Prepared by</strong>
+    <span>Nguyễn Song Minh Luân</span>
+    <em>Enrollment · Progress · Upload · Testing APIs</em>
+    <strong>Last updated</strong>
+  {{ end }}
+  <span>{{ .Site.Params.lastUpdated }}</span>
+
+  <strong>Program</strong>
+  <a class="internship-team-link" href="https://www.facebook.com/groups/awsstudygroupfcj" target="_blank" rel="noopener noreferrer">
+    <em>First Cloud AI Journey</em>
+  </a>
+</div>

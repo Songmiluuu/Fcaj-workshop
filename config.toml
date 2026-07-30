@@ -1,0 +1,79 @@
+baseURL = "/"
+relativeURLs = false
+canonifyURLs = false
+defaultContentLanguage = "en"
+theme = "hugo-theme-learn"
+title = "EduCloud API Internship Report — Nguyễn Song Minh Luân"
+enableRobotsTXT = true
+
+[outputs]
+home = ["HTML", "RSS", "JSON"]
+
+[params]
+  themeVariant = "workshop"
+  editURL = ""
+  description = "Bilingual internship report and hands-on API workshop for EduCloud Lite, focused on enrollment, learning progress, S3 uploads, Postman testing, and CloudWatch logs."
+  author = "Nguyễn Song Minh Luân"
+  lastUpdated = "30-07-2026"
+  showVisitedLinks = true
+  disableInlineCopyToClipBoard = true
+  disableBreadcrumb = false
+  disableNextPrev = false
+  disableSearch = false
+  disableAssetsBusting = false
+
+[languages]
+  [languages.en]
+    title = "EduCloud API Internship Report"
+    languageName = "English"
+    weight = 1
+
+    [[languages.en.menu.shortcuts]]
+      name = "<i class='fas fa-external-link-alt'></i> EduCloud team demo"
+      identifier = "educloud-live"
+      url = "https://main.djk00b5qbck73.amplifyapp.com/courses"
+      weight = 1
+
+    [[languages.en.menu.shortcuts]]
+      name = "<i class='fab fa-github'></i> EduCloud team source"
+      identifier = "educloud-source"
+      url = "https://github.com/Funacius/EduCloud"
+      weight = 2
+
+    [[languages.en.menu.shortcuts]]
+      name = "<i class='fab fa-aws'></i> AWS Study Group"
+      identifier = "aws-study-group"
+      url = "https://awsstudygroup.com"
+      weight = 10
+
+  [languages.vi]
+    title = "Báo cáo thực tập API EduCloud"
+    languageName = "Tiếng Việt"
+    weight = 2
+
+    [[languages.vi.menu.shortcuts]]
+      name = "<i class='fas fa-external-link-alt'></i> Demo chung EduCloud"
+      identifier = "educloud-live-vi"
+      url = "https://main.djk00b5qbck73.amplifyapp.com/courses"
+      weight = 1
+
+    [[languages.vi.menu.shortcuts]]
+      name = "<i class='fab fa-github'></i> Mã nguồn nhóm EduCloud"
+      identifier = "educloud-source-vi"
+      url = "https://github.com/Funacius/EduCloud"
+      weight = 2
+
+    [[languages.vi.menu.shortcuts]]
+      name = "<i class='fab fa-aws'></i> AWS Study Group"
+      identifier = "aws-study-group-vi"
+      url = "https://awsstudygroup.com"
+      weight = 10
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[caches]
+  [caches.images]
+    dir = ":cacheDir/images"
