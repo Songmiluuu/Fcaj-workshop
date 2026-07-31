@@ -11,7 +11,7 @@ pre: "<b>2.</b>"
 
 **Project Intern:** Nguyễn Song Minh Luân  
 **Program:** First Cloud AI Journey — Amazon Web Services Vietnam Company Limited  
-**Internship period:** June 1, 2026 – August 15, 2026
+**Internship period:** June 1, 2026 – August 14, 2026
 
 ## 1. Project overview
 
@@ -181,20 +181,22 @@ history. Monitoring should cover enrollment conflicts, progress authorization
 failures, upload 4xx/5xx, S3 errors, latency, EC2/Elastic Beanstalk health,
 storage growth, incomplete multipart uploads, and spend.
 
-## 8. Eight-week work plan
+## 8. Ten-week work plan
 
-The technical schedule covers June 15 through August 14, 2026.
+The ten recorded work periods run from June 5 through August 14, 2026.
 
 | Week | Dates | Task |
 | --- | --- | --- |
-| 1 | Jun 15–21 | Review FCAJ requirements, EduCloud workflows, team boundaries, and the seven assigned endpoints. |
-| 2 | Jun 22–28 | Define Student and Instructor/Admin authorization rules, success criteria, negative cases, and required evidence. |
-| 3 | Jun 29–Jul 5 | Design API contracts, enrollment/progress data constraints, upload validation, and reusable Postman variables. |
-| 4 | Jul 6–12 | Align the FastAPI integration baseline, authentication dependency, response conventions, PostgreSQL persistence, and AWS configuration. |
-| 5 | Jul 13–19 | Implement and validate course enrollment and My Courses behavior, including duplicate-request handling and Student-only access. |
-| 6 | Jul 20–26 | Implement and validate lesson completion, course progress, and authorized thumbnail, material, and video uploads. |
-| 7 | Jul 27–31 | Integrate the APIs with shared frontend, authentication, and course components; review automated regression and prepare the scoped Postman collection. |
-| 8 | Aug 1–14 | Run Postman and S3/CloudWatch checks, retest defects, complete the documentation, and hand over the report. |
+| 1 | Jun 5–12 | Review FCAJ requirements, EduCloud workflows, team boundaries, and the seven assigned endpoints. |
+| 2 | Jun 15–19 | Define Student and Instructor/Admin authorization rules, success criteria, negative cases, and required evidence. |
+| 3 | Jun 22–26 | Design API contracts, enrollment/progress data constraints, upload validation, and reusable Postman variables. |
+| 4 | Jun 29–Jul 3 | Align the FastAPI integration baseline, authentication dependency, response conventions, PostgreSQL persistence, and AWS configuration. |
+| 5 | Jul 6–10 | Implement and validate course enrollment and My Courses behavior, including duplicate-request handling and Student-only access. |
+| 6 | Jul 13–17 | Implement and validate lesson completion, course progress, and authorized thumbnail, material, and video uploads. |
+| 7 | Jul 20–24 | Integrate the APIs with shared frontend, authentication, and course components; review automated regression and prepare the scoped Postman collection. |
+| 8 | Jul 27–31 | Run Postman and S3/CloudWatch checks, retest defects, complete the documentation, and hand over the report. |
+| 9 | Aug 3–7 | Review operations, security controls, AWS logging, and Well-Architected practices relevant to EduCloud. |
+| 10 | Aug 10–14 | Consolidate Generative AI, Agentic AI, and AWS learning; complete the final summary and development roadmap. |
 
 ## 9. Cost plan and optimization
 

@@ -30,9 +30,9 @@ bài mẫu.
       `content/3-BlogsPosted/`; tài liệu đầu vào hiện không chứa hai thông tin này.
 - [ ] Kiểm tra link demo/source của nhóm trong `config.toml` và trang chủ; thay bằng
       repository/URL chính thức nếu nhóm dùng địa chỉ khác.
-- [ ] Xin mentor xác nhận lịch worklog 8 tuần từ 15/06 đến 14/08 phù hợp với
+- [ ] Xin mentor xác nhận lịch worklog 10 tuần từ 05/06 đến 14/08 phù hợp với
       phạm vi và thời gian thực tập.
-- [ ] Xác nhận kỳ thực tập 01/06–15/08 có đáp ứng điều kiện
+- [ ] Xác nhận kỳ thực tập 01/06–14/08 có đáp ứng điều kiện
       hành chính hay cần gia hạn/giấy xác nhận riêng.
 - [ ] Bổ sung bằng chứng đủ 10 buổi làm việc tại văn phòng nếu hồ sơ xin mộc yêu
       cầu (lịch, check-in hoặc xác nhận mentor đã che dữ liệu nhạy cảm).
@@ -61,5 +61,5 @@ bài mẫu.
 
 Nếu cần xác nhận/mộc thực tập, PDF còn nêu các điều kiện: project cá nhân hoàn
 thành, báo cáo theo template, tối thiểu 3 tháng, 10 buổi tại văn phòng và 3 blog
-AWS Study Group. Thời gian 01/06–15/08 ngắn hơn 3 tháng, nên cần hỏi lại đơn vị phụ
+AWS Study Group. Thời gian 01/06–14/08 ngắn hơn 3 tháng, nên cần hỏi lại đơn vị phụ
 trách về điều kiện này.

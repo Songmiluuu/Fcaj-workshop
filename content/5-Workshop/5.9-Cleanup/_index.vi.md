@@ -76,7 +76,7 @@ resource owner.
 ## Gói bàn giao cuối
 
 - Source báo cáo Hugo và GitHub Pages workflow.
-- Worklog tám tuần, proposal, workshop,
+- Worklog mười tuần, proposal, workshop,
   self-evaluation và feedback song ngữ.
 - Postman collection, OpenAPI snapshot và test matrix theo phạm vi.
 - Command/kết quả `pytest` cho revision source được nộp.

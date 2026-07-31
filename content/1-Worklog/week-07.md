@@ -7,7 +7,7 @@ pre: "<b>1.7.</b>"
 
 # Week 7 - Integration and regression
 
-**Work period:** July 27–31, 2026
+**Work period:** July 20–24, 2026
 
 ## Task
 

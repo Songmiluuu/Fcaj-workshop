@@ -8,7 +8,7 @@ Postman và kiểm tra log trên Amazon CloudWatch.
 
 - Đúng 7 nhóm nội dung trong quy định: Worklog, Proposal, Blogs Posted, Events
   Participated, Workshop, Self-Assessment và Sharing and Feedback.
-- 8 tuần worklog bao phủ 15/06/2026–14/08/2026; kết quả kiểm thử được cập nhật
+- 10 tuần worklog bao phủ 05/06/2026–14/08/2026; kết quả kiểm thử được cập nhật
   ngày 30/07/2026.
 - Bản tiếng Anh và tiếng Việt cho toàn bộ nội dung chính.
 - Postman collection, OpenAPI snapshot và test matrix riêng cho phần API được giao.

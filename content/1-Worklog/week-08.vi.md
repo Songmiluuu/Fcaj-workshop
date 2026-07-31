@@ -7,7 +7,7 @@ pre: "<b>1.8.</b>"
 
 # Tuần 8 - Validation và bàn giao
 
-**Thời gian:** 01–14/08/2026
+**Thời gian:** 27–31/07/2026
 
 ## Công việc
 

@@ -7,7 +7,7 @@ pre: "<b>1.4.</b>"
 
 # Week 4 - FastAPI and persistence baseline
 
-**Work period:** July 6–12, 2026
+**Work period:** June 29–July 3, 2026
 
 ## Task
 

@@ -7,7 +7,7 @@ pre: "<b>1.5.</b>"
 
 # Tuần 5 - Enrollment và My Courses
 
-**Thời gian:** 13–19/07/2026
+**Thời gian:** 06–10/07/2026
 
 ## Công việc
 

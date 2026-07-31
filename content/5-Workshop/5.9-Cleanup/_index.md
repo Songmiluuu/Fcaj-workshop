@@ -78,7 +78,7 @@ to the resource owner instead.
 ## Final handover package
 
 - Hugo report source and GitHub Pages workflow.
-- Bilingual eight-week worklog, proposal, workshop,
+- Bilingual ten-week worklog, proposal, workshop,
   self-evaluation, and feedback.
 - Scoped Postman collection, OpenAPI snapshot, and test matrix.
 - `pytest` command/result for the submitted source revision.

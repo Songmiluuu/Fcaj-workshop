@@ -14,10 +14,10 @@ chapter: false
 <div class="student-detail-row"><strong>Email:</strong> <a href="mailto:luan.nguyensongminh@hcmut.edu.vn">luan.nguyensongminh@hcmut.edu.vn</a></div>
 <div class="student-detail-row"><strong>University:</strong> Ho Chi Minh City University of Technology (HCMUT)</div>
 <div class="student-detail-row"><strong>Major:</strong> Computer Science</div>
-<div class="student-detail-row"><strong>Class:</strong> CC23KHM3</div>
+<div class="student-detail-row"><strong>Class:</strong> MT23KHM6</div>
 <div class="student-detail-row"><strong>Internship Company:</strong> Amazon Web Services Vietnam Company Limited</div>
 <div class="student-detail-row"><strong>Internship Position:</strong> Project Intern — First Cloud AI Journey</div>
-<div class="student-detail-row"><strong>Internship Duration:</strong> June 1, 2026 – August 15, 2026</div>
+<div class="student-detail-row"><strong>Internship Duration:</strong> June 1, 2026 – August 14, 2026</div>
 </div>
 </div>
 

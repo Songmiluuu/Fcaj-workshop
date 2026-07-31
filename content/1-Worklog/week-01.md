@@ -7,7 +7,7 @@ pre: "<b>1.1.</b>"
 
 # Week 1 - Requirements and scope review
 
-**Work period:** June 15–21, 2026
+**Work period:** June 5–12, 2026
 
 ## Task
 

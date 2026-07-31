@@ -7,7 +7,7 @@ pre: "<b>1.7.</b>"
 
 # Tuần 7 - Tích hợp và regression
 
-**Thời gian:** 27–31/07/2026
+**Thời gian:** 20–24/07/2026
 
 ## Công việc
 

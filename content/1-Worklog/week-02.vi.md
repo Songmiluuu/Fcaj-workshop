@@ -7,7 +7,7 @@ pre: "<b>1.2.</b>"
 
 # Tuần 2 - Phân quyền và tiêu chí nghiệm thu
 
-**Thời gian:** 22–28/06/2026
+**Thời gian:** 15–19/06/2026
 
 ## Công việc
 

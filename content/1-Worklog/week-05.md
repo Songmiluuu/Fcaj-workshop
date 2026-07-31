@@ -7,7 +7,7 @@ pre: "<b>1.5.</b>"
 
 # Week 5 - Enrollment and My Courses
 
-**Work period:** July 13–19, 2026
+**Work period:** July 6–10, 2026
 
 ## Task
 

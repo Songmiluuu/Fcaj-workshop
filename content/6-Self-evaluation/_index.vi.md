@@ -8,7 +8,7 @@ pre: "<b>6.</b>"
 
 # Tự đánh giá
 
-Trong kỳ thực tập từ **01/06 đến 15/08/2026**, tôi tham gia phát triển
+Trong kỳ thực tập từ **01/06 đến 14/08/2026**, tôi tham gia phát triển
 **EduCloud**, một nền tảng học tập trên cloud. Phần việc được giao tập trung vào
 Enrollment, Progress, Upload, kiểm thử API và xác minh log ứng dụng.
 

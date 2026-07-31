@@ -11,7 +11,7 @@ pre: "<b>2.</b>"
 
 **Thực tập sinh:** Nguyễn Song Minh Luân  
 **Chương trình:** First Cloud AI Journey — Amazon Web Services Vietnam Company Limited  
-**Thời gian thực tập:** 01/06/2026 – 15/08/2026
+**Thời gian thực tập:** 01/06/2026 – 14/08/2026
 
 ## 1. Tổng quan dự án
 
@@ -173,20 +173,22 @@ nguồn lịch sử production lâu dài. Cần theo dõi enrollment conflict, l
 quyền progress, upload 4xx/5xx, lỗi S3, latency, EC2/Elastic Beanstalk health,
 storage growth, incomplete multipart upload và chi phí.
 
-## 8. Kế hoạch tám tuần
+## 8. Kế hoạch mười tuần
 
-Lịch kỹ thuật kéo dài từ 15/06 đến 14/08/2026.
+Mười giai đoạn công việc được ghi nhận từ 05/06 đến 14/08/2026.
 
 | Tuần | Thời gian | Công việc |
 | --- | --- | --- |
-| 1 | 15–21/06 | Rà soát yêu cầu FCAJ, workflow EduCloud, ranh giới công việc nhóm và bảy endpoint được giao. |
-| 2 | 22–28/06 | Xác định quyền Student và Instructor/Admin, tiêu chí thành công, case lỗi và kết quả kiểm tra cần lưu. |
-| 3 | 29/06–05/07 | Thiết kế API contract, ràng buộc dữ liệu enrollment/progress, validation upload và biến Postman dùng lại. |
-| 4 | 06–12/07 | Đồng bộ nền tảng FastAPI, authentication dependency, quy ước response, lưu trữ PostgreSQL và cấu hình AWS. |
-| 5 | 13–19/07 | Triển khai và kiểm tra enrollment cùng My Courses, gồm xử lý request trùng và giới hạn quyền Student. |
-| 6 | 20–26/07 | Triển khai và kiểm tra lesson completion, course progress, upload thumbnail, material và video có phân quyền. |
-| 7 | 27–31/07 | Tích hợp API với frontend, authentication và course dùng chung; rà automated regression và chuẩn bị Postman collection theo phạm vi. |
-| 8 | 01–14/08 | Chạy Postman, kiểm tra S3/CloudWatch, retest lỗi, hoàn thiện tài liệu và bàn giao báo cáo. |
+| 1 | 05–12/06 | Rà soát yêu cầu FCAJ, workflow EduCloud, ranh giới công việc nhóm và bảy endpoint được giao. |
+| 2 | 15–19/06 | Xác định quyền Student và Instructor/Admin, tiêu chí thành công, case lỗi và kết quả kiểm tra cần lưu. |
+| 3 | 22–26/06 | Thiết kế API contract, ràng buộc dữ liệu enrollment/progress, validation upload và biến Postman dùng lại. |
+| 4 | 29/06–03/07 | Đồng bộ nền tảng FastAPI, authentication dependency, quy ước response, lưu trữ PostgreSQL và cấu hình AWS. |
+| 5 | 06–10/07 | Triển khai và kiểm tra enrollment cùng My Courses, gồm xử lý request trùng và giới hạn quyền Student. |
+| 6 | 13–17/07 | Triển khai và kiểm tra lesson completion, course progress, upload thumbnail, material và video có phân quyền. |
+| 7 | 20–24/07 | Tích hợp API với frontend, authentication và course dùng chung; rà automated regression và chuẩn bị Postman collection theo phạm vi. |
+| 8 | 27–31/07 | Chạy Postman, kiểm tra S3/CloudWatch, retest lỗi, hoàn thiện tài liệu và bàn giao báo cáo. |
+| 9 | 03–07/08 | Rà soát vận hành, kiểm soát bảo mật, log AWS và các thực hành Well-Architected liên quan đến EduCloud. |
+| 10 | 10–14/08 | Tổng hợp kiến thức Generative AI, Agentic AI và AWS; hoàn thiện bản tổng kết cùng lộ trình phát triển. |
 
 ## 9. Kế hoạch chi phí và tối ưu
 

@@ -7,7 +7,7 @@ pre: "<b>1.6.</b>"
 
 # Tuần 6 - Progress và upload
 
-**Thời gian:** 20–26/07/2026
+**Thời gian:** 13–17/07/2026
 
 ## Công việc
 

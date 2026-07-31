@@ -7,7 +7,7 @@ pre: "<b>1.3.</b>"
 
 # Tuần 3 - Thiết kế API contract và dữ liệu
 
-**Thời gian:** 29/06–05/07/2026
+**Thời gian:** 22–26/06/2026
 
 ## Công việc
 

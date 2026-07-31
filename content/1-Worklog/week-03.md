@@ -7,7 +7,7 @@ pre: "<b>1.3.</b>"
 
 # Week 3 - API contract and data design
 
-**Work period:** June 29–July 5, 2026
+**Work period:** June 22–26, 2026
 
 ## Task
 

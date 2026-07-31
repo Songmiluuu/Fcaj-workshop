@@ -7,7 +7,7 @@ pre: "<b>1.2.</b>"
 
 # Week 2 - Authorization and acceptance criteria
 
-**Work period:** June 22–28, 2026
+**Work period:** June 15–19, 2026
 
 ## Task
 

@@ -7,7 +7,7 @@ pre: "<b>1.4.</b>"
 
 # Tuần 4 - Nền tảng FastAPI và lưu trữ
 
-**Thời gian:** 06–12/07/2026
+**Thời gian:** 29/06–03/07/2026
 
 ## Công việc
 

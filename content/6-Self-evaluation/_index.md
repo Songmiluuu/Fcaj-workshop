@@ -8,7 +8,7 @@ pre: "<b>6.</b>"
 
 # Self-Assessment
 
-During my internship from **June 1 to August 15, 2026**, I participated in the
+During my internship from **June 1 to August 14, 2026**, I participated in the
 development of **EduCloud**, a cloud-based learning platform. My assigned work
 focused on Enrollment, Progress, Upload, API testing, and application-log
 verification.

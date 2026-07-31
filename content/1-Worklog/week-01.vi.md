@@ -7,7 +7,7 @@ pre: "<b>1.1.</b>"
 
 # Tuần 1 - Rà soát yêu cầu và phạm vi
 
-**Thời gian:** 15–21/06/2026
+**Thời gian:** 05–12/06/2026
 
 ## Công việc
 

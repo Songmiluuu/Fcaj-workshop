@@ -7,7 +7,7 @@ pre: "<b>1.6.</b>"
 
 # Week 6 - Progress and uploads
 
-**Work period:** July 20–26, 2026
+**Work period:** July 13–17, 2026
 
 ## Task
 

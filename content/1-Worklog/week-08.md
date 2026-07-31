@@ -7,7 +7,7 @@ pre: "<b>1.8.</b>"
 
 # Week 8 - Validation and handover
 
-**Work period:** August 1–14, 2026
+**Work period:** July 27–31, 2026
 
 ## Task
 
