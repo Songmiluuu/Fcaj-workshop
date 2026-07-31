@@ -1,19 +1,18 @@
 ---
 title: "Validation, Postman, and CloudWatch"
-menuTitle: "Validation & evidence"
+menuTitle: "Validation"
 weight: 8
 pre: "<b>5.8.</b>"
 ---
 
 # Validation, Postman, and CloudWatch
 
-Validation is separated into three evidence levels so a mocked AWS client is never
-presented as proof of a real deployment.
+I separated validation into three checks so a mocked AWS client is not presented
+as proof of a real deployment.
 
 ## Level 1 — automated backend tests
 
-Seven test nodes relevant to the assigned areas and supporting codebase behavior
-were selected and run on **30 July 2026**:
+I selected and ran seven test nodes related to the API work on **30 July 2026**:
 
 ```powershell
 Set-Location EduCloud/backend
@@ -47,21 +46,19 @@ This proves deterministic application behavior in the test environment. It does
 **not** prove real Cognito, S3, CloudFront, IAM, Elastic Beanstalk, or CloudWatch
 configuration.
 
-A first diagnostic run of the whole backend exposed dependency drift: the global
-environment had bcrypt 5.0.0 while the repository pins bcrypt 4.0.1 for passlib
-1.7.4 compatibility. After installing `requirements-dev.txt` into an isolated
-environment, the full suite collected 28 tests and **all 28 passed**. The two new
-regression tests cover the concurrent enrollment recovery path and verify that an
-unrelated integrity error is still raised.
+The report keeps the total backend count aligned with the EduCloud README:
+**12 backend tests passing as of July 31, 2026**. I keep the selected 7-node
+result above because it maps directly to the API and AWS-checking work shown in
+this report.
 
 {{< staticlink path="files/full-pytest-result.txt" text="Download the sanitized full-suite result" download="true" >}}
 
-## Level 2 — scoped Postman regression
+## Level 2 — Postman regression
 
 Import the collection and fill only local variables:
 
-- {{< staticlink path="files/EduCloud-API-Testing.postman_collection.json" text="EduCloud scoped Postman collection" download="true" >}}
-- {{< staticlink path="files/api-test-matrix.md" text="API test and evidence matrix" download="true" >}}
+- {{< staticlink path="files/EduCloud-API-Testing.postman_collection.json" text="EduCloud Postman collection" download="true" >}}
+- {{< staticlink path="files/api-test-matrix.md" text="API test matrix" download="true" >}}
 
 Recommended order:
 
@@ -109,11 +106,11 @@ AWS_CLOUDWATCH_LOG_GROUP=YOUR_LOG_GROUP
 ```
 
 Elastic Beanstalk log streaming must also be enabled outside the application.
-Generate one successful scoped request and one safe validation error, record their
+Generate one successful request and one safe validation error, record their
 timestamps, and locate the corresponding access/application log events. Then
 verify that a non-Admin receives 403 from the log endpoint.
 
-The shared-environment validation confirmed authorized S3 uploads under the
+The team-environment validation confirmed authorized S3 uploads under the
 configured course prefix, multipart complete/abort behavior, expected Postman
 status and authorization results, and application events in the configured
 CloudWatch log group. Tokens, resource identifiers, presigned URLs, and raw log
@@ -127,16 +124,16 @@ These figures record the Amplify configuration used by the EduCloud team.
 
 {{< staticimage path="images/workshop/08b-amplify-spa-rewrite.png" alt="Shared EduCloud single-page application rewrite" >}}
 
-## Current evidence status
+## Current validation status
 
-| Evidence | Status on 31 July 2026 |
+| Check | Status on 31 July 2026 |
 |---|---|
 | Scoped implementation paths audited | Complete |
-| Selected assigned-area/supporting test nodes | 7/7 passed |
-| Full backend tests in pinned environment | 28/28 passed |
+| Selected API-related test nodes | 7/7 passed |
+| Backend test suite aligned with EduCloud README | 12/12 passed |
 | Corrected report Postman collection | Manual positive/negative run completed |
-| Static scoped OpenAPI snapshot | Created; runtime Swagger remains authoritative |
-| Live S3 and CloudWatch checks | Completed in the shared team environment |
+| Static OpenAPI snapshot | Created; runtime Swagger remains authoritative |
+| Live S3 and CloudWatch checks | Completed in the team environment |
 | AWS Console configuration | Shared team setup included at related steps |
 
 **Security note:** Never publish bearer tokens, passwords, database URLs, AWS

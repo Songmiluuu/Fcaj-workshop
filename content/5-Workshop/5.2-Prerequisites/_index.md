@@ -93,9 +93,9 @@ Record the IDs locally as `course_id`, `lesson_id`, and
 
 ## Import report artifacts
 
-- {{< staticlink path="files/EduCloud-API-Testing.postman_collection.json" text="Download the scoped Postman collection" download="true" >}}
-- {{< staticlink path="files/educloud-openapi.yaml" text="Download the scoped OpenAPI snapshot" download="true" >}}
-- {{< staticlink path="files/api-test-matrix.md" text="Download the evidence-based test matrix" download="true" >}}
+- {{< staticlink path="files/EduCloud-API-Testing.postman_collection.json" text="Download the Postman collection" download="true" >}}
+- {{< staticlink path="files/educloud-openapi.yaml" text="Download the OpenAPI snapshot" download="true" >}}
+- {{< staticlink path="files/api-test-matrix.md" text="Download the API test matrix" download="true" >}}
 
 ## Safety gate
 

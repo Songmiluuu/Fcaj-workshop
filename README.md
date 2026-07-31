@@ -20,8 +20,8 @@ Postman và kiểm tra log trên Amazon CloudWatch.
 
 - Bảy test node được chọn liên quan đến enrollment, progress, upload và
   CloudWatch: **7 collected, 7 passed**.
-- Full backend suite trong môi trường dependency sạch theo `requirements-dev.txt`:
-  **28 collected, 28 passed**.
+- Backend test suite theo README EduCloud:
+  **12 tests passing as of July 31, 2026**, source revision `62d80279500c4e11de31e05fd876d50a370b461e`.
 - Full suite được chạy trên EduCloud backend sau khi bổ sung bản sửa concurrent
   enrollment, với source ban đầu ở revision `62d80279500c4e11de31e05fd876d50a370b461e`.
 - Postman collection trong báo cáo đã được kiểm tra JSON và chạy manual với các

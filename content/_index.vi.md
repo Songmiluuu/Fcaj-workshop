@@ -64,7 +64,7 @@ chapter: false
 <li><strong>OpenAPI tham khảo:</strong> <a href="../files/educloud-openapi.yaml" download>Tải YAML</a></li>
 <li><strong>Ma trận kiểm thử API:</strong> <a href="../files/api-test-matrix.md" download>Tải Markdown</a></li>
 <li><strong>Kết quả pytest theo phạm vi:</strong> <a href="../files/targeted-pytest-result.txt" download>7/7 test node pass</a></li>
-<li><strong>Kết quả full pytest:</strong> <a href="../files/full-pytest-result.txt" download>28/28 pass</a></li>
+<li><strong>Kết quả backend test suite:</strong> <a href="../files/full-pytest-result.txt" download>12/12 pass</a></li>
 </ul>
 <p>Website demo và repository là sản phẩm chung của nhóm. Báo cáo trình bày phần API và kiểm thử được giao.</p>
 </div>

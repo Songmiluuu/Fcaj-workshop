@@ -97,4 +97,4 @@ following actions:
 After the event, I understood that a convincing technical demonstration depends
 less on feature count than on a core workflow that is stable, explainable, and
 supported by evidence. I use this principle to keep the EduCloud workshop
-aligned with my assigned scope.
+aligned with the API work I was documenting.

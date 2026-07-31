@@ -8,11 +8,10 @@ pre: "<b>4.</b>"
 
 # Các sự kiện đã tham dự
 
-Trong thời gian thực tập, Nguyễn Song Minh Luân đã tham dự hai sự kiện cộng đồng
-FCAJ. Sự kiện thứ nhất được theo dõi trực tuyến qua YouTube livestream; sự kiện
-thứ hai là chương trình trao giải và giới thiệu dự án Agentic AI Build Week. Mỗi
-bài thu hoạch ghi lại bối cảnh, nội dung đã theo dõi, bài học cá nhân và cách liên
-hệ với phạm vi API/kiểm thử EduCloud được giao.
+Trong thời gian thực tập, tôi đã tham dự hai sự kiện cộng đồng FCAJ. Sự kiện đầu
+tiên là livestream online, còn sự kiện thứ hai là buổi awards và project
+showcase của Agentic AI Build Week. Tôi ghi lại các phần đã theo dõi và những
+bài học có thể áp dụng lại cho EduCloud.
 
 | Sự kiện | Ngày | Hình thức tham dự |
 |---|---:|---|

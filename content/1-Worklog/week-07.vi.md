@@ -12,7 +12,7 @@ pre: "<b>1.7.</b>"
 ## Công việc
 
 Tích hợp API với frontend, authentication và course dùng chung; rà automated
-regression và chuẩn bị Postman collection theo phạm vi.
+regression và chuẩn bị Postman collection.
 
 ## Tích hợp
 
@@ -25,11 +25,10 @@ regression và chuẩn bị Postman collection theo phạm vi.
 ## Regression
 
 Bảy test được chọn cho enrollment, progress, upload validation, multipart và
-CloudWatch đạt **7/7** ngày 30/07. Full backend suite đạt **28/28** ngày 31/07
-trong môi trường riêng dùng đúng phiên bản dependency của repository, gồm hai
-regression test cho concurrent enrollment.
+CloudWatch đạt **7/7** ngày 30/07. Báo cáo được đồng bộ với README của repository
+EduCloud, nơi ghi nhận **12/12** backend test pass tính đến ngày 31/07.
 
-Postman collection theo phạm vi có luồng API được giao, biến theo role,
+Postman collection có luồng API, biến theo role,
 assertion cho response, request multipart và request Admin CloudWatch.
 
 ## Kết quả

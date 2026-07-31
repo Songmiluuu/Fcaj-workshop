@@ -6,8 +6,9 @@ chapter: false
 pre: "<b>3.</b>"
 ---
 
-Nguyễn Song Minh Luân published three technical articles during the internship.
-Each article has a complete report version on this site.
+I wrote three technical articles during the internship to explore AWS
+architectures related to media processing, upload security, and durable
+workflows. I kept a full report version of each article on this site.
 
 <h2 class="blog-list-title"><a href="video-processing-s3-mediaconvert-cloudfront/">Blog 1 — Automating lecture video processing with Amazon S3, MediaConvert, and CloudFront</a></h2>
 

@@ -12,7 +12,7 @@ pre: "<b>1.7.</b>"
 ## Task
 
 Integrate the APIs with shared frontend, authentication, and course components;
-review automated regression and prepare the scoped Postman collection.
+review automated regression and prepare the Postman collection.
 
 ## Integration work
 
@@ -26,11 +26,11 @@ review automated regression and prepare the scoped Postman collection.
 ## Regression
 
 Seven selected tests covering enrollment, progress, upload validation,
-multipart controls, and CloudWatch behavior passed **7/7** on July 30. The full
-backend suite passed **28/28** on July 31 in an isolated environment using the
-repository dependency versions, including two concurrent-enrollment regression tests.
+multipart controls, and CloudWatch behavior passed **7/7** on July 30. I kept
+the report aligned with the EduCloud README, which records **12/12** backend
+tests passing as of July 31.
 
-The scoped Postman collection contains the assigned API flow, role-specific
+The Postman collection contains the API flow, role-specific
 variables, response assertions, multipart requests, and the Admin CloudWatch
 request.
 

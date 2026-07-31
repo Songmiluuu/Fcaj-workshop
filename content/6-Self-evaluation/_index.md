@@ -9,9 +9,8 @@ pre: "<b>6.</b>"
 # Self-Assessment
 
 During my internship from **June 1 to August 14, 2026**, I participated in the
-development of **EduCloud**, a cloud-based learning platform. My assigned work
-focused on Enrollment, Progress, Upload, API testing, and application-log
-verification.
+development of **EduCloud**, a cloud-based learning platform. I worked mainly on
+Enrollment, Progress, Upload, API testing, and application-log verification.
 
 The project gave me practical experience with FastAPI, SQLAlchemy, PostgreSQL,
 Amazon Cognito, Amazon S3, CloudWatch, Postman, and the integration between the
@@ -23,9 +22,9 @@ I assessed the internship against twelve professional and technical criteria.
 
 | No. | Criteria | Description | Good | Fair | Average |
 |---:|---|---|:---:|:---:|:---:|
-| 1 | **Professional knowledge and skills** | Applied backend, database, authentication, storage, testing, and AWS knowledge to the assigned EduCloud APIs | ✅ | ☐ | ☐ |
+| 1 | **Professional knowledge and skills** | Applied backend, database, authentication, storage, testing, and AWS knowledge to EduCloud APIs | ✅ | ☐ | ☐ |
 | 2 | **Ability to learn** | Learned unfamiliar services and API patterns while implementing and reviewing real project flows | ✅ | ☐ | ☐ |
-| 3 | **Proactiveness** | Broke the assigned scope into API rules, positive and negative tests, and integration checks | ✅ | ☐ | ☐ |
+| 3 | **Proactiveness** | Broke the API work into rules, positive and negative tests, and integration checks | ✅ | ☐ | ☐ |
 | 4 | **Sense of responsibility** | Followed the assigned work through implementation, regression testing, documentation, and handover preparation | ✅ | ☐ | ☐ |
 | 5 | **Discipline** | Followed the project schedule, but evidence collection and final report polishing could have been planned earlier | ☐ | ✅ | ☐ |
 | 6 | **Progressive mindset** | Used feedback and test results to refine enrollment, progress, upload, and monitoring behavior | ✅ | ☐ | ☐ |
@@ -50,8 +49,8 @@ I assessed the internship against twelve professional and technical criteria.
 ## Overall evaluation
 
 I assess my internship performance as **Good**. I completed the main technical
-scope assigned to me, strengthened the work through automated and API-level
-testing, and documented the solution in a structured bilingual report. My
+work, strengthened it through automated and API-level testing, and documented the
+solution in a structured bilingual report. My
 strongest progress was in backend reliability and problem solving. The main
 area I want to improve is maintaining more frequent team communication and
 organising final validation materials earlier.

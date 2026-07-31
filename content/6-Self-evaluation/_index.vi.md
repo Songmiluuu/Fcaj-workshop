@@ -9,8 +9,8 @@ pre: "<b>6.</b>"
 # Tự đánh giá
 
 Trong kỳ thực tập từ **01/06 đến 14/08/2026**, tôi tham gia phát triển
-**EduCloud**, một nền tảng học tập trên cloud. Phần việc được giao tập trung vào
-Enrollment, Progress, Upload, kiểm thử API và xác minh log ứng dụng.
+**EduCloud**, một nền tảng học tập trên cloud. Tôi tập trung vào Enrollment,
+Progress, Upload, kiểm thử API và xác minh log ứng dụng.
 
 Project giúp tôi có thêm kinh nghiệm thực tế với FastAPI, SQLAlchemy,
 PostgreSQL, Amazon Cognito, Amazon S3, CloudWatch, Postman và quá trình tích hợp
@@ -22,9 +22,9 @@ Tôi đánh giá quá trình thực tập theo mười hai tiêu chí chuyên m�
 
 | STT | Tiêu chí | Mô tả | Tốt | Khá | Trung bình |
 |---:|---|---|:---:|:---:|:---:|
-| 1 | **Kiến thức và kỹ năng chuyên môn** | Vận dụng kiến thức backend, database, authentication, storage, testing và AWS vào các API EduCloud được giao | ✅ | ☐ | ☐ |
+| 1 | **Kiến thức và kỹ năng chuyên môn** | Vận dụng kiến thức backend, database, authentication, storage, testing và AWS vào API EduCloud | ✅ | ☐ | ☐ |
 | 2 | **Khả năng học hỏi** | Tiếp cận dịch vụ và pattern API mới trong quá trình triển khai các luồng thực tế của project | ✅ | ☐ | ☐ |
-| 3 | **Tính chủ động** | Chủ động chia phạm vi công việc thành quy tắc API, test case tích cực, tiêu cực và kiểm tra tích hợp | ✅ | ☐ | ☐ |
+| 3 | **Tính chủ động** | Chủ động chia phần API thành quy tắc, test case tích cực, tiêu cực và kiểm tra tích hợp | ✅ | ☐ | ☐ |
 | 4 | **Tinh thần trách nhiệm** | Theo sát phần việc từ triển khai, regression test, viết tài liệu đến chuẩn bị bàn giao | ✅ | ☐ | ☐ |
 | 5 | **Kỷ luật làm việc** | Bám theo tiến độ project, nhưng cần lên kế hoạch sớm hơn cho hình ảnh và khâu hoàn thiện báo cáo | ☐ | ✅ | ☐ |
 | 6 | **Tư duy cải tiến** | Dựa trên phản hồi và kết quả test để điều chỉnh các luồng enrollment, progress, upload và monitoring | ✅ | ☐ | ☐ |
@@ -48,9 +48,9 @@ Tôi đánh giá quá trình thực tập theo mười hai tiêu chí chuyên m�
 
 ## Đánh giá tổng quan
 
-Tôi tự đánh giá kết quả thực tập ở mức **Tốt**. Tôi đã hoàn thành phạm vi kỹ
-thuật chính được giao, củng cố các luồng bằng automated test và API test, đồng
-thời trình bày giải pháp trong báo cáo song ngữ có cấu trúc. Tiến bộ rõ nhất của
+Tôi tự đánh giá kết quả thực tập ở mức **Tốt**. Tôi đã hoàn thành phần kỹ thuật
+chính, củng cố các luồng bằng automated test và API test, đồng thời trình bày
+giải pháp trong báo cáo song ngữ có cấu trúc. Tiến bộ rõ nhất của
 tôi nằm ở độ tin cậy backend và khả năng xử lý vấn đề. Nội dung cần cải thiện
 nhiều nhất là duy trì giao tiếp với nhóm đều đặn hơn và tổ chức tài liệu kiểm
 chứng cuối kỳ sớm hơn.

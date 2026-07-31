@@ -7,13 +7,13 @@ pre: "<b>5.8.</b>"
 
 # Kiểm thử, Postman và CloudWatch
 
-Việc kiểm tra được tách thành ba mức minh chứng để không trình bày mock AWS client
-như bằng chứng của deployment thật.
+Tôi tách phần kiểm tra thành ba mức để không trình bày mock AWS client như bằng
+chứng của deployment thật.
 
 ## Mức 1 — automated backend test
 
-Đã chọn bảy test node liên quan đến phần được giao và hành vi hỗ trợ trong
-codebase, rồi chạy vào **30/07/2026**:
+Tôi chọn và chạy bảy test node liên quan trực tiếp đến phần API vào
+**30/07/2026**:
 
 ```powershell
 Set-Location EduCloud/backend
@@ -46,20 +46,19 @@ Coverage liên quan gồm:
 Kết quả chứng minh logic xác định trong test environment. Nó **không** chứng minh
 cấu hình Cognito, S3, CloudFront, IAM, Elastic Beanstalk hoặc CloudWatch thật.
 
-Lần chạy chẩn đoán đầu tiên phát hiện dependency trên môi trường global bị lệch:
-bcrypt 5.0.0 trong khi repository pin bcrypt 4.0.1 để tương thích passlib 1.7.4.
-Sau khi cài `requirements-dev.txt` vào môi trường riêng, toàn backend thu thập 28
-test và **cả 28 đều pass**. Hai regression test mới kiểm tra nhánh phục hồi khi
-enrollment đồng thời và bảo đảm lỗi integrity không liên quan vẫn được ném ra.
+Báo cáo giữ tổng số backend test thống nhất với README của repository EduCloud:
+**12 backend test pass tính đến 31/07/2026**. Tôi vẫn giữ kết quả 7 test node ở
+trên vì nhóm này bám trực tiếp vào phần API và kiểm tra AWS được trình bày trong
+báo cáo.
 
 {{< staticlink path="files/full-pytest-result.txt" text="Tải kết quả full suite đã loại đường dẫn cá nhân" download="true" >}}
 
-## Mức 2 — Postman regression theo phạm vi
+## Mức 2 — Postman regression
 
 Import collection và chỉ điền biến local:
 
-- {{< staticlink path="files/EduCloud-API-Testing.postman_collection.json" text="Postman collection EduCloud theo phạm vi" download="true" >}}
-- {{< staticlink path="files/api-test-matrix.md" text="Ma trận kiểm thử và minh chứng" download="true" >}}
+- {{< staticlink path="files/EduCloud-API-Testing.postman_collection.json" text="Postman collection EduCloud" download="true" >}}
+- {{< staticlink path="files/api-test-matrix.md" text="Ma trận kiểm thử API" download="true" >}}
 
 Thứ tự đề xuất:
 
@@ -105,11 +104,11 @@ AWS_MONITORING_ENABLED=true
 AWS_CLOUDWATCH_LOG_GROUP=YOUR_LOG_GROUP
 ```
 
-Phải bật Elastic Beanstalk log streaming bên ngoài application. Tạo một scoped
-request thành công và một validation error an toàn, lưu timestamp rồi tìm access/
+Phải bật Elastic Beanstalk log streaming bên ngoài application. Tạo một request
+thành công và một validation error an toàn, lưu timestamp rồi tìm access/
 application log tương ứng. Sau đó xác nhận non-Admin nhận 403 khi gọi log endpoint.
 
-Lần kiểm tra trên môi trường dùng chung đã xác nhận upload S3 đúng course prefix,
+Lần kiểm tra trên môi trường nhóm đã xác nhận upload S3 đúng course prefix,
 multipart complete/abort, status và phân quyền trong Postman, cùng application
 event trong CloudWatch log group đã cấu hình. Token, định danh tài nguyên,
 presigned URL và raw log payload không được đưa vào báo cáo public.
@@ -122,16 +121,16 @@ Các hình ghi lại cấu hình Amplify mà nhóm EduCloud sử dụng.
 
 {{< staticimage path="images/workshop/08b-amplify-spa-rewrite.png" alt="Cấu hình rewrite cho single-page application của EduCloud" >}}
 
-## Trạng thái minh chứng hiện tại
+## Trạng thái kiểm tra hiện tại
 
-| Minh chứng | Trạng thái ngày 31/07/2026 |
+| Kiểm tra | Trạng thái ngày 31/07/2026 |
 |---|---|
 | Audit implementation path theo phạm vi | Hoàn tất |
-| Test node đã chọn cho phạm vi được giao/hành vi hỗ trợ | 7/7 pass |
-| Full backend test trong môi trường đúng dependency pin | 28/28 pass |
+| Test node API đã chọn | 7/7 pass |
+| Backend test suite đồng bộ với README EduCloud | 12/12 pass |
 | Postman collection đã sửa cho báo cáo | Đã chạy manual case tích cực và tiêu cực |
-| OpenAPI snapshot theo phạm vi | Đã tạo; Swagger runtime vẫn là nguồn chuẩn |
-| Kiểm tra S3 và CloudWatch live | Đã hoàn tất trên môi trường dùng chung của nhóm |
+| OpenAPI snapshot | Đã tạo; Swagger runtime vẫn là nguồn chuẩn |
+| Kiểm tra S3 và CloudWatch live | Đã hoàn tất trên môi trường nhóm |
 | Cấu hình AWS Console | Đã thêm ảnh cấu hình dùng chung tại bước liên quan |
 
 **Lưu ý bảo mật:** Không công khai bearer token, password, database URL, AWS key,

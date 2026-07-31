@@ -10,14 +10,12 @@ pre: "<b>7.</b>"
 
 ## My experience with the program
 
-The First Cloud AI Journey internship has given me a practical way to connect
-Computer Science knowledge with a cloud application. In the team EduCloud
-system, my individual responsibility is the enrollment, learning-progress, and
-upload API slice, plus Postman regression and CloudWatch log verification. This
-clear technical boundary helped me understand that delivering an API involves
-more than a successful response: it also requires authorization, data
-integrity, failure handling, integration contracts, tests, operational logs,
-and evidence that another person can review.
+The First Cloud AI Journey internship gave me a practical way to connect
+Computer Science knowledge with a cloud application. In EduCloud, I worked
+mainly on enrollment, learning progress, uploads, Postman checks, and
+CloudWatch log review. That work showed me that a useful API is not just a
+successful response. It also needs authorization, reliable data, clear errors,
+tests, and logs that someone else can inspect.
 
 The most useful learning experience so far has been following one learner flow
 across layers: enroll in a published course, retrieve My Courses, complete a
@@ -33,8 +31,8 @@ against the configured AWS resources. I completed both during final validation.
 
 I am satisfied because the program allowed me to apply backend, database,
 testing, and AWS concepts to one coherent use case. The implementation,
-automated tests, manual Postman run, and shared-environment S3/CloudWatch checks
-cover the assigned workstream. I am not selecting the maximum score because I
+automated tests, manual Postman run, and S3/CloudWatch checks on the team
+environment cover my work. I am not selecting the maximum score because I
 still need to improve early evidence collection and team communication.
 
 ## What I would improve in my own work
@@ -55,7 +53,7 @@ still need to improve early evidence collection and team communication.
 1. **Provide a role-based acceptance checklist at project kickoff.** Each role
    should know its required endpoints, positive/negative cases, AWS evidence,
    and handover artifact from the first week.
-2. **Prepare shared-environment access earlier.** A short readiness check for
+2. **Prepare team-environment access earlier.** A short readiness check for
    test accounts, IAM permissions, S3 prefixes, CloudWatch log groups, and
    non-production data would reduce late configuration blockers.
 3. **Use a common Postman environment and report format.** A secret-free example
@@ -79,9 +77,9 @@ EduCloud feature or the final AWS acceptance is already complete. Participants
 should also be prepared for self-directed research, careful evidence collection,
 and coordination across role boundaries.
 
-## Final handover status
+## Final handover
 
-The final handover package links my merged contribution, keeps the scoped
-Postman/OpenAPI artifacts aligned with the same source revision, documents
-public data redaction, and records the final report checklist agreed with the
-team.
+For the final handover, I tied the merged code, Postman collection, OpenAPI
+snapshot, redacted screenshots, and report checklist back to the same source
+revision. This makes the package easier for the team or reviewer to trace without
+reading it as a list of unfinished tasks.

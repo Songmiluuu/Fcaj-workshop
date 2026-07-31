@@ -8,10 +8,9 @@ pre: "<b>1.</b>"
 
 # Worklog
 
-The worklog contains ten recorded periods from **June 5 to August 14, 2026**.
-The assigned scope includes seven core Enrollment, Progress, and Upload
-endpoints, Postman regression, Amazon S3 verification, and CloudWatch log
-checks.
+The worklog contains ten recorded periods from **June 5 to August 14, 2026**. I
+used it to track requirement review, API implementation, validation, handover,
+and final report updates.
 
 | Week | Task | Work period |
 |---|---|---|
@@ -21,12 +20,12 @@ checks.
 | [Week 4](week-04/) | Align the FastAPI integration baseline, authentication dependency, response conventions, PostgreSQL persistence, and AWS configuration. | 29 Jun–03 Jul |
 | [Week 5](week-05/) | Implement and validate course enrollment and My Courses behavior, including duplicate-request handling and Student-only access. | 06–10 Jul |
 | [Week 6](week-06/) | Implement and validate lesson completion, course progress, and authorized thumbnail, material, and video uploads. | 13–17 Jul |
-| [Week 7](week-07/) | Integrate the APIs with shared frontend, authentication, and course components; review automated regression and prepare the scoped Postman collection. | 20–24 Jul |
+| [Week 7](week-07/) | Integrate the APIs with shared frontend, authentication, and course components; review automated regression and prepare the Postman collection. | 20–24 Jul |
 | [Week 8](week-08/) | Run Postman and S3/CloudWatch checks, retest defects, complete the documentation, and hand over the report. | 27–31 Jul |
 | [Week 9](week-09/) | Review EduCloud operations, security controls, AWS logging, and Well-Architected practices. | 03–07 Aug |
 | [Week 10](week-10/) | Consolidate Generative AI, Agentic AI, and AWS learning; complete the final summary and development roadmap. | 10–14 Aug |
 
-## Assigned API scope
+## API checklist
 
 - `POST /api/courses/{course_id}/enroll`
 - `GET /api/my-courses`
@@ -37,4 +36,4 @@ checks.
 - `POST /api/upload/video`
 
 Multipart video controls, progress undo, remote thumbnail handling, and the
-Admin CloudWatch reader support integration and testing around the core scope.
+Admin CloudWatch reader support integration and testing around the core API flow.

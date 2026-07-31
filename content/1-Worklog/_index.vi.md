@@ -8,9 +8,9 @@ pre: "<b>1.</b>"
 
 # Nhật ký công việc
 
-Nhật ký gồm mười giai đoạn, từ **05/06 đến 14/08/2026**. Phạm vi phụ trách
-gồm bảy endpoint ghi danh, tiến độ và upload, kiểm thử hồi quy bằng Postman, kiểm
-tra Amazon S3 và đối chiếu log CloudWatch.
+Nhật ký gồm mười giai đoạn, từ **05/06 đến 14/08/2026**. Tôi dùng phần này để
+theo dõi quá trình rà yêu cầu, triển khai API, kiểm thử, bàn giao và hoàn thiện
+báo cáo.
 
 | Tuần | Công việc | Thời gian |
 |---|---|---|
@@ -25,7 +25,7 @@ tra Amazon S3 và đối chiếu log CloudWatch.
 | [Tuần 9](week-09/) | Rà soát vận hành EduCloud, kiểm soát bảo mật, log AWS và thực hành Well-Architected. | 03–07/08 |
 | [Tuần 10](week-10/) | Tổng hợp kiến thức Generative AI, Agentic AI và AWS; hoàn thiện bản tổng kết cùng lộ trình phát triển. | 10–14/08 |
 
-## Phạm vi API được giao
+## Checklist API
 
 - `POST /api/courses/{course_id}/enroll`
 - `GET /api/my-courses`

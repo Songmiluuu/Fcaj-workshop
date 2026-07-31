@@ -8,21 +8,20 @@ pre: "<b>5.</b>"
 
 # Thực hành độ tin cậy API EduCloud
 
-Phạm vi tôi phụ trách trong project nhóm EduCloud gồm:
+Đây là checklist thực hành tôi dùng cho phần API EduCloud:
 
 - API ghi danh và danh sách khóa học của Student.
 - API hoàn thành bài học và tính tiến độ khóa học.
 - Tải lên thumbnail, tài liệu và video với phân quyền.
 - Kiểm thử tích cực/tiêu cực bằng Postman và kiểm tra log Amazon CloudWatch.
 
-Hệ thống EduCloud chung còn có frontend, xác thực Cognito, quản lý khóa học,
-assessment, certificate, trang quản trị, deployment và database do cả nhóm phối
-hợp. Các thành phần đó chỉ được nhắc như dependency hoặc ranh giới tích hợp; báo
-cáo không nhận toàn bộ là đóng góp cá nhân.
+Hệ thống EduCloud chung còn có frontend, Cognito, quản lý khóa học, assessment,
+certificate, trang quản trị, deployment và database do cả nhóm phối hợp. Tôi chỉ
+nhắc các phần đó khi chúng ảnh hưởng đến bước kiểm tra API bên dưới.
 
-Codebase hiện tại còn mở rộng bảy endpoint cốt lõi bằng hoàn tác progress,
-import/deduplicate thumbnail, điều khiển multipart video và Admin log-reader.
-Phần thực hành ghi chúng là hành vi hỗ trợ xung quanh phạm vi API được giao.
+Codebase hiện tại còn có hoàn tác progress, import/deduplicate thumbnail, điều
+khiển multipart video và Admin log reader. Tôi đưa chúng vào khi cần giải thích
+kiểm thử hoặc bàn giao.
 
 {{< staticimage path="images/architect.jpg" alt="Kiến trúc AWS tổng thể của EduCloud" >}}
 

@@ -8,11 +8,10 @@ pre: "<b>4.</b>"
 
 # Events Participated
 
-During the internship, Nguyễn Song Minh Luân participated in two FCAJ community
-events. The first was attended online through the YouTube livestream; the second
-was the Agentic AI Build Week awards and project showcase. Each report records the
-event context, the sessions or projects reviewed, lessons learned, and a direct
-connection to the assigned EduCloud API/testing workstream.
+I joined two FCAJ community events during the internship. The first one was an
+online livestream, and the second one was the Agentic AI Build Week awards and
+project showcase. I noted the sessions I followed and the lessons I could apply
+back to EduCloud.
 
 | Event | Date | Participation |
 |---|---:|---|

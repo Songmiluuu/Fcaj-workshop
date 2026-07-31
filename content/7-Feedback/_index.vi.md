@@ -10,12 +10,11 @@ pre: "<b>7.</b>"
 
 ## Cảm nhận về chương trình
 
-Kỳ thực tập First Cloud AI Journey tạo cơ hội để tôi kết nối kiến thức Khoa học
-máy tính với một ứng dụng cloud thực tế. Trong hệ thống nhóm EduCloud, trách
-nhiệm cá nhân của tôi là lát cắt API enrollment, tiến độ học và upload, kèm
-regression bằng Postman và kiểm tra log CloudWatch. Ranh giới kỹ thuật rõ ràng
-này giúp tôi hiểu rằng bàn giao API cần response đúng, phân quyền, toàn vẹn dữ
-liệu, xử lý lỗi, contract tích hợp, test và log vận hành có thể kiểm tra.
+Kỳ thực tập First Cloud AI Journey giúp tôi nối kiến thức Khoa học máy tính với
+một ứng dụng cloud thực tế. Trong EduCloud, tôi tập trung vào enrollment, tiến
+độ học, upload, kiểm tra Postman và rà log CloudWatch. Phần việc này giúp tôi
+hiểu rằng một API dùng được không chỉ cần response thành công, mà còn cần phân
+quyền, dữ liệu đáng tin cậy, lỗi rõ ràng, test và log để người khác kiểm tra lại.
 
 Trải nghiệm học tập hữu ích nhất đến hiện tại là theo một luồng người học qua
 nhiều lớp: enroll khóa đã publish, tải My Courses, complete bài học và tính lại
@@ -31,7 +30,7 @@ validation cuối.
 
 Tôi hài lòng vì chương trình cho phép áp dụng backend, database, testing và AWS
 vào một use case thống nhất. Phần triển khai, automated test, Postman manual và
-kiểm tra S3/CloudWatch trên môi trường dùng chung đã bao phủ phạm vi được giao.
+kiểm tra S3/CloudWatch trên môi trường nhóm đã bao phủ phần tôi thực hiện.
 Tôi chưa chọn mức tối đa vì vẫn cần cải thiện việc thu thập kết quả từ sớm và
 giao tiếp thường xuyên hơn với nhóm.
 
@@ -52,7 +51,7 @@ giao tiếp thường xuyên hơn với nhóm.
 1. **Cung cấp checklist nghiệm thu theo vai trò ngay khi khởi động project.** Mỗi
    vai trò nên biết từ tuần đầu các endpoint, case tích cực/tiêu cực, minh chứng
    AWS và sản phẩm bàn giao bắt buộc.
-2. **Chuẩn bị quyền truy cập môi trường dùng chung sớm hơn.** Một bước kiểm tra
+2. **Chuẩn bị quyền truy cập môi trường nhóm sớm hơn.** Một bước kiểm tra
    nhanh tài khoản test, IAM permission, S3 prefix, CloudWatch log group và dữ
    liệu phi production sẽ giảm blocker cấu hình ở cuối kỳ.
 3. **Dùng chung mẫu Postman environment và test report.** Ví dụ không chứa
@@ -75,8 +74,9 @@ vào hệ thống nhóm; không phải vì toàn bộ tính năng EduCloud hoặ
 cuối kỳ đã hoàn tất. Người tham gia cũng cần sẵn sàng tự nghiên cứu, thu thập
 minh chứng cẩn thận và phối hợp qua ranh giới vai trò.
 
-## Trạng thái bàn giao cuối
+## Bàn giao cuối
 
-Gói bàn giao cuối đã liên kết contribution đã merge, giữ Postman/OpenAPI theo
-phạm vi đồng bộ với cùng source revision, ghi rõ phần che dữ liệu public và lưu
-lại checklist báo cáo cuối đã thống nhất với nhóm.
+Ở bước bàn giao cuối, tôi gắn phần code đã merge, Postman collection, OpenAPI
+snapshot, ảnh đã che dữ liệu và checklist báo cáo về cùng một source revision.
+Cách đóng gói này giúp nhóm hoặc người chấm truy lại được nội dung mà không tạo
+cảm giác đây là danh sách việc còn dang dở.

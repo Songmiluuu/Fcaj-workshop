@@ -6,8 +6,9 @@ chapter: false
 pre: "<b>3.</b>"
 ---
 
-Nguyễn Song Minh Luân đã đăng ba bài viết kỹ thuật trong thời gian thực tập.
-Báo cáo lưu nội dung đầy đủ của từng bài.
+Tôi đã viết ba bài kỹ thuật trong thời gian thực tập để tìm hiểu thêm các kiến
+trúc AWS liên quan đến xử lý media, bảo mật upload và workflow chịu lỗi. Báo cáo
+lưu lại nội dung đầy đủ của từng bài.
 
 <h2 class="blog-list-title"><a href="video-processing-s3-mediaconvert-cloudfront/">Blog 1 — TỰ ĐỘNG XỬ LÝ VIDEO BÀI GIẢNG VỚI AMAZON S3, MEDIACONVERT VÀ CLOUDFRONT</a></h2>
 

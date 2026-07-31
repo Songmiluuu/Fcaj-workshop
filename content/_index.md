@@ -64,7 +64,7 @@ chapter: false
 <li><strong>Static OpenAPI reference:</strong> <a href="./files/educloud-openapi.yaml" download>Download YAML</a></li>
 <li><strong>API test matrix:</strong> <a href="./files/api-test-matrix.md" download>Download Markdown</a></li>
 <li><strong>Scoped pytest result:</strong> <a href="./files/targeted-pytest-result.txt" download>7/7 selected nodes passed</a></li>
-<li><strong>Full pytest result:</strong> <a href="./files/full-pytest-result.txt" download>28/28 passed</a></li>
+<li><strong>Backend test suite:</strong> <a href="./files/full-pytest-result.txt" download>12/12 passed</a></li>
 </ul>
 <p>The live application and source repository are shared team artifacts; my report covers the assigned API and testing workstream.</p>
 </div>

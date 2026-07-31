@@ -19,7 +19,7 @@ pre: "<b>5.3.</b>"
 | `POST` | `/api/upload/lesson-material` | Owner Instructor/Admin | File metadata and URL |
 | `POST` | `/api/upload/video` | Owner Instructor/Admin | Direct-upload metadata and URL |
 
-## Supporting codebase extensions
+## Additional codebase routes
 
 | Method | Path | Caller | Core success result |
 |---|---|---|---|
@@ -31,8 +31,8 @@ pre: "<b>5.3.</b>"
 | `POST` | `/api/upload/video/multipart/abort` | Owner Instructor/Admin | Multipart upload cancelled |
 | `GET` | `/api/admin/cloudwatch-logs` | Admin | Recent configured log events |
 
-The contract contains seven core endpoints plus supporting extensions needed
-for integration and testing.
+The contract contains seven core endpoints plus a few extra routes used for
+integration and testing.
 
 ## Data relationships
 
