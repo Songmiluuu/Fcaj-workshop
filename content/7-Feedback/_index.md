@@ -79,8 +79,9 @@ EduCloud feature or the final AWS acceptance is already complete. Participants
 should also be prepared for self-directed research, careful evidence collection,
 and coordination across role boundaries.
 
-## Final handover priorities
+## Final handover status
 
-The remaining handover work is to link my merged contribution, keep the scoped
-Postman/OpenAPI artifacts aligned with that source revision, review public data
-redaction, and close the final report checklist with the team.
+The final handover package links my merged contribution, keeps the scoped
+Postman/OpenAPI artifacts aligned with the same source revision, documents
+public data redaction, and records the final report checklist agreed with the
+team.

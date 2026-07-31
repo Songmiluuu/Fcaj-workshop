@@ -75,8 +75,8 @@ vào hệ thống nhóm; không phải vì toàn bộ tính năng EduCloud hoặ
 cuối kỳ đã hoàn tất. Người tham gia cũng cần sẵn sàng tự nghiên cứu, thu thập
 minh chứng cẩn thận và phối hợp qua ranh giới vai trò.
 
-## Ưu tiên bàn giao cuối
+## Trạng thái bàn giao cuối
 
-Phần việc bàn giao còn lại là liên kết contribution đã merge, giữ Postman/OpenAPI
-theo phạm vi đồng bộ với source revision đó, rà dữ liệu public đã che và cùng
-nhóm đóng checklist cuối của báo cáo.
+Gói bàn giao cuối đã liên kết contribution đã merge, giữ Postman/OpenAPI theo
+phạm vi đồng bộ với cùng source revision, ghi rõ phần che dữ liệu public và lưu
+lại checklist báo cáo cuối đã thống nhất với nhóm.
