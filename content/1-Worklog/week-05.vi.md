@@ -1,54 +1,47 @@
 ---
-title: "Tuần 5 - Nền tảng tích hợp FastAPI"
+title: "Tuần 5 - Enrollment và My Courses"
 menuTitle: "Tuần 5"
 weight: 5
 pre: "<b>1.5.</b>"
 ---
 
-**Thời gian:** 29/06/2026 - 05/07/2026  
-**Trạng thái ngày 30/07:** Có mục tiêu trong codebase; cần xác nhận đóng góp cá nhân
+# Tuần 5 - Enrollment và My Courses
 
-> **Cơ sở ghi nhận:** trang này dựng lại công việc dự kiến từ ảnh phân công và
-> code được cung cấp. Source chỉ chứng minh hành vi hiện tại, không chứng minh
-> ai là tác giả.
+**Thời gian:** 13–19/07/2026
 
-## Mục tiêu
+## Công việc
 
-- Đăng ký các nhóm API phụ trách dưới cùng prefix **/api**.
-- Tập trung cấu hình môi trường cho storage và monitoring.
-- Dùng chung quy ước xác thực và response trước khi bổ sung business logic.
+Triển khai và kiểm tra enrollment cùng My Courses, gồm xử lý request trùng và
+giới hạn quyền Student.
 
-## Công việc dự kiến và bằng chứng codebase hiện tại
+## Luồng enrollment
 
-| Công việc | Kết quả đã xác minh |
-| --- | --- |
-| Lập kế hoạch đăng ký router enrollment/progress/upload cốt lõi và rà router Admin hỗ trợ. | Module hiện tại dùng settings.API_PREFIX, mặc định là /api. |
-| Lập kế hoạch dùng lại get_current_user cho endpoint được bảo vệ. | Route enrollment, progress, upload và CloudWatch hỗ trợ dùng cùng dependency. |
-| Lập kế hoạch dùng helper success-response chung. | Response thành công hiện có success, message và data. |
-| Lập kế hoạch cấu hình storage theo biến môi trường. | UPLOAD_STORAGE chọn local hoặc S3; local path, bucket, Region và public base URL đều cấu hình được. |
-| Lập kế hoạch cờ monitoring và ghi nhận request. | AWS_MONITORING_ENABLED và AWS_CLOUDWATCH_LOG_GROUP là cấu hình ngoài source; middleware ghi route, status và duration. |
+1. Lấy application user từ authentication context.
+2. Yêu cầu role Student.
+3. Tải course và kiểm tra trạng thái published.
+4. Kiểm tra course có final assessment đã publish.
+5. Trả enrollment hiện có hoặc tạo một bản ghi mới.
 
-## Sản phẩm dự kiến
+`GET /api/my-courses` tải course đã enroll cùng lesson progress, trạng thái
+assessment và certificate phục vụ learner dashboard.
 
-- Tích hợp route FastAPI cho các nhóm API được giao.
-- Nền tảng xác thực và success response dùng chung.
-- Cấu hình môi trường cho local upload, S3 và CloudWatch.
-- Chỉ mount thư mục upload local khi chạy ở chế độ local.
+## Kiểm tra
 
-## Tiêu chí kiểm tra
+- Student hợp lệ có thể enroll và thấy course trong My Courses.
+- Request lặp trả enrollment hiện có, không tạo dữ liệu trùng.
+- Thiếu authentication trả 401.
+- Token Instructor hoặc Admin trả 403.
+- Course không sẵn sàng hoặc chưa publish đầy đủ trả domain error.
 
-| Tiêu chí | Kết quả |
-| --- | --- |
-| Router cốt lõi và hỗ trợ dùng cùng prefix /api. | Có trong codebase được cung cấp |
-| Handler được bảo vệ phải lấy current-user context trước business logic. | Đạt |
-| Đổi storage mode không cần sửa source code. | Đạt |
-| Secret và tên log group riêng của môi trường không nằm trong giá trị commit. | Đạt trong .env.example; giá trị thật phải tiếp tục không commit |
+## Kết quả
 
-## Minh chứng trong repository
+Enrollment xử lý request lặp tại service và được bảo vệ bằng ràng buộc duy nhất
+trong database. My Courses đọc trạng thái học tập đã lưu thay vì tin dữ liệu do
+client gửi.
 
-- EduCloud/backend/main.py
-- EduCloud/backend/app/config.py
-- EduCloud/backend/.env.example
-- EduCloud/backend/app/utils/response.py
-- EduCloud/backend/app/middleware/auth_middleware.py
-- EduCloud/backend/app/services/monitoring_service.py
+## Tài liệu kỹ thuật
+
+- `EduCloud/backend/app/routes/enrollment_routes.py`
+- `EduCloud/backend/app/services/enrollment_service.py`
+- `EduCloud/backend/app/models/enrollment.py`
+- `EduCloud/frontend/src/services/enrollmentService.ts`

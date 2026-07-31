@@ -8,8 +8,7 @@ pre: "<b>5.</b>"
 
 # Workshop độ tin cậy API EduCloud
 
-Workshop thực hành này trình bày đúng phần việc được giao cho **Nguyễn Song Minh
-Luân** trong project nhóm EduCloud:
+Phạm vi tôi phụ trách trong project nhóm EduCloud gồm:
 
 - API ghi danh và danh sách khóa học của Student.
 - API hoàn thành bài học và tính tiến độ khóa học.
@@ -21,12 +20,11 @@ assessment, certificate, trang quản trị, deployment và database do cả nh�
 hợp. Các thành phần đó chỉ được nhắc như dependency hoặc ranh giới tích hợp; báo
 cáo không nhận toàn bộ là đóng góp cá nhân.
 
-Codebase được cung cấp còn mở rộng bảy endpoint cốt lõi bằng hoàn tác progress,
+Codebase hiện tại còn mở rộng bảy endpoint cốt lõi bằng hoàn tác progress,
 import/deduplicate thumbnail, điều khiển multipart video và Admin log-reader.
-Workshop ghi chúng là hành vi hỗ trợ. Lịch sử Git không tự quy các phần triển khai
-được dẫn cho Luân, nên quyền sở hữu cá nhân vẫn cần PR/task/xác nhận mentor.
+Workshop ghi chúng là hành vi hỗ trợ xung quanh phạm vi API được giao.
 
-{{< staticimage path="images/educloud-aws-architecture.png" alt="Kiến trúc AWS tổng thể của EduCloud" >}}
+{{< staticimage path="images/architect.jpg" alt="Kiến trúc AWS tổng thể của EduCloud" >}}
 
 ## Kết quả học tập
 
@@ -55,7 +53,7 @@ Sau workshop, người đọc có thể:
 | [5.9 Cleanup và bàn giao](5.9-cleanup/) | Dọn tài nguyên test và đóng gói minh chứng |
 
 {{% notice info %}}
-Codebase được cung cấp có các luồng trên. Screenshot Postman Runner, S3 thật và
-CloudWatch vẫn là minh chứng nghiệm thu cần chụp bằng tài khoản của Luân trước khi
-nộp; báo cáo không dùng lại ảnh AWS của sinh viên trong bài mẫu.
+Các hình AWS Console ghi lại cấu hình của môi trường EduCloud dùng chung trong
+nhóm. Hình được đặt tại những bước thiết lập có sử dụng cùng tài nguyên nhóm để
+tích hợp và kiểm tra.
 {{% /notice %}}

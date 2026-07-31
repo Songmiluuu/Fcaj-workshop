@@ -1,52 +1,43 @@
 ---
-title: "Tuần 3 - Thiết kế API, dữ liệu và kiểm thử"
+title: "Tuần 3 - Thiết kế API contract và dữ liệu"
 menuTitle: "Tuần 3"
 weight: 3
 pre: "<b>1.3.</b>"
 ---
 
-**Thời gian:** 15/06/2026 - 21/06/2026  
-**Trạng thái ngày 30/07:** Kế hoạch dựng lại; đã có tài liệu báo cáo, case thủ công chưa chạy
+# Tuần 3 - Thiết kế API contract và dữ liệu
 
-## Mục tiêu
+**Thời gian:** 29/06–05/07/2026
 
-- Xác định trách nhiệm của route, service, model và response cho nhóm API được
-  giao.
-- Thiết kế một luồng người học end-to-end có thể lặp lại khi test bằng Postman.
-- Chuẩn bị test data và biến dùng chung mà không nhúng thông tin bí mật.
+## Công việc
 
-## Công việc dự kiến và tài liệu báo cáo
+Thiết kế API contract, ràng buộc dữ liệu enrollment/progress, validation upload
+và biến Postman dùng lại.
 
-| Công việc | Kết quả |
-| --- | --- |
-| Ánh xạ luồng API từ FastAPI route đến business service và SQLAlchemy model. | Có thể tách logic enrollment/progress khỏi phần đóng gói HTTP response. |
-| Xác định khóa Enrollment là user + course và khóa Progress là user + lesson. | Có chiến lược idempotency rõ ràng cho request lặp. |
-| Thiết kế luồng test: xác thực → chọn khóa đã publish → enroll → xem My Courses → hoàn thành lesson → đọc progress. | Xác định thứ tự và dữ liệu tiên quyết khi kiểm thử API. |
-| Thiết kế luồng upload thumbnail, material và video. | Xác định multipart field, loại tệp, biên dung lượng và quyền course owner. |
-| Rà soát cấu trúc Postman collection và template báo cáo test. | Xác định base_url, token, course_id, lesson_id là biến dùng lại; tách trạng thái thiết kế khỏi trạng thái đã chạy. |
+## Thiết kế API và dữ liệu
 
-## Sản phẩm bàn giao
+- Chuẩn hóa response thành công với `success`, `message` và `data`.
+- Lấy user từ authentication context, không nhận target user ID trong request
+  body.
+- Giới hạn một bản ghi enrollment cho mỗi cặp user-course.
+- Giới hạn một bản ghi progress cho mỗi cặp user-lesson.
+- Quy định S3 prefix theo course cho thumbnail, material và video.
+- Xác định extension và giới hạn kích thước riêng cho từng loại upload.
 
-- Sơ đồ endpoint-to-layer cho Enrollment, Progress, Upload và CloudWatch.
-- Luồng test người học có thể tái sử dụng và checklist test data upload.
-- Các test case **TC-007 đến TC-011** cho enrollment, completion, progress,
-  upload và CloudWatch.
-- Cấu trúc kết quả chuẩn: input, expected result, actual result, status và note.
+## Thiết kế Postman
 
-## Tiêu chí kiểm tra
+Collection dùng biến môi trường cho `base_url`, token theo role, `course_id`,
+`lesson_id`, `upload_id`, object key và ETag. Script chỉ lưu ID khi response
+thành công để các case lỗi không làm hỏng luồng test chính.
 
-| Kiểm tra | Kết quả |
-| --- | --- |
-| API contract liệt kê đầy đủ các nhóm endpoint được giao. | Đạt |
-| Test plan có case rõ ràng cho từng nhóm tính năng phụ trách. | Đạt |
-| Postman collection là JSON hợp lệ và có biến môi trường dùng lại. | Đạt |
-| Chỉ đánh dấu Passed sau khi có minh chứng thực thi. | Đạt ở mức quy trình; toàn bộ checklist vẫn là Not Started |
+## Kết quả
 
-## Minh chứng trong repository
+Route contract, quy tắc lưu dữ liệu, giới hạn upload và biến test dùng lại được
+đồng bộ trước khi bắt đầu tích hợp.
 
-- EduCloud/api/api-contract.md
-- EduCloud/api/postman/EduCloud.postman_collection.json
-- EduCloud/api/test-plan/test-cases.md
-- EduCloud/api/test-plan/test-report-template.md
-- EduCloud/backend/app/schemas/enrollment_schema.py
-- EduCloud/backend/app/schemas/progress_schema.py
+## Tài liệu kỹ thuật
+
+- `EduCloud/api/openapi.yaml`
+- `EduCloud/backend/app/models/enrollment.py`
+- `EduCloud/backend/app/models/progress.py`
+- `EduCloud/api/postman/EduCloud.postman_collection.json`

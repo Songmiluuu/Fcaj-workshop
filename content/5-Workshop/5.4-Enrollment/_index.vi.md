@@ -7,7 +7,7 @@ pre: "<b>5.4.</b>"
 
 # API ghi danh
 
-Minh chứng implementation:
+Source liên quan:
 
 - `backend/app/routes/enrollment_routes.py`
 - `backend/app/services/enrollment_service.py`
@@ -51,12 +51,19 @@ flowchart TD
     E -- Có --> F{"đã có enrollment?"}
     F -- Có --> R["Trả enrollment hiện hữu"]
     F -- Không --> I["Insert active enrollment"]
-    I --> R
+    I --> J{"commit thành công?"}
+    J -- Có --> R
+    J -- IntegrityError --> K["Rollback và tải lại enrollment"]
+    K --> L{"tìm thấy record tương ứng?"}
+    L -- Có --> R
+    L -- Không --> XDB["Ném lại database error"]
 {{</mermaid>}}
 
 Thứ tự này không tạo quyền truy cập content draft và trả domain error rõ ràng.
 Nhánh trả record hiện hữu giúp retry thông thường có tính idempotent. Unique index
-user/course tại database vẫn bắt buộc khi request đồng thời.
+user/course bảo vệ trường hợp request đồng thời. Nếu request khác commit trước,
+service bắt integrity error, rollback transaction lỗi, tải lại enrollment đã được
+tạo và trả record đó.
 
 ## Tải My Courses
 

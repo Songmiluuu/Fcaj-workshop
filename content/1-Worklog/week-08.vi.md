@@ -1,58 +1,51 @@
 ---
-title: "Tuần 8 - Tích hợp frontend và regression tự động"
+title: "Tuần 8 - Validation và bàn giao"
 menuTitle: "Tuần 8"
 weight: 8
 pre: "<b>1.8.</b>"
 ---
 
-**Thời gian:** 20/07/2026 - 26/07/2026  
-**Trạng thái ngày 30/07:** Có mục tiêu trong codebase; cần xác nhận đóng góp cá nhân
+# Tuần 8 - Validation và bàn giao
 
-> **Cơ sở ghi nhận:** hành vi tích hợp được xác minh trong source được cung cấp,
-> nhưng metadata của repository không tự chứng minh tác giả cá nhân.
+**Thời gian:** 01–14/08/2026
 
-## Mục tiêu
+## Công việc
 
-- Kết nối nhóm API phụ trách với giao diện người học và giảng viên.
-- Xác minh workflow dùng dữ liệu database bằng automated regression test.
-- Audit Postman collection trước lần chạy end-to-end cuối.
+Chạy Postman, kiểm tra S3/CloudWatch, retest lỗi, hoàn thiện tài liệu và bàn
+giao báo cáo.
 
-## Công việc dự kiến và bằng chứng codebase hiện tại
+## Trình tự validation
 
-| Công việc | Kết quả đã xác minh |
-| --- | --- |
-| Lập kế hoạch/rà thao tác enroll tại trang chi tiết khóa học. | Frontend hiện gọi enrollCourse và hiển thị lỗi API cho người học. |
-| Lập kế hoạch/rà My Courses trên dashboard Student. | Counter và phần trăm từng khóa hiện dùng typed API response. |
-| Lập kế hoạch/rà progress tại trang học. | Trang hiện tải completed_lesson_ids và gọi POST/DELETE khi đổi trạng thái; DELETE là extension. |
-| Lập kế hoạch/rà upload service trong luồng soạn khóa học. | Thumbnail và lesson asset hiện dùng FormData, không ép Content-Type JSON sai. |
-| Rà regression backend. | Test hiện bao phủ enrollment/progress từ database, từ chối upload, hành vi thumbnail hỗ trợ và phân quyền. |
-| Audit Postman collection cũ trong repository nhóm theo API contract. | Collection cũ thiếu My Courses, Progress, multipart video và CloudWatch; collection đã sửa cho báo cáo hiện hợp lệ JSON nhưng chưa chạy. |
+1. Chạy enrollment và My Courses với request hợp lệ, lặp, thiếu xác thực và sai
+   role.
+2. Chạy lesson completion và progress với Student đã enroll và chưa enroll.
+3. Test thumbnail, material và video hợp lệ lẫn không hợp lệ.
+4. Complete và abort hai multipart upload riêng, sau đó kiểm tra cleanup trên
+   S3.
+5. Gửi một request thành công và một validation error có kiểm soát.
+6. Đối chiếu thời gian, route và status của request với event CloudWatch.
+7. Chạy lại case fail sau khi sửa defect.
 
-## Sản phẩm dự kiến
+## Gói bàn giao
 
-- Frontend client có kiểu dữ liệu cho response enrollment, progress và upload.
-- Workflow enrollment/progress tích hợp trên giao diện người học.
-- Automated regression cho các quy tắc dữ liệu và upload chính.
-- Danh sách khoảng trống Postman chuyển sang Tuần 9–10 xử lý.
+- Postman collection không chứa token hoặc giá trị môi trường private.
+- Kết quả API test có trạng thái cuối và defect note.
+- OpenAPI snapshot và API contract.
+- Kết quả automated test cho revision source được nộp.
+- Worklog, proposal, workshop, self-assessment và feedback song ngữ.
+- Known limitation, trạng thái cleanup và ghi chú vận hành.
 
-## Tiêu chí xác minh
+## Kết quả hoàn tất
 
-| Tiêu chí | Kết quả |
-| --- | --- |
-| Đường dẫn endpoint frontend khớp route backend. | Đạt qua source review |
-| Progress UI lấy trạng thái từ completed_lesson_ids của API. | Đạt |
-| FormData để trình duyệt tự tạo multipart boundary. | Đạt trong apiClient.ts |
-| Workflow enrollment/progress dựa trên database pass automated regression. | Đạt trong lần chạy mục tiêu ngày 30/07 |
-| Postman collection bao phủ mọi endpoint được giao và có kết quả thực thi. | Chưa đạt; lên lịch xác minh cuối |
+- Đã chạy các case Postman tích cực và tiêu cực theo phạm vi.
+- Đã kiểm tra direct/multipart upload trên môi trường S3 dùng chung, gồm complete,
+  abort, phân quyền và validation.
+- Đã đối chiếu hoạt động API có kiểm soát với application event trên CloudWatch.
+- Không đưa token, định danh tài nguyên, presigned URL hay raw log payload vào
+  file bàn giao public.
 
-## Minh chứng trong repository
+## Kiểm tra bảo mật
 
-- EduCloud/frontend/src/services/apiClient.ts
-- EduCloud/frontend/src/services/enrollmentService.ts
-- EduCloud/frontend/src/services/progressService.ts
-- EduCloud/frontend/src/services/uploadService.ts
-- EduCloud/frontend/src/pages/LearningPage.tsx
-- EduCloud/frontend/src/pages/MyLearningPage.tsx
-- EduCloud/backend/tests/test_enrollment_progress.py
-- EduCloud/backend/tests/test_course_lesson_api.py
-- EduCloud/api/postman/EduCloud.postman_collection.json
+File public không được chứa bearer token, password, database URL, AWS key,
+account identifier, tên bucket private, query string của presigned URL hoặc dữ
+liệu người dùng chưa che.

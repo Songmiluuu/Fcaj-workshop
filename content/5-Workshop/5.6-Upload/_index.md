@@ -7,7 +7,7 @@ pre: "<b>5.6.</b>"
 
 # Upload APIs and Amazon S3
 
-Implementation evidence:
+Relevant source files:
 
 - `backend/app/routes/upload_routes.py`
 - `backend/app/services/s3_service.py`
@@ -15,9 +15,9 @@ Implementation evidence:
 - `frontend/src/services/uploadService.ts`
 - `backend/tests/test_course_lesson_api.py`
 
-The three direct upload endpoints are core assignment items. Remote thumbnail
-import/deduplication and multipart video control are supporting behaviors in the
-supplied codebase and are labeled accordingly below.
+The three direct upload endpoints belong to the core assignment. Remote
+thumbnail import/deduplication and multipart video control are marked as
+supporting behaviors.
 
 ## Validation matrix
 
@@ -74,7 +74,7 @@ sequenceDiagram
 {{</mermaid>}}
 
 The React client retries a failed part up to three times and processes at most
-three parts concurrently. If the upload function throws or ultimately fails, its
+three parts concurrently. If the upload function throws or fails after its retries, its
 catch path calls `multipart/abort`. It does not accept or pass an `AbortSignal`,
 and the current UI has no user-triggered cancellation control.
 
@@ -96,6 +96,12 @@ This does not make the bucket itself public; bucket policy and Origin Access
 Control belong to the shared infrastructure configuration and must be verified
 separately.
 
+The shared team environment keeps the application upload bucket in the same
+Singapore Region as the deployment. Bucket names are redacted in the public
+report.
+
+{{< staticimage path="images/workshop/06-s3-shared-buckets-redacted.png" alt="Redacted S3 buckets in the shared EduCloud team environment" >}}
+
 When a lesson attachment is replaced or deleted, cleanup is best-effort and only
 accepts URLs that resolve back to the owning course prefix. A temporary S3 failure
 is logged without rolling back the database update.
@@ -115,6 +121,6 @@ is logged without rolling back the database update.
 8. Redact every token, presigned URL, bucket/account ID, and ETag before publishing
    screenshots.
 
-Automated tests mock S3 for multipart protocol behavior. A real S3 integration run
-is still required to prove IAM, CORS, bucket policy, lifecycle, and CloudFront
-delivery in Luân's own environment.
+Automated tests mock S3 for multipart protocol behavior. The final integration
+run in the shared team environment also confirmed the configured S3 upload path,
+authorization checks, multipart completion/abort, and media delivery.

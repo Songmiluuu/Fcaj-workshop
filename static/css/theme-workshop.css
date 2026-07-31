@@ -69,7 +69,7 @@
 
 /* Landing page for the EduCloud workshop. Keep the architecture readable
    without allowing a wide source image to dominate the entire page. */
-#body img[src$="/images/educloud-aws-architecture.png"] {
+#body img[src$="/images/architect.jpg"] {
   display: block;
   width: min(100%, 920px);
   max-height: none;

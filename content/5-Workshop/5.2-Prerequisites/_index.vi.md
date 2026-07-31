@@ -49,6 +49,21 @@ AWS_CLOUDWATCH_LOG_GROUP=YOUR_ELASTIC_BEANSTALK_LOG_GROUP
 Không đưa giá trị thật vào báo cáo, Git, ví dụ Postman, screenshot hay biến
 frontend `VITE_*`.
 
+## Cấu hình AWS Console của nhóm
+
+Các hình ghi lại cấu hình AWS trong môi trường EduCloud dùng chung của nhóm.
+Tên và giá trị tài nguyên nhạy cảm không được công khai.
+
+{{< staticimage path="images/workshop/03-ssm-secure-parameters.png" alt="Secure parameter của nhóm trong AWS Systems Manager" >}}
+
+Database URL và JWT secret được lưu dưới dạng `SecureString`, nhờ đó giá trị bí
+mật không cần xuất hiện trong source code hoặc file môi trường thông thường.
+
+{{< staticimage path="images/workshop/05-elastic-beanstalk-green.png" alt="Môi trường backend dùng chung của nhóm ở trạng thái ổn định" >}}
+
+Màn hình health của backend là bước kiểm tra nhanh trước khi chạy API collection.
+Trạng thái Green không thay thế việc kiểm thử từng endpoint.
+
 ## Chuẩn bị identity
 
 | Identity | Dùng cho | Điều kiện tối thiểu |

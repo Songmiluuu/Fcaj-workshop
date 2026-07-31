@@ -7,8 +7,8 @@ pre: "<b>5.9.</b>"
 
 # Cleanup và bàn giao
 
-Cleanup là một phần của kiểm thử, không phải việc tùy chọn làm sau. Không xóa tài
-nguyên dùng chung nếu owner và mentor chưa xác nhận chính xác target.
+Mỗi lượt kiểm thử kết thúc bằng bước kiểm tra cleanup. Không xóa tài nguyên dùng
+chung nếu owner và nhóm chưa xác nhận chính xác target.
 
 ## Trước cleanup
 
@@ -76,11 +76,11 @@ resource owner.
 ## Gói bàn giao cuối
 
 - Source báo cáo Hugo và GitHub Pages workflow.
-- Kế hoạch worklog dựng lại theo 10 giai đoạn, proposal, workshop,
+- Worklog tám tuần, proposal, workshop,
   self-evaluation và feedback song ngữ.
 - Postman collection, OpenAPI snapshot và test matrix theo phạm vi.
 - Command/kết quả `pytest` cho revision source được nộp.
-- Minh chứng Postman/S3/CloudWatch đã che do Luân tự chụp.
+- Kết quả Postman/S3/CloudWatch đã làm sạch và các hình cấu hình có liên quan.
 - Ba URL blog public thật và minh chứng sự kiện đã xác nhận.
 - Known limitation, danh sách owner, trạng thái cost/cleanup và next action.
 

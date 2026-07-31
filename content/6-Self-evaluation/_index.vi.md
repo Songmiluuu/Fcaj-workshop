@@ -8,91 +8,49 @@ pre: "<b>6.</b>"
 
 # Tự đánh giá
 
-> **Ngày đánh giá: 30/07/2026.** Kỳ thực tập của tôi diễn ra từ 01/06 đến
-> 15/08/2026, vì vậy đây là bản tự đánh giá giữa kỳ, không phải khẳng định đã
-> hoàn thành toàn bộ công việc cuối kỳ.
+Trong kỳ thực tập từ **01/06 đến 15/08/2026**, tôi tham gia phát triển
+**EduCloud**, một nền tảng học tập trên cloud. Phần việc được giao tập trung vào
+Enrollment, Progress, Upload, kiểm thử API và xác minh log ứng dụng.
 
-## Phạm vi đánh giá
+Project giúp tôi có thêm kinh nghiệm thực tế với FastAPI, SQLAlchemy,
+PostgreSQL, Amazon Cognito, Amazon S3, CloudWatch, Postman và quá trình tích hợp
+giữa backend với frontend. Tôi cũng cải thiện khả năng chuyển yêu cầu thành quy
+tắc API, kiểm thử cả luồng thành công lẫn thất bại, xử lý lỗi tích hợp và trình
+bày giải pháp kỹ thuật rõ ràng.
 
-**EduCloud là sản phẩm của nhóm.** Hệ thống có các phần xác thực, quản lý khóa
-học và bài học, bài đánh giá, chứng chỉ, quản trị và triển khai do nhiều thành
-viên phối hợp thực hiện. Tôi không nhận toàn bộ các tính năng đó là đóng góp cá
-nhân.
+Tôi đánh giá quá trình thực tập theo mười hai tiêu chí chuyên môn và tác phong.
 
-Ảnh phân công xác định **phạm vi cốt lõi API Enrollment, Progress, Upload và
-Testing**:
+| STT | Tiêu chí | Mô tả | Tốt | Khá | Trung bình |
+|---:|---|---|:---:|:---:|:---:|
+| 1 | **Kiến thức và kỹ năng chuyên môn** | Vận dụng kiến thức backend, database, authentication, storage, testing và AWS vào các API EduCloud được giao | ✅ | ☐ | ☐ |
+| 2 | **Khả năng học hỏi** | Tiếp cận dịch vụ và pattern API mới trong quá trình triển khai các luồng thực tế của project | ✅ | ☐ | ☐ |
+| 3 | **Tính chủ động** | Chủ động chia phạm vi công việc thành quy tắc API, test case tích cực, tiêu cực và kiểm tra tích hợp | ✅ | ☐ | ☐ |
+| 4 | **Tinh thần trách nhiệm** | Theo sát phần việc từ triển khai, regression test, viết tài liệu đến chuẩn bị bàn giao | ✅ | ☐ | ☐ |
+| 5 | **Kỷ luật làm việc** | Bám theo tiến độ project, nhưng cần lên kế hoạch sớm hơn cho hình ảnh và khâu hoàn thiện báo cáo | ☐ | ✅ | ☐ |
+| 6 | **Tư duy cải tiến** | Dựa trên phản hồi và kết quả test để điều chỉnh các luồng enrollment, progress, upload và monitoring | ✅ | ☐ | ☐ |
+| 7 | **Giao tiếp** | Có ghi lại quyết định kỹ thuật và tiến độ trong báo cáo, nhưng cần cập nhật trực tiếp với nhóm thường xuyên hơn | ☐ | ✅ | ☐ |
+| 8 | **Làm việc nhóm** | Tích hợp phần API được giao với authentication, course, lesson, frontend và deployment chung của nhóm | ☐ | ✅ | ☐ |
+| 9 | **Tác phong chuyên nghiệp** | Làm việc cẩn thận với credential, phân quyền, log và tài nguyên cloud, chú ý bảo mật thông tin | ✅ | ☐ | ☐ |
+| 10 | **Kỹ năng giải quyết vấn đề** | Phân tích lỗi phân quyền, dữ liệu trùng, validation file, multipart upload và tích hợp CloudWatch | ✅ | ☐ | ☐ |
+| 11 | **Đóng góp cho project** | Đóng góp phần Enrollment, Progress, Upload, testing và tài liệu kỹ thuật cho hệ thống EduCloud | ☐ | ✅ | ☐ |
+| 12 | **Đánh giá tổng thể** | Hoàn thành các mục tiêu chính của phần việc được giao và chuẩn bị tài liệu bàn giao có thể sử dụng | ✅ | ☐ | ☐ |
 
-- `POST /api/courses/{course_id}/enroll` và `GET /api/my-courses`;
-- `POST /api/lessons/{lesson_id}/complete` và
-  `GET /api/courses/{course_id}/progress`;
-- các luồng upload thumbnail, tài liệu bài học và video trực tiếp có kiểm tra
-  quyền; và
-- kiểm thử regression API bằng Postman cùng kiểm tra log ứng dụng trên Amazon
-  CloudWatch.
+## Nội dung cần cải thiện
 
-Codebase nhóm còn có hoàn tác progress, import/deduplicate thumbnail, điều khiển
-multipart video và endpoint Admin đọc log. Tôi xem đây là **extension hỗ trợ**,
-không phải endpoint cốt lõi ban đầu nếu chưa có bằng chứng mentor/PR.
+- Cập nhật tiến độ, blocker và thay đổi interface với nhóm thường xuyên hơn thay
+  vì chủ yếu ghi nhận qua tài liệu kỹ thuật.
+- Chuẩn bị screenshot, kết quả test và tài nguyên báo cáo sớm hơn để giai đoạn
+  cuối tập trung vào rà soát.
+- Mở rộng end-to-end test cho authentication, enrollment, progress, upload và
+  phân phối media.
+- Nâng mức sẵn sàng vận hành bằng alarm, log retention, backup, cost monitoring
+  và cấu hình hạ tầng có thể tái lập.
 
-Repository có route, service, ràng buộc dữ liệu, tích hợp frontend và test tự
-động liên quan đến hướng công việc này. Bảy test node liên quan đến enrollment, progress, upload
-và CloudWatch đạt **7/7**; full backend suite đạt **26/26 test** trong môi
-trường riêng dùng đúng
-dependency pin của repository. Tuy nhiên, file test case thủ công cũ trong
-repository nhóm vẫn ghi
-`Not Started`; minh chứng
-Postman Runner, Amazon S3 thật và CloudWatch thật chưa được chụp. Đây vẫn là
-công việc của giai đoạn cuối.
+## Đánh giá tổng quan
 
-{{% notice warning %}}
-Các mức dưới đây là bản tự đánh giá tạm thời. Lịch sử Git được cung cấp không tự
-quy các phần code được dẫn cho Luân, nên bản cuối phải có PR/commit/task hoặc xác
-nhận mentor. Kết quả automated test chỉ xác nhận hành vi code hiện tại.
-{{% /notice %}}
-
-## Các tiêu chí đánh giá bắt buộc
-
-Bảng sử dụng đúng ba mức theo quy định báo cáo: **Tốt**, **Khá** và
-**Trung bình**.
-
-| STT | Tiêu chí | Mức | Nhận xét dựa trên minh chứng |
-| ---: | --- | :---: | --- |
-| 1 | **Kiến thức và kỹ năng chuyên môn** | **Khá** | Báo cáo liên kết endpoint cốt lõi với FastAPI route, tách service, ràng buộc SQLAlchemy, kiểm tra role/quyền sở hữu, tính progress và kiểm tra file. Minh chứng triển khai cá nhân và nghiệm thu AWS thật còn thiếu. |
-| 2 | **Khả năng học hỏi** | **Khá** | Phần rà soát bao phủ upload trực tiếp, multipart hỗ trợ và cách test S3/CloudWatch bằng client kiểm soát trước khi xác minh live. Cần mentor/task evidence cho tiến trình học thực tế. |
-| 3 | **Tính chủ động** | **Khá** | Báo cáo chuyển danh sách endpoint thành quy tắc dữ liệu, case positive/negative, Postman artifact đã sửa, automated check và gap list; phần thực thi và attribution chưa hoàn tất. |
-| 4 | **Kỷ luật** | **Khá** | Báo cáo hiện tại giữ source, API contract, worklog và trạng thái test nhất quán, không ghi case chưa chạy thành đã đạt. Luân vẫn cần điền toàn bộ kết quả thủ công và sắp xếp minh chứng cuối kỳ trước 15/08. |
-| 5 | **Giao tiếp** | **Khá** | API contract, tài liệu song ngữ, phạm vi endpoint và các việc còn thiếu đã được ghi lại để bàn giao. Chỉ repository chưa đủ chứng minh mức giao tiếp nhóm thường xuyên để tự chấm Tốt; tôi cần cập nhật tiến độ và defect ngắn gọn, đều đặn hơn. |
-| 6 | **Teamwork** | **Khá** | API trong hướng được giao tích hợp với authentication, course, lesson, frontend và AWS do các thành viên khác phụ trách. Interface đã được ghi rõ nhưng lần chạy end-to-end liên vai trò và minh chứng bàn giao cuối vẫn chưa hoàn tất. |
-| 7 | **Giải quyết vấn đề** | **Khá** | Rà soát code/test bao phủ enrollment/progress trùng, truy cập khi chưa enroll, quyền sở hữu khóa học, extension sai, multipart hỗ trợ và lỗi CloudWatch an toàn. Vẫn cần bằng chứng cá nhân xử lý các vấn đề này. |
-| 8 | **Đóng góp cho dự án** | **Khá** | Đóng góp dự kiến là lát cắt bảy endpoint cùng kiểm thử. Codebase và local test chứng minh lát cắt tồn tại; attribution cá nhân và nghiệm thu live vẫn đang chờ. |
-
-## Điểm mạnh
-
-- Codebase được rà soát để backend tính kết quả enrollment/progress và bảo vệ bằng
-  phân quyền cùng ràng buộc duy nhất ở database, không tin trạng thái client gửi.
-- Test plan trong báo cáo xét cả luồng thành công và lỗi: retry, request trùng,
-  truy cập sai quyền, file không hợp lệ và multipart upload bị bỏ dở.
-- Hành vi code/test đã xác nhận được tách rõ khỏi kế hoạch hoặc minh chứng AWS
-  live chưa có, giúp báo cáo có thể kiểm tra lại.
-
-## Điểm cần cải thiện
-
-- Chạy Postman collection đã sửa cho báo cáo với My Courses, progress, multipart
-  upload và Admin CloudWatch; sau đó ghi status, response thực tế và defect cho
-  mọi test case.
-- Xác minh upload thumbnail, material, video trực tiếp và multipart trên môi
-  trường S3 private đã cấu hình, đồng thời chụp minh chứng đã che dữ liệu nhạy
-  cảm.
-- Đối chiếu request API thành công và lỗi có kiểm soát với đúng CloudWatch log
-  group, không để lộ token, credential hoặc query string của presigned URL.
-- Cập nhật cho nhóm thường xuyên hơn về tiến độ, thay đổi interface, blocker và
-  kết quả regression để việc tích hợp và bàn giao rõ ràng hơn.
-
-## Đánh giá tổng thể tạm thời
-
-Mức **Khá tạm thời tại mốc này** có cơ sở cho phần báo cáo đã được ghi nhận.
-Codebase được cung cấp có phần triển khai cốt lõi và targeted regression chứng
-minh hành vi phân quyền, toàn vẹn dữ liệu, xử lý lỗi; các dữ kiện đó chưa chứng
-minh Luân là tác giả. Để có cơ sở tự đánh giá **Tốt** ở cuối kỳ, cần bổ sung minh
-chứng attribution, hoàn tất ma trận Postman, xác minh S3/CloudWatch live, retest
-defect và chuẩn bị đủ minh chứng bàn giao trước khi kỳ thực tập kết thúc.
+Tôi tự đánh giá kết quả thực tập ở mức **Tốt**. Tôi đã hoàn thành phạm vi kỹ
+thuật chính được giao, củng cố các luồng bằng automated test và API test, đồng
+thời trình bày giải pháp trong báo cáo song ngữ có cấu trúc. Tiến bộ rõ nhất của
+tôi nằm ở độ tin cậy backend và khả năng xử lý vấn đề. Nội dung cần cải thiện
+nhiều nhất là duy trì giao tiếp với nhóm đều đặn hơn và tổ chức tài liệu kiểm
+chứng cuối kỳ sớm hơn.

@@ -7,7 +7,7 @@ pre: "<b>5.5.</b>"
 
 # Progress APIs
 
-Implementation evidence:
+Relevant source files:
 
 - `backend/app/routes/progress_routes.py`
 - `backend/app/services/progress_service.py`
@@ -36,7 +36,7 @@ Authorization: Bearer STUDENT_JWT
 }
 ```
 
-The core assignment uses POST to complete a lesson. The supplied codebase adds
+The core assignment uses POST to complete a lesson. The current codebase adds
 `DELETE` on the same path as a supporting undo extension. The service:
 
 1. requires the `student` role;

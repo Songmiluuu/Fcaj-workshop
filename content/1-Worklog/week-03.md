@@ -1,53 +1,44 @@
 ---
-title: "Week 3 - API, data, and test design"
+title: "Week 3 - API contract and data design"
 menuTitle: "Week 3"
 weight: 3
 pre: "<b>1.3.</b>"
 ---
 
-**Period:** June 15, 2026 - June 21, 2026  
-**Status on July 30:** Reconstructed plan; report artifacts prepared, manual cases unexecuted
+# Week 3 - API contract and data design
 
-## Objectives
+**Work period:** June 29–July 5, 2026
 
-- Define route, service, model, and response responsibilities for the assigned
-  APIs.
-- Design a repeatable end-to-end learner flow for later Postman testing.
-- Prepare test data and variables without embedding secrets.
+## Task
 
-## Planned activities and report artifacts
+Design API contracts, enrollment/progress data constraints, upload validation,
+and reusable Postman variables.
 
-| Activity | Result |
-| --- | --- |
-| Mapped the API flow from FastAPI route to business service and SQLAlchemy model. | Enrollment and progress logic could be implemented separately from HTTP response formatting. |
-| Defined the Enrollment key as user + course and the Progress key as user + lesson. | Duplicate requests have an explicit idempotency strategy. |
-| Designed the learner test sequence: authenticate → select published course → enroll → list My Courses → complete lesson → read progress. | Established ordering and prerequisite data for API verification. |
-| Designed the upload test sequence for thumbnail, material, and video. | Identified required multipart fields, allowed types, size boundaries, and course-owner authorization. |
-| Reviewed the Postman collection structure and test-case template. | Defined base_url, token, course_id, and lesson_id as variables; kept execution status separate from design status. |
+## API and data design
 
-## Deliverables
+- Standardized successful responses around `success`, `message`, and `data`.
+- Used authenticated user context instead of accepting a target user ID from
+  request bodies.
+- Required unique enrollment rows for each user-course pair.
+- Required unique progress rows for each user-lesson pair.
+- Defined course-scoped S3 prefixes for thumbnails, materials, and videos.
+- Set extension and size rules for each upload category.
 
-- Endpoint-to-layer map for Enrollment, Progress, Upload, and CloudWatch.
-- A reusable learner-flow test sequence and upload test-data checklist.
-- Test cases **TC-007 through TC-011** for enrollment, completion, progress,
-  upload, and CloudWatch checking.
-- Standard result fields: input, expected result, actual result, status, and
-  note.
+## Postman design
 
-## Test criteria
+The collection uses environment variables for `base_url`, role tokens,
+`course_id`, `lesson_id`, `upload_id`, object key, and ETag. Request scripts
+store IDs only when a response succeeds, which keeps negative cases independent
+from the main workflow.
 
-| Check | Result |
-| --- | --- |
-| The API contract lists all core assigned endpoint groups. | Met as a report artifact |
-| The test plan contains an explicit case for each assigned feature family. | Met |
-| The Postman collection is valid JSON and defines reusable environment variables. | Met |
-| Manual tests are marked Passed only after execution evidence exists. | Met as a process rule; all checklist rows are still Not Started |
+## Result
 
-## Repository evidence
+The route contract, persistence rules, upload limits, and reusable test
+variables were aligned before integration work began.
 
-- EduCloud/api/api-contract.md
-- EduCloud/api/postman/EduCloud.postman_collection.json
-- EduCloud/api/test-plan/test-cases.md
-- EduCloud/api/test-plan/test-report-template.md
-- EduCloud/backend/app/schemas/enrollment_schema.py
-- EduCloud/backend/app/schemas/progress_schema.py
+## Technical references
+
+- `EduCloud/api/openapi.yaml`
+- `EduCloud/backend/app/models/enrollment.py`
+- `EduCloud/backend/app/models/progress.py`
+- `EduCloud/api/postman/EduCloud.postman_collection.json`

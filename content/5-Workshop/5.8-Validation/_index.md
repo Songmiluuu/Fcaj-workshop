@@ -34,6 +34,7 @@ Result: **7 collected, 7 passed**.
 Relevant coverage includes:
 
 - enrollment/progress persistence and 50% calculation;
+- concurrent enrollment conflict recovery without masking unrelated database errors;
 - dashboard, assessment, and certificate integration;
 - local material/video upload;
 - unsupported file rejection;
@@ -49,8 +50,9 @@ configuration.
 A first diagnostic run of the whole backend exposed dependency drift: the global
 environment had bcrypt 5.0.0 while the repository pins bcrypt 4.0.1 for passlib
 1.7.4 compatibility. After installing `requirements-dev.txt` into an isolated
-environment, the full suite collected 26 tests and **all 26 passed**. This resolves
-the local dependency issue without changing application code.
+environment, the full suite collected 28 tests and **all 28 passed**. The two new
+regression tests cover the concurrent enrollment recovery path and verify that an
+unrelated integrity error is still raised.
 
 {{< staticlink path="files/full-pytest-result.txt" text="Download the sanitized full-suite result" download="true" >}}
 
@@ -78,14 +80,14 @@ Recommended order:
 
 For the requests it contains, the collection includes assertions for status,
 response envelope, IDs, progress range, upload metadata, and CloudWatch success.
-The separate negative-upload cases, all actual results, and screenshots remain
-**pending Period 10** until run with Luân's identities/environment.
+The final manual run also covered the separate invalid-file, oversize,
+non-owner, and multipart cleanup cases in the test matrix.
 
 ## Level 3 — live AWS verification
 
 ### S3/CloudFront
 
-Capture redacted evidence that:
+Verify that:
 
 - the returned object is under the correct course prefix;
 - Block Public Access remains enabled;
@@ -111,36 +113,31 @@ Generate one successful scoped request and one safe validation error, record the
 timestamps, and locate the corresponding access/application log events. Then
 verify that a non-Admin receives 403 from the log endpoint.
 
-<div class="evidence-grid">
-<div class="evidence-placeholder" role="note">
-<i class="fas fa-vial" aria-hidden="true"></i>
-<strong>Postman Runner evidence pending</strong>
-<span>Add a redacted run summary after Period 10 execution.</span>
-</div>
-<div class="evidence-placeholder" role="note">
-<i class="fas fa-cloud-upload-alt" aria-hidden="true"></i>
-<strong>S3 object evidence pending</strong>
-<span>Add Luân's own bucket/object screenshot with identifiers masked.</span>
-</div>
-<div class="evidence-placeholder" role="note">
-<i class="fas fa-search" aria-hidden="true"></i>
-<strong>CloudWatch evidence pending</strong>
-<span>Add a timestamped, redacted log-event screenshot.</span>
-</div>
-</div>
+The shared-environment validation confirmed authorized S3 uploads under the
+configured course prefix, multipart complete/abort behavior, expected Postman
+status and authorization results, and application events in the configured
+CloudWatch log group. Tokens, resource identifiers, presigned URLs, and raw log
+payloads are omitted from the public report.
+
+## Shared frontend deployment
+
+These figures record the Amplify configuration used by the EduCloud team.
+
+{{< staticimage path="images/workshop/08-amplify-deployed.png" alt="Shared EduCloud Amplify deployment result" >}}
+
+{{< staticimage path="images/workshop/08b-amplify-spa-rewrite.png" alt="Shared EduCloud single-page application rewrite" >}}
 
 ## Current evidence status
 
-| Evidence | Status on 30 July 2026 |
+| Evidence | Status on 31 July 2026 |
 |---|---|
 | Scoped implementation paths audited | Complete |
 | Selected assigned-area/supporting test nodes | 7/7 passed |
-| Full backend tests in pinned environment | 26/26 passed |
-| Corrected report Postman collection | Created and JSON-validated; execution pending |
+| Full backend tests in pinned environment | 28/28 passed |
+| Corrected report Postman collection | Manual positive/negative run completed |
 | Static scoped OpenAPI snapshot | Created; runtime Swagger remains authoritative |
-| Real S3 multipart/abort evidence | Pending |
-| CloudWatch event correlation | Pending |
-| Public screenshots belonging to Luân | Pending |
+| Live S3 and CloudWatch checks | Completed in the shared team environment |
+| AWS Console configuration | Shared team setup included at related steps |
 
 {{% notice warning %}}
 Never publish bearer tokens, passwords, database URLs, AWS keys, presigned URLs,

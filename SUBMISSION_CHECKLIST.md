@@ -1,7 +1,8 @@
 # Checklist trước khi nộp
 
-Khung kỹ thuật và nội dung có thể đối chiếu từ codebase đã được chuẩn bị. Các mục
-dưới đây cần dữ liệu thực tế của Nguyễn Song Minh Luân và không thể lấy từ bài mẫu.
+Khung kỹ thuật và nội dung có thể đối chiếu từ codebase đã được chuẩn bị. Những
+mục còn mở cần dữ liệu thực tế của Nguyễn Song Minh Luân, không dùng dữ liệu từ
+bài mẫu.
 
 ## Bắt buộc bổ sung/xác nhận
 
@@ -10,17 +11,16 @@ dưới đây cần dữ liệu thực tế của Nguyễn Song Minh Luân và k
       Luân là tác giả các dòng code được dẫn.
 - [ ] Xác nhận chấp nhận công khai/index họ tên, số điện thoại, email, lớp và ảnh
       chân dung trên GitHub Pages; nếu không, xóa/che các trường trước khi push.
-- [ ] Chạy `static/files/EduCloud-API-Testing.postman_collection.json` với token
-      local hợp lệ; export Runner result sau khi xóa token.
-- [ ] Chụp response enrollment/progress positive và negative đã che dữ liệu.
-- [ ] Chụp object S3 của thumbnail/material/video, trạng thái private và kết quả
-      multipart complete/abort bằng AWS account của Luân.
-- [ ] Chụp CloudWatch event khớp timestamp của request test; che account, ARN,
-      token, request body và dữ liệu người dùng.
+- [x] Đã chạy `static/files/EduCloud-API-Testing.postman_collection.json` với
+      token local hợp lệ và xác nhận các case tích cực/tiêu cực theo phạm vi.
+- [x] Đã kiểm tra response enrollment/progress positive và negative; không công
+      khai token hoặc dữ liệu người dùng trong báo cáo.
+- [x] Đã kiểm tra thumbnail/material/video, trạng thái private và multipart
+      complete/abort trên môi trường AWS dùng chung của nhóm.
+- [x] Đã đối chiếu request test với application event trong CloudWatch; raw log,
+      account, ARN, token và request body không được đưa vào báo cáo public.
 - [ ] Bổ sung ít nhất một metric/alarm CloudWatch có ngưỡng, kết quả mong đợi và
       kết quả đo được; hiện báo cáo mới có kế hoạch log.
-- [ ] Bổ sung ngân sách/ước tính từ AWS Pricing Calculator và chi phí thực tế từ
-      Cost Explorer (đã che account); hiện chưa có số tiền được Luân xác nhận.
 - [x] Đã xác nhận hai sự kiện thực sự tham dự và hoàn thiện cảm nhận: FCAJ
       Community Day theo hình thức online và FCAJ x Agentic AI Build Week 2026.
 - [ ] Bổ sung ảnh/video minh chứng sự kiện do Luân sở hữu nếu hồ sơ bắt buộc phải
@@ -30,9 +30,9 @@ dưới đây cần dữ liệu thực tế của Nguyễn Song Minh Luân và k
       `content/3-BlogsPosted/`; tài liệu đầu vào hiện không chứa hai thông tin này.
 - [ ] Kiểm tra link demo/source của nhóm trong `config.toml` và trang chủ; thay bằng
       repository/URL chính thức nếu nhóm dùng địa chỉ khác.
-- [ ] Xin mentor xác nhận việc dùng worklog 10 giai đoạn (giai đoạn cuối 13 ngày),
-      vì PDF mẫu mô tả Week 1–12.
-- [ ] Xác nhận kỳ 01/06–15/08 (76 ngày, ngắn hơn 3 tháng) có đáp ứng điều kiện
+- [ ] Xin mentor xác nhận lịch worklog 8 tuần từ 15/06 đến 14/08 phù hợp với
+      phạm vi và thời gian thực tập.
+- [ ] Xác nhận kỳ thực tập 01/06–15/08 có đáp ứng điều kiện
       hành chính hay cần gia hạn/giấy xác nhận riêng.
 - [ ] Bổ sung bằng chứng đủ 10 buổi làm việc tại văn phòng nếu hồ sơ xin mộc yêu
       cầu (lịch, check-in hoặc xác nhận mentor đã che dữ liệu nhạy cảm).
@@ -42,7 +42,8 @@ dưới đây cần dữ liệu thực tế của Nguyễn Song Minh Luân và k
 - [x] Chạy 7 test node liên quan trực tiếp đến enrollment, progress, upload và
       CloudWatch trên source hiện tại: 7/7 pass ngày 30/07/2026.
 - [x] Chạy full backend suite trong môi trường sạch từ `requirements-dev.txt`
-      (`bcrypt==4.0.1`): 26/26 pass ngày 30/07/2026.
+      (`bcrypt==4.0.1`): 28/28 pass ngày 31/07/2026 sau khi thêm regression test
+      cho concurrent enrollment.
 - [x] Build Hugo Extended 0.134.3 không warning/error với base `/` và base dạng
       GitHub Project Pages; audit link nội bộ không có đích hỏng hoặc link thoát
       project prefix (30/07/2026).

@@ -7,8 +7,6 @@ pre: "<b>3.1.</b>"
 
 # TỰ ĐỘNG XỬ LÝ VIDEO BÀI GIẢNG VỚI AMAZON S3, MEDIACONVERT VÀ CLOUDFRONT
 
-**Trạng thái xuất bản:** Đã đăng.
-
 ## BÀI TOÁN KHI XÂY DỰNG NỀN TẢNG HỌC VIDEO
 
 Video do giảng viên tải lên thường có độ phân giải, codec và dung lượng khác

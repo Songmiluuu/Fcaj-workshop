@@ -7,8 +7,6 @@ pre: "<b>3.3.</b>"
 
 # XỬ LÝ QUY TRÌNH ĐƠN HÀNG KHÔNG MẤT TRẠNG THÁI VỚI AWS LAMBDA DURABLE FUNCTIONS
 
-**Publication status:** Published.
-
 ## THE CHALLENGE OF AN ORDER WAITING FOR PAYMENT
 
 Behind a single order action are many consecutive steps: create the order,

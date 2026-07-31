@@ -1,55 +1,48 @@
 ---
-title: "Week 5 - FastAPI integration baseline"
+title: "Week 5 - Enrollment and My Courses"
 menuTitle: "Week 5"
 weight: 5
 pre: "<b>1.5.</b>"
 ---
 
-**Period:** June 29, 2026 - July 5, 2026  
-**Status on July 30:** Codebase target present; personal attribution requires confirmation
+# Week 5 - Enrollment and My Courses
 
-> **Attribution basis:** this page reconstructs intended work from the assignment
-> and supplied code. The referenced source proves current behavior, not who
-> authored it.
+**Work period:** July 13–19, 2026
 
-## Objectives
+## Task
 
-- Register the core assigned API groups under one consistent **/api** prefix.
-- Centralize environment settings for storage and monitoring.
-- Use shared authentication and response conventions before adding business
-  logic.
+Implement and validate course enrollment and My Courses behavior, including
+duplicate-request handling and Student-only access.
 
-## Planned activities and current codebase evidence
+## Enrollment flow
 
-| Activity | Verified result |
-| --- | --- |
-| Plan registration of core enrollment/progress/upload routers and review the supporting Admin router. | Current modules use settings.API_PREFIX, whose default is /api. |
-| Plan reuse of get_current_user on protected endpoints. | Current enrollment, progress, upload, and supporting CloudWatch routes use the same dependency. |
-| Plan use of the shared success-response helper. | Current successful responses contain success, message, and data. |
-| Plan environment-driven storage settings. | UPLOAD_STORAGE selects local or S3; local path, bucket, Region, and public base URL are configurable. |
-| Plan monitoring switches and request instrumentation. | AWS_MONITORING_ENABLED and AWS_CLOUDWATCH_LOG_GROUP are external configuration; middleware records route, status, and duration. |
+1. Resolve the authenticated application user.
+2. Require the Student role.
+3. Load the selected course and confirm that it is published.
+4. Confirm that the course has a published final assessment.
+5. Return the existing enrollment or create one database row.
 
-## Expected deliverables
+`GET /api/my-courses` loads each enrolled course with lesson progress,
+assessment availability, and certificate state needed by the learner
+dashboard.
 
-- FastAPI route integration for the assigned API groups.
-- Shared authentication and success-response baseline.
-- Environment configuration for local upload, S3, and CloudWatch.
-- Local upload mounting only when local storage mode is active.
+## Validation
 
-## Test criteria
+- A valid Student can enroll and retrieve the course from My Courses.
+- Repeating the request returns the existing enrollment without duplication.
+- Missing authentication returns 401.
+- An Instructor or Admin token returns 403.
+- An unavailable course or incomplete publication state returns a domain error.
 
-| Criterion | Result |
-| --- | --- |
-| Core and supporting routers receive the same /api prefix. | Present in supplied codebase |
-| Protected handlers resolve current-user context before business logic. | Met |
-| Switching storage mode does not require a source-code edit. | Met |
-| Secrets and environment-specific log-group names stay outside committed values. | Met in .env.example; real values must remain uncommitted |
+## Result
 
-## Repository evidence
+Enrollment became idempotent at service level and protected by a database
+uniqueness rule. My Courses reads persisted learning state instead of trusting
+client-provided values.
 
-- EduCloud/backend/main.py
-- EduCloud/backend/app/config.py
-- EduCloud/backend/.env.example
-- EduCloud/backend/app/utils/response.py
-- EduCloud/backend/app/middleware/auth_middleware.py
-- EduCloud/backend/app/services/monitoring_service.py
+## Technical references
+
+- `EduCloud/backend/app/routes/enrollment_routes.py`
+- `EduCloud/backend/app/services/enrollment_service.py`
+- `EduCloud/backend/app/models/enrollment.py`
+- `EduCloud/frontend/src/services/enrollmentService.ts`

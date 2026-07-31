@@ -1,25 +1,26 @@
 EduCloud full backend verification
-Date: 2026-07-30
+Date: 2026-07-31
 Environment: Windows, Python 3.11.9, pytest 8.3.5
 Dependency source: backend/requirements-dev.txt installed into an isolated target
 Relevant versions: bcrypt 4.0.1, passlib 1.7.4
-EduCloud source revision: 62d80279500c4e11de31e05fd876d50a370b461e
+EduCloud source base: revision 62d80279500c4e11de31e05fd876d50a370b461e
+Enrollment change: concurrent unique-conflict recovery and two regression tests
 
 Command:
 python -m pytest -p no:cacheprovider
 
-Collected: 26
+Collected: 28
 tests/test_cognito_exchange.py .
 tests/test_course_lesson_api.py ...........
 tests/test_course_reviews.py ..
 tests/test_dev_auth.py .
-tests/test_enrollment_progress.py ....
+tests/test_enrollment_progress.py ......
 tests/test_instructor_requests.py .
 tests/test_legacy_auth.py .
 tests/test_monitoring.py ..
 tests/test_remote_image_service.py ...
 
-Result: 26 passed in 9.76s
+Result: 28 passed in 3.51s
 
 Interpretation:
 The full local backend suite is green when run with the repository's pinned

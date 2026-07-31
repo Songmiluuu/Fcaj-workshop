@@ -55,16 +55,16 @@ theo phạm vi khóa học, kiểm thử lặp lại được và khả năng qu
 | Ghi danh an toàn | Chỉ Student được ghi danh; khóa học phải tồn tại, ở trạng thái published và có final assessment đã publish. Gọi lại trả về enrollment cũ; database chỉ cho một dòng trên mỗi user/course. |
 | Tiến độ nhất quán | Chỉ Student đã ghi danh được complete bài học và đọc tiến độ khóa học. Mỗi user/lesson có một dòng và API tính số bài cùng phần trăm trực tiếp từ database. |
 | Upload có kiểm soát | Chỉ chủ khóa học hoặc Admin được upload. Route trực tiếp cốt lõi kiểm tra extension và size; luồng multipart hỗ trợ kiểm tra thêm video MIME, course key prefix, part number và part trùng. |
-| Extension hỗ trợ video lớn | Codebase được cung cấp có thêm multipart browser-to-S3 theo part 10 MiB với thao tác complete/abort. Đây là ngữ cảnh tích hợp, không thuộc bảy endpoint cốt lõi được giao. |
+| Extension hỗ trợ video lớn | Codebase hiện tại có thêm multipart browser-to-S3 theo part 10 MiB với thao tác complete/abort. Đây là ngữ cảnh tích hợp, không thuộc bảy endpoint cốt lõi được giao. |
 | Kiểm thử lặp lại được | Có test tích cực/tiêu cực cho enrollment, progress, upload, authorization và validation trong test plan/Postman; automated test tiếp tục pass. |
 | Có bằng chứng vận hành | Kiểm tra sau deploy ghi nhận kết quả request, lỗi, Elastic Beanstalk health và CloudWatch event liên quan mà không làm lộ token hoặc secret. |
-| Kiểm soát chi phí | Demo nằm trong ngân sách AWS được phê duyệt, có bằng chứng AWS Budgets/Cost Explorer và checklist cleanup compute, log, object cùng multipart upload dở dang. |
+| Kiểm soát chi phí | Demo dùng quy mô triển khai nhỏ và có checklist cleanup compute, log, object cùng multipart upload dở dang. |
 
 Code hiện có cung cấp bằng chứng tại
 `backend/app/services/enrollment_service.py`, `progress_service.py`,
 `s3_service.py`, các file route/model tương ứng, API/Postman artifacts và backend
-tests. Một test case còn ghi “Not Started” không được xem là pass; chỉ đổi trạng
-thái sau khi chạy thật và lưu minh chứng.
+tests. Ma trận đính kèm tách kết quả automated khỏi Postman manual và kiểm tra
+AWS trên môi trường dùng chung để mỗi kết quả được đối chiếu đúng ngữ cảnh.
 
 ## 4. Ranh giới phạm vi và trách nhiệm
 
@@ -94,13 +94,7 @@ Enrollment, Progress, Upload & Testing:
 Codebase nhóm hiện có thêm `DELETE` hoàn tác progress, import/deduplicate
 thumbnail, multipart start/part/complete/abort và endpoint Admin đọc log
 CloudWatch. Báo cáo có thể rà soát/test các **extension hỗ trợ** này nhưng không
-xem chúng là endpoint cốt lõi được giao nếu chưa có xác nhận mentor.
-
-{{% notice warning %}}
-Lịch sử Git được cung cấp không tự nhận diện Luân là tác giả các phần triển khai
-được dẫn. Source path chỉ chứng minh hành vi hệ thống; việc ghi nhận đóng góp cá
-nhân cần PR, task board, commit hoặc xác nhận mentor.
-{{% /notice %}}
+xem chúng là bảy endpoint cốt lõi được giao ban đầu.
 
 Authentication, course/lesson authoring, frontend, database và deployment do
 thành viên khác phụ trách là dependency/ngữ cảnh tích hợp, không phải sản phẩm cá
@@ -115,7 +109,7 @@ observability platform cấp doanh nghiệp không nằm trong phạm vi thực 
 
 ## 5. Kiến trúc AWS toàn hệ thống
 
-{{< staticimage path="images/educloud-aws-architecture.png" alt="Kiến trúc AWS EduCloud" >}}
+{{< staticimage path="images/architect.jpg" alt="Kiến trúc AWS EduCloud" >}}
 
 | Lớp | Thành phần và trách nhiệm |
 | --- | --- |
@@ -179,30 +173,26 @@ nguồn lịch sử production lâu dài. Cần theo dõi enrollment conflict, l
 quyền progress, upload 4xx/5xx, lỗi S3, latency, EC2/Elastic Beanstalk health,
 storage growth, incomplete multipart upload và chi phí.
 
-## 8. Kế hoạch 10 giai đoạn được dựng lại
+## 8. Kế hoạch tám tuần
 
-Kế hoạch dưới đây khớp worklog và bao phủ 01/06–15/08/2026. Giai đoạn 10 kéo dài
-13 ngày để regression và bàn giao. Cần mentor xác nhận vì PDF mẫu mô tả Tuần
-1–12.
+Lịch kỹ thuật kéo dài từ 15/06 đến 14/08/2026.
 
-| Giai đoạn | Thời gian | Công việc dự kiến và đầu ra |
+| Tuần | Thời gian | Công việc |
 | --- | --- | --- |
-| 1 | 01–07/06 | Đọc quy định FCAJ và code EduCloud; thống nhất API contract, ranh giới trách nhiệm, quy trình branch/PR và ma trận nghiệm thu. |
-| 2 | 08–14/06 | Xác định yêu cầu, role/ownership, case positive/negative và các mức minh chứng cho bảy endpoint cốt lõi. |
-| 3 | 15–21/06 | Thiết kế luồng API/data/test, biến Postman dùng lại và tiêu chí idempotency/validation không chứa secret. |
-| 4 | 22–28/06 | Lập kế hoạch và xác minh nền tảng dữ liệu enrollment/progress, unique constraint, compatibility index và response schema. |
-| 5 | 29/06–05/07 | Lập nền tích hợp FastAPI: prefix router, dependency xác thực, quy ước response, cấu hình storage và monitoring. |
-| 6 | 06–12/07 | Xây dựng/xác minh hai endpoint enrollment cốt lõi, idempotency, role guard, dashboard aggregation và contract frontend. |
-| 7 | 13–19/07 | Xây dựng/xác minh complete lesson, đọc progress và upload thumbnail/material/video với quyền, extension, size và storage rule. |
-| 8 | 20–26/07 | Tích hợp API cốt lõi với UI, rà regression tự động, audit khoảng trống Postman cũ và chuẩn bị collection theo phạm vi. |
-| 9 | 27/07–02/08 | Rà soát/test extension multipart và log-reader Admin; chạy selected/full local suite; chuẩn bị bước lấy minh chứng Postman/S3/CloudWatch live. |
-| 10 | 03–15/08 | Chạy Postman/AWS live, chụp minh chứng đã che, retest defect, xin xác nhận đóng góp, hoàn thiện EN/VI và bàn giao bài GitHub. |
+| 1 | 15–21/06 | Rà soát yêu cầu FCAJ, workflow EduCloud, ranh giới công việc nhóm và bảy endpoint được giao. |
+| 2 | 22–28/06 | Xác định quyền Student và Instructor/Admin, tiêu chí thành công, case lỗi và kết quả kiểm tra cần lưu. |
+| 3 | 29/06–05/07 | Thiết kế API contract, ràng buộc dữ liệu enrollment/progress, validation upload và biến Postman dùng lại. |
+| 4 | 06–12/07 | Đồng bộ nền tảng FastAPI, authentication dependency, quy ước response, lưu trữ PostgreSQL và cấu hình AWS. |
+| 5 | 13–19/07 | Triển khai và kiểm tra enrollment cùng My Courses, gồm xử lý request trùng và giới hạn quyền Student. |
+| 6 | 20–26/07 | Triển khai và kiểm tra lesson completion, course progress, upload thumbnail, material và video có phân quyền. |
+| 7 | 27–31/07 | Tích hợp API với frontend, authentication và course dùng chung; rà automated regression và chuẩn bị Postman collection theo phạm vi. |
+| 8 | 01–14/08 | Chạy Postman, kiểm tra S3/CloudWatch, retest lỗi, hoàn thiện tài liệu và bàn giao báo cáo. |
 
 ## 9. Kế hoạch chi phí và tối ưu
 
 Báo cáo không ghi một con số ước tính như hóa đơn thật. Giá AWS thay đổi theo
-Region, usage và thời điểm; bản cuối phải dùng AWS Pricing Calculator/Cost
-Explorer cùng ảnh account chụp trong kỳ thực tập.
+Region, usage và thời điểm, vì vậy phần này tập trung vào các lựa chọn triển khai
+giúp hạn chế chi phí không cần thiết.
 
 | Nguồn chi phí | Giả định và biện pháp kiểm soát |
 | --- | --- |
@@ -214,15 +204,15 @@ Explorer cùng ảnh account chụp trong kỳ thực tập.
 | CloudWatch | Đặt retention rõ ràng, tránh log quá chi tiết chứa payload lớn hoặc presigned URL. |
 | Database bên ngoài | Theo dõi Supabase riêng vì đây không phải AWS charge; dùng gói nhỏ nhất đáp ứng bài nộp. |
 
-AWS Budgets alert, review Cost Explorer, inventory tài nguyên đang chạy và
-checklist cleanup đúng thứ tự là bắt buộc. Bằng chứng chi phí phải phân biệt
-forecast, estimated architecture cost và actual incurred cost.
+Budget alert, việc rà chi phí định kỳ, inventory tài nguyên đang chạy và
+checklist cleanup đúng thứ tự là các biện pháp được khuyến nghị cho môi trường
+dùng chung.
 
 ## 10. Rủi ro và hướng xử lý
 
 | Rủi ro | Ảnh hưởng | Hướng xử lý |
 | --- | --- | --- |
-| Hai enrollment request đồng thời | Lỗi unique hoặc membership trùng | Giữ unique constraint; trả enrollment hiện có và bổ sung conflict/upsert handling cho race window còn lại. |
+| Hai enrollment request đồng thời | Lỗi unique hoặc membership trùng | Giữ unique constraint; nếu request khác commit trước thì rollback transaction lỗi, tải lại enrollment đó và trả về. |
 | Progress cũ hoặc sai | Resume sai hoặc xét certificate sai | Lọc theo user xác thực và lesson hiện tại của course; update một user/lesson row; test complete/undo lặp và lesson deletion. |
 | Upload trái phép | Ghi đè/lộ nội dung course khác | Check course ownership/Admin ở mọi bước multipart và validate toàn bộ course key prefix. |
 | Multipart dở dang | Part rác trên S3 và phát sinh phí | Abort khi client lỗi, thêm S3 lifecycle cleanup và giám sát incomplete upload. |
@@ -235,12 +225,12 @@ forecast, estimated architecture cost và actual incurred cost.
 
 Sản phẩm cá nhân dự kiến gồm bảy API cốt lõi và quy tắc service/data liên quan,
 API contract/Postman artifact cập nhật, automated/manual test evidence, ghi chú
-kiểm tra CloudWatch, proposal, worklog và ba bài blog kỹ thuật đã đăng. Multipart, hoàn tác
-progress, import thumbnail và Admin log-reader chỉ là extension codebase nếu
-chưa có bằng chứng mentor/PR xác nhận đóng góp cá nhân.
+kiểm tra CloudWatch, proposal, worklog và ba bài blog kỹ thuật đã đăng.
+Multipart, hoàn tác progress, import thumbnail và Admin log-reader được ghi nhận
+là extension hỗ trợ xung quanh các endpoint cốt lõi.
 
-Hướng phát triển tiếp theo là database upsert an toàn khi request đồng thời,
-Alembic migration, lưu multipart session để resume, checksum và malware scanning,
+Hướng phát triển tiếp theo là load test enrollment/progress khi có nhiều request
+đồng thời, Alembic migration, lưu multipart session để resume, checksum và malware scanning,
 lifecycle tự động xóa incomplete upload, correlation ID có cấu trúc, CloudWatch
 alarm/dashboard, distributed rate limiting và load/security test ở quy mô
 production.

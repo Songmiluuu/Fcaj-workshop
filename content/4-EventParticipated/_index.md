@@ -16,5 +16,5 @@ connection to the assigned EduCloud API/testing workstream.
 
 | Event | Date | Participation |
 |---|---:|---|
-| [FCAJ Community Day — June 2026](event-01/) | June 27, 2026 | Online via YouTube livestream |
+| [FCAJ Community Day - June 2026](event-01/) | June 27, 2026 | Online via YouTube livestream |
 | [FCAJ x Agentic AI Build Week 2026 — Hackathon Awards & Project Showcase](event-02/) | July 25, 2026 | Participant |

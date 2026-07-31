@@ -8,8 +8,7 @@ pre: "<b>5.</b>"
 
 # EduCloud API Reliability Workshop
 
-This hands-on workshop documents the individual scope assigned to **Nguyễn Song
-Minh Luân** in the EduCloud team project:
+My assigned scope in the EduCloud team project covers:
 
 - Student enrollment and enrolled-course dashboard APIs.
 - Lesson completion and course-progress APIs.
@@ -18,17 +17,14 @@ Minh Luân** in the EduCloud team project:
 
 The wider EduCloud application also contains frontend, Cognito authentication,
 course authoring, assessments, certificates, administration, deployment, and
-database work completed within the team. Those components appear here only as
-dependencies or integration boundaries; this report does not claim individual
-ownership of them.
+database work completed within the team. Those components are referenced only
+when an assigned API depends on their contract or state.
 
-The supplied codebase also extends the seven core endpoints with progress undo,
+The current codebase also extends the seven core endpoints with progress undo,
 thumbnail import/deduplication, multipart video controls, and an Admin log-reader.
-These are documented as supporting behavior. Git history does not independently
-attribute the cited implementation to Luân, so personal ownership still needs
-PR/task/mentor evidence.
+These are documented as supporting behavior around the assigned API scope.
 
-{{< staticimage path="images/educloud-aws-architecture.png" alt="Overall EduCloud AWS architecture" >}}
+{{< staticimage path="images/architect.jpg" alt="Overall EduCloud AWS architecture" >}}
 
 ## Learning outcomes
 
@@ -57,8 +53,7 @@ After completing the workshop, a reader can:
 | [5.9 Cleanup and handover](5.9-cleanup/) | Remove test resources and package evidence |
 
 {{% notice info %}}
-The supplied repository supports these flows. Live Postman Runner, real S3, and
-CloudWatch screenshots remain acceptance evidence to capture with Luân's own
-account before final submission; the report never reuses the reference student's
-AWS screenshots.
+The AWS Console figures show configuration from the shared EduCloud team
+environment. They are included at the setup steps where the same team resources
+were used for integration and validation.
 {{% /notice %}}

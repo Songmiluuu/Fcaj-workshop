@@ -7,7 +7,12 @@ pre: "<b>4.2.</b>"
 
 ## Event overview
 
-On 25 July 2026, I attended the **FCAJ x Agentic AI Build Week 2026 — Hackathon Awards & Project Showcase**. The program presented practical Agentic AI projects and the engineering journeys behind them, including how teams narrowed their scope, made architecture decisions, responded to unsuccessful attempts, and prepared working demonstrations under time constraints.
+On 25 July 2026, I attended the **FCAJ x Agentic AI Build Week 2026 —
+Hackathon Awards & Project Showcase**. In addition to presenting their final
+results, the teams explained how they selected a problem, divided
+responsibilities, adjusted scope, and completed a demonstration within a
+hackathon schedule. I followed the event to understand what turns an Agentic AI
+idea into a product that can be demonstrated, measured, and explained.
 
 | Field | Details |
 |---|---|
@@ -19,25 +24,77 @@ On 25 July 2026, I attended the **FCAJ x Agentic AI Build Week 2026 — Hackatho
 
 ## Projects presented
 
-The showcase brought together four projects that applied Agentic AI to very different problems:
+The four projects addressed different problems, yet every team had to show how
+its agent used data and tools:
 
-- **3KA — S.H.E.P.H.E.R.D** used YOLO and ByteTrack for crowd detection and tracking, with Amazon SageMaker, Amazon Bedrock AgentCore, Strands Agents, and a React operations dashboard. The project showed how visual data could support congestion assessment, hazard detection, and response decisions.
-- **OneTeam — KFC Bot Agent** demonstrated a conversational ordering agent for channels such as Zalo and WhatsApp. Its separation of channel adapters, reusable tools, and business logic made the system easier to extend without redesigning the complete ordering flow.
-- **Plan V — Solution Architect Professional Native App** converted natural-language requirements into an initial cloud architecture, an editable draw.io diagram using official AWS icons, and a directional cost estimate for the `ap-southeast-1` Region. It also surfaced assumptions and missing information for human review.
-- **SignalScout** presented an evidence-oriented decision-support platform for detecting market and organizational signals, comparing scenarios, and recommending strategic actions. Its architecture demonstrated how AI workloads could be combined with identity, storage, security, audit, and observability services on AWS.
+- **3KA — S.H.E.P.H.E.R.D** combined YOLO and ByteTrack to detect and track
+  crowd movement. Amazon SageMaker supported model workloads, while Amazon
+  Bedrock AgentCore and Strands Agents formed the agent layer. A React dashboard
+  translated the analysis into information for congestion awareness, hazard
+  detection, and response planning. A reliable visual AI system depends on its
+  model, data quality, camera placement, tracking stability, latency, and
+  fallback behaviour.
+- **OneTeam — KFC Bot Agent** implemented conversational ordering through
+  familiar channels such as Zalo and WhatsApp. Separating channel adapters from
+  ordering tools and business rules made the core workflow reusable when a new
+  channel was introduced. The agent must still verify the result of a tool call
+  rather than treat generated text as proof that a transaction completed.
+- **Plan V — Solution Architect Professional Native App** accepted
+  natural-language requirements and produced an initial architecture, an
+  editable draw.io diagram with official AWS icons, and a directional estimate
+  for the `ap-southeast-1` Region. I particularly valued its decision to expose
+  assumptions and missing requirements so a Solution Architect could challenge
+  the draft rather than accept a closed answer.
+- **SignalScout** approached Agentic AI as a decision-support problem. It
+  collected market or organisational signals, compared scenarios, and proposed
+  evidence-based actions. By placing the AI workload alongside identity,
+  storage, security, audit, and monitoring layers, its architecture showed that
+  an AI product still carries the same operational responsibilities as any
+  other production system.
 
 ## What I learned
 
-The main lesson I took from the event is that an AI agent is not simply a model producing an answer. A dependable solution also needs a clear objective, controlled tools, a verification step, observable behavior, and a person who remains accountable for important decisions.
+Comparing the four demonstrations led me to four lessons:
 
-I also learned to judge a prototype by the completeness of its core journey rather than by the number of features or cloud services included. A focused scenario that works from input to verified output is more convincing than an ambitious design with unfinished critical paths. Architecture, security, latency, operating cost, monitoring, and failure handling therefore need to be considered while the product is being designed, not only after the demonstration is complete.
+1. **Reducing scope is an engineering decision.** A small journey that works
+   from input through planning and tool use to a verified result is more
+   valuable than many disconnected features.
+2. **An agent needs explicit boundaries.** Its objective, permitted data,
+   permitted tools, and conditions requiring human confirmation must be
+   defined. The model is only one component of the complete system.
+3. **Measurement is part of the product.** Latency, cost per transaction,
+   success rate, traceability, and decision quality reveal more than the number
+   of AWS services in an architecture diagram.
+4. **A strong demo explains its decisions.** I need to begin with the user
+   problem, identify the responsibility of each component, state the current
+   assumptions, and show how the system responds when a step fails.
+
+This changed the way I assess an Agentic AI prototype. In addition to the final
+answer, I need to examine the data path, tool permissions, verification
+evidence, operational logs, cost, and the point at which a person takes over.
 
 ## Applying the lessons to EduCloud
 
-These lessons are directly relevant to my assigned EduCloud scope: enrollment, learning progress, file upload, and API testing. I use the following three criteria to guide the work:
+These lessons apply directly to my EduCloud responsibilities: enrollment,
+learning progress, file upload, and API testing. I translated them into the
+following actions:
 
-1. Demonstrate one traceable learning journey through `POST /api/courses/{id}/enroll`, `GET /api/my-courses`, `POST /api/lessons/{id}/complete`, and `GET /api/courses/{id}/progress`.
-2. Treat the upload APIs as a boundary between the application and Amazon S3, with input validation, private storage, clear error handling, and credentials kept outside the repository.
-3. Cover both successful and invalid requests in Postman, then correlate the observed API behavior with CloudWatch logs instead of evaluating each component in isolation.
+1. Complete one traceable journey from `POST /api/courses/{id}/enroll` and `GET
+   /api/my-courses` through `POST /api/lessons/{id}/complete` and `GET
+   /api/courses/{id}/progress`, rather than demonstrating isolated endpoints.
+2. Treat the upload API as a security boundary between the application and
+   Amazon S3: validate input, authorise access by course, keep objects private,
+   handle interrupted multipart uploads, and keep credentials outside the
+   repository.
+3. Use Postman to cover both happy paths and invalid requests, then correlate the
+   observed result with CloudWatch logs. Every workshop conclusion should be
+   supported by a response, persisted state, or log evidence.
+4. State the assumptions, data flow, responsibility boundaries, and cost of the
+   services actually used when presenting the EduCloud architecture. The diagram
+   should help a reviewer inspect the design rather than act only as an
+   illustration.
 
-After attending the showcase, I understood more clearly that a strong technical demonstration is built around explainable decisions and a stable end-to-end flow. This perspective helps me keep the EduCloud workshop focused on what I am responsible for and present the purpose of each API, test, and AWS service more clearly.
+After the event, I understood that a convincing technical demonstration depends
+less on feature count than on a core workflow that is stable, explainable, and
+supported by evidence. I use this principle to keep the EduCloud workshop
+aligned with my assigned scope.

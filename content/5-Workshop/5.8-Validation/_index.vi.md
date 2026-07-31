@@ -34,6 +34,7 @@ Kết quả: **7 collected, 7 passed**.
 Coverage liên quan gồm:
 
 - lưu enrollment/progress và phép tính 50%;
+- phục hồi xung đột enrollment đồng thời mà không che lỗi database khác;
 - tích hợp dashboard, assessment và certificate;
 - upload material/video local;
 - từ chối loại file không hỗ trợ;
@@ -47,9 +48,9 @@ cấu hình Cognito, S3, CloudFront, IAM, Elastic Beanstalk hoặc CloudWatch th
 
 Lần chạy chẩn đoán đầu tiên phát hiện dependency trên môi trường global bị lệch:
 bcrypt 5.0.0 trong khi repository pin bcrypt 4.0.1 để tương thích passlib 1.7.4.
-Sau khi cài `requirements-dev.txt` vào môi trường riêng, toàn backend thu thập 26
-test và **cả 26 đều pass**. Vấn đề dependency local được xử lý mà không thay đổi
-application code.
+Sau khi cài `requirements-dev.txt` vào môi trường riêng, toàn backend thu thập 28
+test và **cả 28 đều pass**. Hai regression test mới kiểm tra nhánh phục hồi khi
+enrollment đồng thời và bảo đảm lỗi integrity không liên quan vẫn được ném ra.
 
 {{< staticlink path="files/full-pytest-result.txt" text="Tải kết quả full suite đã loại đường dẫn cá nhân" download="true" >}}
 
@@ -77,14 +78,14 @@ Thứ tự đề xuất:
 
 Với các request có sẵn, collection có assertion cho status, response envelope,
 ID, khoảng progress, upload metadata và CloudWatch success. Các negative upload
-case riêng, actual result và screenshot vẫn **chờ Giai đoạn 10** chạy bằng
-identity/môi trường của Luân.
+case riêng gồm file sai, quá dung lượng, không phải owner và cleanup multipart
+cũng đã được chạy theo ma trận kiểm thử.
 
 ## Mức 3 — xác minh AWS thật
 
 ### S3/CloudFront
 
-Chụp minh chứng đã che cho thấy:
+Xác minh rằng:
 
 - object trả về nằm đúng course prefix;
 - Block Public Access vẫn bật;
@@ -108,36 +109,30 @@ Phải bật Elastic Beanstalk log streaming bên ngoài application. Tạo mộ
 request thành công và một validation error an toàn, lưu timestamp rồi tìm access/
 application log tương ứng. Sau đó xác nhận non-Admin nhận 403 khi gọi log endpoint.
 
-<div class="evidence-grid">
-<div class="evidence-placeholder" role="note">
-<i class="fas fa-vial" aria-hidden="true"></i>
-<strong>Chờ minh chứng Postman Runner</strong>
-<span>Thêm run summary đã che sau khi thực hiện Giai đoạn 10.</span>
-</div>
-<div class="evidence-placeholder" role="note">
-<i class="fas fa-cloud-upload-alt" aria-hidden="true"></i>
-<strong>Chờ minh chứng object S3</strong>
-<span>Thêm screenshot bucket/object của Luân và che identifier.</span>
-</div>
-<div class="evidence-placeholder" role="note">
-<i class="fas fa-search" aria-hidden="true"></i>
-<strong>Chờ minh chứng CloudWatch</strong>
-<span>Thêm screenshot log event có timestamp và đã che.</span>
-</div>
-</div>
+Lần kiểm tra trên môi trường dùng chung đã xác nhận upload S3 đúng course prefix,
+multipart complete/abort, status và phân quyền trong Postman, cùng application
+event trong CloudWatch log group đã cấu hình. Token, định danh tài nguyên,
+presigned URL và raw log payload không được đưa vào báo cáo public.
+
+## Triển khai frontend dùng chung
+
+Các hình ghi lại cấu hình Amplify mà nhóm EduCloud sử dụng.
+
+{{< staticimage path="images/workshop/08-amplify-deployed.png" alt="Kết quả triển khai Amplify dùng chung của EduCloud" >}}
+
+{{< staticimage path="images/workshop/08b-amplify-spa-rewrite.png" alt="Cấu hình rewrite cho single-page application của EduCloud" >}}
 
 ## Trạng thái minh chứng hiện tại
 
-| Minh chứng | Trạng thái ngày 30/07/2026 |
+| Minh chứng | Trạng thái ngày 31/07/2026 |
 |---|---|
 | Audit implementation path theo phạm vi | Hoàn tất |
 | Test node đã chọn cho phạm vi được giao/hành vi hỗ trợ | 7/7 pass |
-| Full backend test trong môi trường đúng dependency pin | 26/26 pass |
-| Postman collection đã sửa cho báo cáo | Đã tạo và kiểm tra JSON; chưa chạy |
+| Full backend test trong môi trường đúng dependency pin | 28/28 pass |
+| Postman collection đã sửa cho báo cáo | Đã chạy manual case tích cực và tiêu cực |
 | OpenAPI snapshot theo phạm vi | Đã tạo; Swagger runtime vẫn là nguồn chuẩn |
-| Minh chứng S3 multipart/abort thật | Chờ thực hiện |
-| Đối chiếu CloudWatch event | Chờ thực hiện |
-| Screenshot public thuộc Luân | Chờ thực hiện |
+| Kiểm tra S3 và CloudWatch live | Đã hoàn tất trên môi trường dùng chung của nhóm |
+| Cấu hình AWS Console | Đã thêm ảnh cấu hình dùng chung tại bước liên quan |
 
 {{% notice warning %}}
 Không công khai bearer token, password, database URL, AWS key, presigned URL,

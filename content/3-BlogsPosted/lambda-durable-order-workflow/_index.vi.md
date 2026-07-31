@@ -7,8 +7,6 @@ pre: "<b>3.3.</b>"
 
 # XỬ LÝ QUY TRÌNH ĐƠN HÀNG KHÔNG MẤT TRẠNG THÁI VỚI AWS LAMBDA DURABLE FUNCTIONS
 
-**Trạng thái xuất bản:** Đã đăng.
-
 ## BÀI TOÁN CỦA MỘT ĐƠN HÀNG CHỜ THANH TOÁN
 
 Phía sau thao tác đặt hàng là nhiều bước liên tiếp: tạo đơn, giữ tồn kho, gọi

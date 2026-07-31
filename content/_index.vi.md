@@ -32,7 +32,7 @@ chapter: false
 <div class="contribution-card">
 <span class="contribution-eyebrow">PHẠM VI CÁ NHÂN</span>
 <h2>API ghi danh, tiến độ, upload và kiểm thử</h2>
-<p>Trong project nhóm EduCloud, hướng được phân công là backend API cho phép Student ghi danh khóa học đã publish, xem khóa đã đăng ký, đánh dấu hoàn thành bài học và tính tiến độ; đồng thời cho phép Instructor có quyền upload thumbnail, tài liệu và video. Phạm vi còn gồm kiểm thử API bằng Postman và kiểm tra log trên Amazon CloudWatch. Việc ghi nhận triển khai cá nhân vẫn cần PR/task/xác nhận mentor.</p>
+<p>Trong project nhóm EduCloud, hướng được phân công là backend API cho phép Student ghi danh khóa học đã publish, xem khóa đã đăng ký, đánh dấu hoàn thành bài học và tính tiến độ; đồng thời cho phép Instructor có quyền upload thumbnail, tài liệu và video. Phạm vi còn gồm kiểm thử API bằng Postman và kiểm tra log trên Amazon CloudWatch.</p>
 <div class="endpoint-chips" aria-label="Các API chính trong phạm vi">
 <code>POST /api/courses/{id}/enroll</code>
 <code>GET /api/my-courses</code>
@@ -64,8 +64,8 @@ chapter: false
 <li><strong>OpenAPI tham khảo:</strong> <a href="../files/educloud-openapi.yaml" download>Tải YAML</a></li>
 <li><strong>Ma trận kiểm thử API:</strong> <a href="../files/api-test-matrix.md" download>Tải Markdown</a></li>
 <li><strong>Kết quả pytest theo phạm vi:</strong> <a href="../files/targeted-pytest-result.txt" download>7/7 test node pass</a></li>
-<li><strong>Kết quả full pytest:</strong> <a href="../files/full-pytest-result.txt" download>26/26 pass</a></li>
+<li><strong>Kết quả full pytest:</strong> <a href="../files/full-pytest-result.txt" download>28/28 pass</a></li>
 </ul>
-<p>Website demo và repository là sản phẩm chung của nhóm. Báo cáo ghi hướng API/kiểm thử được giao; việc quy phần triển khai cá nhân vẫn cần PR/task/xác nhận mentor.</p>
+<p>Website demo và repository là sản phẩm chung của nhóm. Báo cáo trình bày phần API và kiểm thử được giao.</p>
 </div>
 </div>

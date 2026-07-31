@@ -7,8 +7,6 @@ pre: "<b>3.1.</b>"
 
 # TỰ ĐỘNG XỬ LÝ VIDEO BÀI GIẢNG VỚI AMAZON S3, MEDIACONVERT VÀ CLOUDFRONT
 
-**Publication status:** Published.
-
 ## THE CHALLENGE OF BUILDING A VIDEO LEARNING PLATFORM
 
 Videos uploaded by instructors often differ in resolution, codec, and file size.

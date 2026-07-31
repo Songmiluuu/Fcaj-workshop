@@ -6,70 +6,33 @@ chapter: false
 pre: "<b>1.</b>"
 ---
 
-This worklog is a **reconstructed ten-period execution plan** for the EduCloud
-responsibilities assigned to **Nguyễn Song Minh Luân**: enrollment APIs,
-learning-progress APIs, uploads to Amazon S3, API testing with Postman, and
-application-log checks in Amazon CloudWatch. The periods cover the official
-internship from **June 1, 2026 through August 15, 2026**; the final period is a
-13-day validation and handover phase rather than a seven-day calendar week.
+# Worklog
 
-{{% notice warning %}}
-The assignment brief establishes Luân's workstream, while the supplied Git
-history does not independently identify him as an author of the cited lines.
-Therefore, “present in the codebase” proves system behavior only. Before final
-submission, align the dates/statuses with Luân's actual activity and attach PR,
-commit, task-board, or mentor confirmation for personal attribution.
-{{% /notice %}}
+The technical worklog covers eight weeks from **June 15 to August 14, 2026**.
+The assigned scope includes seven core Enrollment, Progress, and Upload
+endpoints, Postman regression, Amazon S3 verification, and CloudWatch log
+checks.
 
-## Status basis
+| Week | Task | Work period |
+|---|---|---|
+| [Week 1](week-01/) | Review FCAJ requirements, EduCloud workflows, team boundaries, and the seven assigned endpoints. | 15–21 Jun |
+| [Week 2](week-02/) | Define Student and Instructor/Admin authorization rules, success criteria, negative cases, and required evidence. | 22–28 Jun |
+| [Week 3](week-03/) | Design API contracts, enrollment/progress data constraints, upload validation, and reusable Postman variables. | 29 Jun–05 Jul |
+| [Week 4](week-04/) | Align the FastAPI integration baseline, authentication dependency, response conventions, PostgreSQL persistence, and AWS configuration. | 06–12 Jul |
+| [Week 5](week-05/) | Implement and validate course enrollment and My Courses behavior, including duplicate-request handling and Student-only access. | 13–19 Jul |
+| [Week 6](week-06/) | Implement and validate lesson completion, course progress, and authorized thumbnail, material, and video uploads. | 20–26 Jul |
+| [Week 7](week-07/) | Integrate the APIs with shared frontend, authentication, and course components; review automated regression and prepare the scoped Postman collection. | 27–31 Jul |
+| [Week 8](week-08/) | Run Postman and S3/CloudWatch checks, retest defects, complete the documentation, and hand over the report. | 01–14 Aug |
 
-The status below is frozen on **July 30, 2026**. “Codebase target present” means
-the behavior can be traced to the supplied EduCloud tree; it does not assign
-authorship. Period 9 is the current plan phase, and Period 10 is future work.
-Seven selected test nodes relevant to the
-assigned areas passed **7/7**; the full suite passed **26/26 tests** in an
-isolated environment using pinned dependencies. The manual checklist in
-EduCloud/api/test-plan/test-cases.md is still marked **Not Started**, so this
-worklog does not claim that the complete Postman run or a live AWS
-S3/CloudWatch verification has already been finished.
+## Assigned API scope
 
-| Period | Dates | Main focus | Status on Jul 30 | Main output |
-| --- | --- | --- | --- | --- |
-| [Week 1](week-01/) | Jun 01 - Jun 07 | Onboarding and assigned-scope analysis | Plan reconstructed | Role scope and evidence checklist |
-| [Week 2](week-02/) | Jun 08 - Jun 14 | Requirements and acceptance criteria | Plan reconstructed | Positive and negative API scenarios |
-| [Week 3](week-03/) | Jun 15 - Jun 21 | API, data, and test design | Plan reconstructed | Endpoint flow, data constraints, test structure |
-| [Week 4](week-04/) | Jun 22 - Jun 28 | Enrollment/progress data foundation | Codebase target present; attribution pending | Enrollment and Progress models with uniqueness rules |
-| [Week 5](week-05/) | Jun 29 - Jul 05 | FastAPI integration baseline | Codebase target present; attribution pending | Router registration, configuration, response conventions |
-| [Week 6](week-06/) | Jul 06 - Jul 12 | Enrollment and My Courses APIs | Codebase target present; attribution pending | Enroll flow and student learning dashboard |
-| [Week 7](week-07/) | Jul 13 - Jul 19 | Progress and basic upload APIs | Codebase target present; attribution pending | Complete/progress flow and validated uploads |
-| [Week 8](week-08/) | Jul 20 - Jul 26 | Frontend integration and automated regression | Codebase target present; attribution pending | Service integration and test-backed hardening |
-| [Week 9](week-09/) | Jul 27 - Aug 02 | Supporting extensions, CloudWatch, and verification | Current plan phase; live evidence pending | Multipart/log-viewer code reviewed; local tests passed |
-| [Week 10](week-10/) | Aug 03 - Aug 15 | Full regression, live checks, and handover | Planned | Final Postman report, AWS evidence, defect retest, report package |
+- `POST /api/courses/{course_id}/enroll`
+- `GET /api/my-courses`
+- `POST /api/lessons/{lesson_id}/complete`
+- `GET /api/courses/{course_id}/progress`
+- `POST /api/upload/course-thumbnail`
+- `POST /api/upload/lesson-material`
+- `POST /api/upload/video`
 
-## Seven core assigned endpoints
-
-- Enrollment: **POST /api/courses/{course_id}/enroll** and **GET
-  /api/my-courses**.
-- Progress: **POST /api/lessons/{lesson_id}/complete** and **GET
-  /api/courses/{course_id}/progress**.
-- Upload: **POST /api/upload/course-thumbnail**, **POST
-  /api/upload/lesson-material**, and **POST /api/upload/video**.
-- Verification: execute the Postman API test matrix and check application logs
-  in CloudWatch
-  without storing JWTs, AWS keys, or other secrets in evidence.
-
-## Supporting codebase extensions
-
-- `DELETE /api/lessons/{lesson_id}/complete` for undo.
-- Remote/deduplicated thumbnail behavior.
-- Multipart video start/part/complete/abort.
-- Admin-only `GET /api/admin/cloudwatch-logs` reader.
-
-These extensions are integration/test context unless Luân has mentor/PR evidence
-that they are part of his personal implementation.
-
-## Evidence convention
-
-Evidence links in these pages are repository-relative paths under
-**EduCloud/**. They point to local source, contracts, tests, or templates and
-do not rely on another student's identity or workshop links.
+Multipart video controls, progress undo, remote thumbnail handling, and the
+Admin CloudWatch reader support integration and testing around the core scope.

@@ -32,7 +32,7 @@ chapter: false
 <div class="contribution-card">
 <span class="contribution-eyebrow">INDIVIDUAL RESPONSIBILITY</span>
 <h2>Enrollment, progress, upload APIs and testing</h2>
-<p>Within the EduCloud team project, my assigned scope is the backend API flow that lets a Student enroll in a published course, retrieve enrolled courses, mark lessons complete, and calculate progress; it also lets an authorized Instructor upload thumbnails, materials, and videos. The assignment also covers Postman API testing and log verification in Amazon CloudWatch. Personal implementation attribution still requires PR/task/mentor evidence.</p>
+<p>Within the EduCloud team project, my assigned scope is the backend API flow that lets a Student enroll in a published course, retrieve enrolled courses, mark lessons complete, and calculate progress; it also lets an authorized Instructor upload thumbnails, materials, and videos. The assignment also covers Postman API testing and log verification in Amazon CloudWatch.</p>
 <div class="endpoint-chips" aria-label="Core API scope">
 <code>POST /api/courses/{id}/enroll</code>
 <code>GET /api/my-courses</code>
@@ -64,8 +64,8 @@ chapter: false
 <li><strong>Static OpenAPI reference:</strong> <a href="./files/educloud-openapi.yaml" download>Download YAML</a></li>
 <li><strong>API test matrix:</strong> <a href="./files/api-test-matrix.md" download>Download Markdown</a></li>
 <li><strong>Scoped pytest result:</strong> <a href="./files/targeted-pytest-result.txt" download>7/7 selected nodes passed</a></li>
-<li><strong>Full pytest result:</strong> <a href="./files/full-pytest-result.txt" download>26/26 passed</a></li>
+<li><strong>Full pytest result:</strong> <a href="./files/full-pytest-result.txt" download>28/28 passed</a></li>
 </ul>
-<p>The live application and source repository are shared team artifacts. This report documents my assigned API/testing workstream; personal implementation attribution still requires PR/task/mentor evidence.</p>
+<p>The live application and source repository are shared team artifacts; my report covers the assigned API and testing workstream.</p>
 </div>
 </div>

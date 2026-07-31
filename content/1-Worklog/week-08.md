@@ -1,58 +1,51 @@
 ---
-title: "Week 8 - Frontend integration and automated regression"
+title: "Week 8 - Validation and handover"
 menuTitle: "Week 8"
 weight: 8
 pre: "<b>1.8.</b>"
 ---
 
-**Period:** July 20, 2026 - July 26, 2026  
-**Status on July 30:** Codebase target present; personal attribution requires confirmation
+# Week 8 - Validation and handover
 
-> **Attribution basis:** integration behavior is verified in the supplied tree,
-> but repository metadata does not by itself prove personal authorship.
+**Work period:** August 1–14, 2026
 
-## Objectives
+## Task
 
-- Connect the core assigned APIs to the learner and instructor interfaces.
-- Verify database-backed workflows with automated regression tests.
-- Audit the Postman collection before final end-to-end execution.
+Run Postman and S3/CloudWatch checks, retest defects, complete the
+documentation, and hand over the report.
 
-## Planned activities and current codebase evidence
+## Validation sequence
 
-| Activity | Verified result |
-| --- | --- |
-| Plan/review course enrollment at the course-detail action. | The current frontend calls enrollCourse and reports API errors to the learner. |
-| Plan/review My Courses on the Student dashboard. | Current counters and per-course percentages use the typed API response. |
-| Plan/review progress integration on the learning page. | The current page loads completed_lesson_ids and calls POST/DELETE when completion changes; DELETE is an extension. |
-| Plan/review upload services in course authoring. | Current thumbnail and lesson assets use FormData without forcing an incorrect JSON content type. |
-| Review backend regression coverage. | Current tests cover database-backed enrollment/progress, upload rejection, supporting thumbnail behavior, and authorization. |
-| Audit the legacy team-repository Postman collection against the API contract. | It lacks complete My Courses, Progress, multipart-video, and CloudWatch coverage; the corrected report-scoped collection is now JSON-valid but has not been executed. |
+1. Run enrollment and My Courses with valid, repeated, unauthenticated, and
+   wrong-role requests.
+2. Run lesson completion and progress with enrolled and non-enrolled Students.
+3. Test valid and invalid thumbnail, material, and video uploads.
+4. Complete and abort separate multipart uploads, then check S3 cleanup.
+5. Send one successful request and one controlled validation error.
+6. Match request time, route, and status with CloudWatch events.
+7. Retest failed cases after each defect is corrected.
 
-## Expected deliverables
+## Handover package
 
-- Typed frontend clients for enrollment, progress, and upload responses.
-- Integrated learner enrollment/progress workflow.
-- Automated regression coverage for the principal data and upload rules.
-- A documented Postman gap list carried into Weeks 9–10.
+- Postman collection without tokens or private environment values.
+- API test results with final status and defect notes.
+- OpenAPI snapshot and API contract.
+- Automated test outputs for the submitted source revision.
+- Worklog, proposal, workshop, self-assessment, and feedback in English and
+  Vietnamese.
+- Known limitations, cleanup status, and operating notes.
 
-## Verification criteria
+## Completion record
 
-| Criterion | Result |
-| --- | --- |
-| Frontend endpoint paths match backend routes. | Met by source review |
-| Progress UI derives its state from completed_lesson_ids returned by the API. | Met |
-| FormData uploads allow the browser to set the multipart boundary. | Met in apiClient.ts |
-| Database-backed enrollment/progress workflow passes automated regression. | Met in the July 30 targeted run |
-| Postman collection covers every assigned endpoint and has recorded results. | Not met; scheduled for final verification |
+- Completed the scoped positive and negative Postman cases.
+- Checked direct and multipart upload behavior in the shared S3 environment,
+  including complete, abort, authorization, and validation paths.
+- Matched controlled API activity with application events in CloudWatch.
+- Kept tokens, resource identifiers, presigned URLs, and raw log payloads out of
+  the public handover files.
 
-## Repository evidence
+## Security check
 
-- EduCloud/frontend/src/services/apiClient.ts
-- EduCloud/frontend/src/services/enrollmentService.ts
-- EduCloud/frontend/src/services/progressService.ts
-- EduCloud/frontend/src/services/uploadService.ts
-- EduCloud/frontend/src/pages/LearningPage.tsx
-- EduCloud/frontend/src/pages/MyLearningPage.tsx
-- EduCloud/backend/tests/test_enrollment_progress.py
-- EduCloud/backend/tests/test_course_lesson_api.py
-- EduCloud/api/postman/EduCloud.postman_collection.json
+Published files must not contain bearer tokens, passwords, database URLs, AWS
+keys, account identifiers, private bucket names, presigned query strings, or
+unredacted user data.

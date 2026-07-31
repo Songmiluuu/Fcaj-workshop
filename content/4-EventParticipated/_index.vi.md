@@ -16,5 +16,5 @@ hệ với phạm vi API/kiểm thử EduCloud được giao.
 
 | Sự kiện | Ngày | Hình thức tham dự |
 |---|---:|---|
-| [FCAJ Community Day — June 2026](event-01/) | 27/06/2026 | Trực tuyến qua YouTube livestream |
+| [FCAJ Community Day - June 2026](event-01/) | 27/06/2026 | Trực tuyến qua YouTube livestream |
 | [FCAJ x Agentic AI Build Week 2026 — Hackathon Awards & Project Showcase](event-02/) | 25/07/2026 | Người tham dự |

@@ -7,7 +7,7 @@ pre: "<b>5.5.</b>"
 
 # API tiến độ
 
-Minh chứng implementation:
+Source liên quan:
 
 - `backend/app/routes/progress_routes.py`
 - `backend/app/services/progress_service.py`
@@ -36,7 +36,7 @@ Authorization: Bearer STUDENT_JWT
 }
 ```
 
-Phân công cốt lõi dùng POST để complete lesson. Codebase được cung cấp có thêm
+Phân công cốt lõi dùng POST để complete lesson. Codebase hiện tại có thêm
 `DELETE` trên cùng path làm extension undo hỗ trợ. Service:
 
 1. yêu cầu role `student`;

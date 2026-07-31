@@ -7,7 +7,7 @@ pre: "<b>5.6.</b>"
 
 # API upload và Amazon S3
 
-Minh chứng implementation:
+Source liên quan:
 
 - `backend/app/routes/upload_routes.py`
 - `backend/app/services/s3_service.py`
@@ -16,8 +16,8 @@ Minh chứng implementation:
 - `backend/tests/test_course_lesson_api.py`
 
 Ba endpoint upload trực tiếp thuộc phạm vi cốt lõi. Import/deduplicate thumbnail
-từ xa và điều khiển multipart video là hành vi hỗ trợ trong codebase được cung
-cấp và được ghi riêng bên dưới.
+từ xa và điều khiển multipart video là hành vi hỗ trợ trong codebase hiện tại,
+được tách khỏi nhóm endpoint cốt lõi.
 
 ## Ma trận validation
 
@@ -94,6 +94,11 @@ trả về dùng `AWS_S3_PUBLIC_BASE_URL`, thường là CloudFront distribution
 không làm bucket public; bucket policy và Origin Access Control thuộc shared
 infrastructure và phải được kiểm tra riêng.
 
+Môi trường dùng chung của nhóm đặt application upload bucket cùng Region
+Singapore với deployment. Tên bucket đã được che trong báo cáo public.
+
+{{< staticimage path="images/workshop/06-s3-shared-buckets-redacted.png" alt="Danh sách S3 bucket đã che tên trong môi trường EduCloud dùng chung" >}}
+
 Khi attachment của lesson được thay/xóa, cleanup theo best effort và chỉ chấp nhận
 URL quay về prefix của đúng course owner. S3 lỗi tạm thời được ghi log nhưng không
 rollback database update.
@@ -110,6 +115,6 @@ rollback database update.
    incomplete upload. Đây là kiểm tra API route, không phải nút hủy trên UI.
 8. Che token, presigned URL, bucket/account ID và ETag trước khi đăng screenshot.
 
-Automated test mock S3 để kiểm tra giao thức multipart. Vẫn cần chạy tích hợp với
-S3 thật để chứng minh IAM, CORS, bucket policy, lifecycle và CloudFront delivery
-trong môi trường của Luân.
+Automated test mock S3 để kiểm tra giao thức multipart. Lần chạy tích hợp cuối
+trên môi trường dùng chung của nhóm đã xác nhận luồng upload S3, kiểm tra quyền,
+multipart complete/abort và phân phối media theo cấu hình.

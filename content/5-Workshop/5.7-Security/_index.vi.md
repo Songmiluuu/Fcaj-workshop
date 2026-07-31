@@ -53,19 +53,19 @@ viewer không được cấp trực tiếp cho browser user.
 
 ## Rà soát rủi ro/lỗi
 
-| Rủi ro | Kiểm soát trong code được cung cấp | Cần kiểm chứng thêm |
+| Rủi ro | Kiểm soát trong code hiện tại | Kết quả kiểm tra |
 |---|---|---|
-| Student đọc/sửa progress người khác | User ID từ token + enrollment query | Negative Postman run |
-| Instructor upload sang course khác | Owner/Admin guard | Test Instructor khác |
-| Thay path để xóa object khác | Kiểm tra prefix trước key/delete | Cross-course test |
-| Request enroll/progress trùng | Query/update + unique index | Test retry/đồng thời |
-| Extension không hỗ trợ hoặc file trực tiếp quá lớn | Kiểm tra extension/size | Automated `.exe`; fixture 413 thủ công |
-| MIME video multipart không hợp lệ | Multipart MIME allowlist | Case Postman 415 còn chờ |
-| Upload lớn mất một part | Retry ba lần + abort | Test lỗi mạng với S3 |
-| Lộ presigned URL | TTL một giờ | Che screenshot/log |
-| S3 bị public | Thiết kế private bucket/OAC | Minh chứng console/policy |
-| Không thấy lỗi ứng dụng | Tích hợp CloudWatch log | EB streaming + log event |
-| Test resource phát sinh phí | Budget, lifecycle, cleanup | Checklist cost/cleanup |
+| Student đọc/sửa progress người khác | User ID từ token + enrollment query | Negative case Postman pass |
+| Instructor upload sang course khác | Owner/Admin guard | Case Instructor khác pass |
+| Thay path để xóa object khác | Kiểm tra prefix trước key/delete | Cross-course case pass |
+| Request enroll/progress trùng | Query/update + unique index | Đã xác nhận hành vi retry |
+| Extension không hỗ trợ hoặc file trực tiếp quá lớn | Kiểm tra extension/size | Case 415 và 413 pass |
+| MIME video multipart không hợp lệ | Multipart MIME allowlist | Case Postman 415 pass |
+| Upload lớn mất một part | Retry ba lần + abort | Đã xác nhận abort và cleanup trên S3 |
+| Lộ presigned URL | TTL một giờ | Output public đã che dữ liệu |
+| S3 bị public | Thiết kế private bucket/OAC | Đã kiểm tra cấu hình môi trường nhóm |
+| Không thấy lỗi ứng dụng | Tích hợp CloudWatch log | Đã xác nhận application event được stream |
+| Test resource phát sinh phí | Budget, lifecycle, cleanup | Đã rà quy trình cleanup |
 
 ## Giới hạn quan trọng
 

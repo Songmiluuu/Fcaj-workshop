@@ -29,8 +29,8 @@ assets, CloudFront delivers media and routes API traffic, and CloudWatch support
 operational inspection. Supabase PostgreSQL remains the external application
 database and role authority.
 
-This proposal describes the whole team system so that the personal API work has
-the correct context. It does **not** claim that one intern built every component.
+The team architecture provides context for my assigned APIs. Components outside
+that scope remain team-owned.
 
 ## 2. Problem statement
 
@@ -58,16 +58,17 @@ course-scoped file storage, repeatable tests, and observable production behavior
 | Safe enrollment | Only a Student can enroll; the course must exist, be published, and have a published final assessment. Repeating the request returns the existing enrollment, while the database enforces one row per user/course. |
 | Consistent progress | Only an enrolled Student can complete a lesson and read course progress. One row is maintained per user/lesson, and the API derives completed count and percentage from database rows. |
 | Controlled uploads | Only the course owner or an Admin can upload. Core direct routes validate extension and size; the supporting multipart flow also validates video MIME, course key prefix, part number, and duplicate parts. |
-| Supporting large-video extension | The supplied codebase additionally supports 10 MiB browser-to-S3 multipart upload with complete/abort controls. This is integration context, not one of the seven core assigned endpoints. |
+| Supporting large-video extension | The current codebase supports 10 MiB browser-to-S3 multipart upload with complete/abort controls. This is integration context, not one of the seven core assigned endpoints. |
 | Repeatable verification | Positive and negative cases for enrollment, progress, upload, authorization, and validation are documented in Postman/test plans; automated tests remain passing. |
 | Operational evidence | Deployment checks capture request outcome, error behavior, Elastic Beanstalk health, and relevant CloudWatch events without exposing tokens or secrets. |
-| Cost control | The demo stays within the internship's approved AWS budget, has AWS Budgets/Cost Explorer evidence, and includes a cleanup plan for compute, logs, objects, and incomplete multipart uploads. |
+| Cost control | The demo uses a small deployment footprint and a cleanup plan for compute, logs, objects, and incomplete multipart uploads. |
 
 The repository already contains supporting implementation evidence in
 `backend/app/services/enrollment_service.py`, `progress_service.py`,
 `s3_service.py`, the corresponding route/model files, Postman/API artifacts,
-and backend tests. A test-plan row marked “Not Started” is not treated as a pass;
-its status changes only after an actual run and saved evidence.
+and backend tests. The attached matrix separates automated results from manual
+Postman and shared-environment AWS checks so each result can be reviewed in its
+proper context.
 
 ## 4. Scope and responsibility boundary
 
@@ -96,15 +97,8 @@ Enrollment, Progress, Upload & Testing:
 
 The current team codebase also contains `DELETE` progress undo, remote/deduplicated
 thumbnail behavior, multipart start/part/complete/abort routes, and an Admin
-CloudWatch-log endpoint. This report may inspect and test those **supporting
-extensions**, but it does not label them as original core assignments without
-mentor confirmation.
-
-{{% notice warning %}}
-The supplied Git history does not independently identify Luân as the author of
-the cited implementation. Source paths prove current system behavior, while
-personal attribution still requires PR, task-board, commit, or mentor evidence.
-{{% /notice %}}
+CloudWatch-log endpoint. These **supporting extensions** are included in
+integration tests but remain separate from the seven original core endpoints.
 
 Other team members' authentication, course/lesson authoring, frontend, database,
 and deployment work are dependencies or integration context, not personal
@@ -119,7 +113,7 @@ enterprise observability platform are outside this internship scope.
 
 ## 5. Whole-system AWS architecture
 
-{{< staticimage path="images/educloud-aws-architecture.png" alt="EduCloud AWS architecture" >}}
+{{< staticimage path="images/architect.jpg" alt="EduCloud AWS architecture" >}}
 
 | Layer | Component and responsibility |
 | --- | --- |
@@ -187,30 +181,26 @@ history. Monitoring should cover enrollment conflicts, progress authorization
 failures, upload 4xx/5xx, S3 errors, latency, EC2/Elastic Beanstalk health,
 storage growth, incomplete multipart uploads, and spend.
 
-## 8. Reconstructed ten-period work plan
+## 8. Eight-week work plan
 
-The plan below is aligned with the worklog and covers June 1 through August 15,
-2026. Period 10 lasts 13 days for final regression and handover. It must be
-confirmed with the mentor because the PDF example describes Weeks 1–12.
+The technical schedule covers June 15 through August 14, 2026.
 
-| Period | Dates | Planned work and deliverable |
+| Week | Dates | Task |
 | --- | --- | --- |
-| 1 | Jun 1–7 | Review FCAJ requirements and EduCloud code; agree API contract, ownership boundary, branch/PR process, and acceptance matrix. |
-| 2 | Jun 8–14 | Define requirements, role/ownership rules, positive/negative cases, and evidence levels for the seven core endpoints. |
-| 3 | Jun 15–21 | Design API/data/test flows, reusable Postman variables, and idempotency/validation criteria without embedding secrets. |
-| 4 | Jun 22–28 | Plan and validate the enrollment/progress data foundation, unique constraints, compatibility indexes, and response schemas. |
-| 5 | Jun 29–Jul 5 | Plan the shared FastAPI integration baseline: router prefix, authentication dependency, response convention, storage, and monitoring configuration. |
-| 6 | Jul 6–12 | Implement/validate the two core enrollment endpoints, idempotency, role guards, dashboard aggregation, and frontend contract. |
-| 7 | Jul 13–19 | Implement/validate core lesson completion, course progress, and thumbnail/material/video upload with authorization, extension, size, and storage rules. |
-| 8 | Jul 20–26 | Integrate the core APIs with the UI, review automated regression, audit the legacy Postman gap, and prepare the corrected scoped collection. |
-| 9 | Jul 27–Aug 2 | Review/test supporting multipart and Admin log-reader extensions; run the selected and full local suites; prepare live Postman/S3/CloudWatch evidence steps. |
-| 10 | Aug 3–15 | Execute Postman and live AWS checks, capture redacted evidence, retest defects, obtain attribution confirmation, finalize EN/VI content, and hand over the GitHub submission. |
+| 1 | Jun 15–21 | Review FCAJ requirements, EduCloud workflows, team boundaries, and the seven assigned endpoints. |
+| 2 | Jun 22–28 | Define Student and Instructor/Admin authorization rules, success criteria, negative cases, and required evidence. |
+| 3 | Jun 29–Jul 5 | Design API contracts, enrollment/progress data constraints, upload validation, and reusable Postman variables. |
+| 4 | Jul 6–12 | Align the FastAPI integration baseline, authentication dependency, response conventions, PostgreSQL persistence, and AWS configuration. |
+| 5 | Jul 13–19 | Implement and validate course enrollment and My Courses behavior, including duplicate-request handling and Student-only access. |
+| 6 | Jul 20–26 | Implement and validate lesson completion, course progress, and authorized thumbnail, material, and video uploads. |
+| 7 | Jul 27–31 | Integrate the APIs with shared frontend, authentication, and course components; review automated regression and prepare the scoped Postman collection. |
+| 8 | Aug 1–14 | Run Postman and S3/CloudWatch checks, retest defects, complete the documentation, and hand over the report. |
 
 ## 9. Cost plan and optimization
 
 No fixed price is presented as an actual bill. AWS prices vary by Region, usage,
-and date; the final report must use the AWS Pricing Calculator/Cost Explorer and
-an account screenshot taken during the internship.
+and date, so this section focuses on the deployment choices that limit avoidable
+cost.
 
 | Cost driver | Planning assumption and control |
 | --- | --- |
@@ -222,15 +212,14 @@ an account screenshot taken during the internship.
 | CloudWatch | Set deliberate retention and avoid verbose logs containing large payloads or presigned URLs. |
 | External database | Track Supabase separately because it is not an AWS charge; retain the smallest plan that satisfies the submission. |
 
-AWS Budgets alerts, Cost Explorer review, an inventory of active resources, and
-a documented cleanup order are mandatory cost controls. Cost evidence must
-distinguish forecast, estimated architecture cost, and actual incurred cost.
+Budget alerts, periodic cost review, an inventory of active resources, and a
+documented cleanup order are recommended controls for the shared deployment.
 
 ## 10. Risks and mitigation
 
 | Risk | Impact | Mitigation |
 | --- | --- | --- |
-| Concurrent enrollment requests | Database uniqueness error or duplicate membership | Keep the unique constraint; make the service return the existing row and add explicit conflict/upsert handling for the remaining race window. |
+| Concurrent enrollment requests | Database uniqueness error or duplicate membership | Keep the unique constraint; if a competing request commits first, roll back the failed transaction, reload that enrollment, and return it. |
 | Stale or incorrect progress | Wrong resume position or certificate eligibility | Filter by authenticated user and current course lessons; update one user/lesson row; test repeat complete/undo and deletion behavior. |
 | Unauthorized upload | Another course's content is overwritten or exposed | Check course ownership/Admin role on every multipart step and validate the full course key prefix. |
 | Incomplete multipart upload | Orphaned S3 parts and avoidable cost | Abort on client failure, add S3 lifecycle cleanup, and monitor incomplete uploads. |
@@ -244,12 +233,12 @@ distinguish forecast, estimated architecture cost, and actual incurred cost.
 The planned personal deliverables are the seven core API routes and their
 service/data rules, updated API contract/Postman artifacts, automated and manual
 test evidence, CloudWatch validation notes, and the corresponding proposal,
-worklog, and three published technical articles. Multipart, progress undo, thumbnail import,
-and the Admin log-reader are supporting codebase extensions unless mentor/PR
-evidence confirms they belong to the personal contribution.
+worklog, and three published technical articles. Multipart, progress undo,
+thumbnail import, and the Admin log-reader are documented as supporting
+extensions around the core assigned endpoints.
 
-After the internship, the most valuable extensions are a transaction-safe
-database upsert for concurrent enrollment/progress, Alembic migrations,
+After the internship, the most valuable extensions are concurrent load testing
+for enrollment/progress, Alembic migrations,
 resumable multipart sessions stored server-side, checksums and malware scanning,
 automatic incomplete-upload lifecycle rules, structured correlation IDs,
 CloudWatch alarms/dashboards, distributed rate limiting, and production-scale

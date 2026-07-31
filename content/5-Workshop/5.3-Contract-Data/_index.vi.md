@@ -31,8 +31,8 @@ pre: "<b>5.3.</b>"
 | `POST` | `/api/upload/video/multipart/abort` | Owner Instructor/Admin | Hủy multipart upload |
 | `GET` | `/api/admin/cloudwatch-logs` | Admin | Log event gần đây đã cấu hình |
 
-Phân công ban đầu liệt kê bảy endpoint lõi. Bảng trên ghi extension vì chúng ảnh
-hưởng đến tích hợp và kiểm thử, không phải vì mặc định quy tác giả cho cá nhân.
+Phân công ban đầu liệt kê bảy endpoint lõi. Nhóm extension được ghi riêng vì
+chúng ảnh hưởng đến tích hợp và kiểm thử.
 
 ## Quan hệ dữ liệu
 

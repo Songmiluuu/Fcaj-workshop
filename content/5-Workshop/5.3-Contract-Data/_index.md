@@ -31,9 +31,8 @@ pre: "<b>5.3.</b>"
 | `POST` | `/api/upload/video/multipart/abort` | Owner Instructor/Admin | Multipart upload cancelled |
 | `GET` | `/api/admin/cloudwatch-logs` | Admin | Recent configured log events |
 
-The original assignment lists seven core endpoints. The table above documents
-extensions because they affect integration and testing, not because personal
-authorship is assumed.
+The contract contains seven core endpoints plus supporting extensions needed
+for integration and testing.
 
 ## Data relationships
 

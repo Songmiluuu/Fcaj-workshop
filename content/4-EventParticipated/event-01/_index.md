@@ -1,5 +1,5 @@
 ---
-title: "FCAJ Community Day — June 2026"
+title: "FCAJ Community Day - June 2026"
 menuTitle: "FCAJ Community Day"
 weight: 1
 pre: "<b>4.1.</b>"
@@ -9,7 +9,7 @@ pre: "<b>4.1.</b>"
 
 | Field | Details |
 |---|---|
-| Event | FCAJ Community Day — June 2026 |
+| Event | FCAJ Community Day - June 2026 |
 | Date and time | 09:00–12:00, 27 June 2026 |
 | Format | Hybrid event; I attended online through the YouTube livestream |
 | On-site venue | Floors 26 and 36, Bitexco Financial Tower, 02 Hai Trieu Street, Ho Chi Minh City |
@@ -17,17 +17,17 @@ pre: "<b>4.1.</b>"
 
 I attended FCAJ Community Day online. The programme contained five sessions on
 AI agents, cloud operations, Voice AI, enterprise productivity, and private MCP
-connectivity. The notes below summarise what I learned from the livestream.
+connectivity. My notes focus on the technical lessons from the livestream.
 
 ## Programme followed
 
-| Video timestamp | Session |
+| Part | Session |
 |---|---|
-| 00:13:06–00:43:07 | Steve Tran, Founder of CloudThinker — cloud career development and the Deep Response Engine for AI-assisted operations |
-| 00:43:07–01:03:09 | Nghi Danh Hoang Hieu, Kiet Tran, and Trung Vu — Voice Agent foundations and production challenges for Vietnamese |
-| 01:03:09–01:31:07 | Bao Phan Kim and Minh Nguyen Nguyen, Cloud Engineers at Cloud Kinetics — AWS DevOps Agent and incident investigation |
-| 01:31:07–02:13:31 | Truong Tran and Minh Anh Dang Cao, Noventiq — AI-Powered Productivity: Workforce Planning for Enterprise |
-| 02:13:31–02:30:35 | Duc Toan Nguyen and Nghi Danh Hoang Hieu — Building a Secure Private MCP Connection with Amazon Quick |
+| Part 1 | Steve Tran, Founder of CloudThinker — cloud career development and the Deep Response Engine for AI-assisted operations |
+| Part 2 | Nghi Danh Hoang Hieu, Kiet Tran, and Trung Vu — Voice Agent foundations and production challenges for Vietnamese |
+| Part 3 | Bao Phan Kim and Minh Nguyen Nguyen, Cloud Engineers at Cloud Kinetics — AWS DevOps Agent and incident investigation |
+| Part 4 | Truong Tran and Minh Anh Dang Cao, Noventiq — AI-Powered Productivity: Workforce Planning for Enterprise |
+| Part 5 | Duc Toan Nguyen and Nghi Danh Hoang Hieu — Building a Secure Private MCP Connection with Amazon Quick |
 
 ## Session summary
 
@@ -93,39 +93,37 @@ load balancer, and data transfer must be included in the cost estimate.
 
 ## Lessons and connection to EduCloud
 
-1. **Start with the user workflow.** For EduCloud, enrollment, progress, lesson
-   completion, and upload APIs should form a coherent learner and instructor
-   journey rather than a set of isolated endpoints.
-2. **Treat observability as part of the API.** My assigned APIs need enough
-   structured context to correlate an HTTP request with its outcome. Useful
-   fields include a request ID, actor, course or lesson ID, status code, object
-   key, and elapsed time. Tokens, credentials, and presigned URLs must be
-   redacted.
-3. **Keep a human-controlled boundary.** Destructive or high-impact operations,
-   such as deleting an object or aborting an upload, need explicit authorisation
-   and predictable guardrails rather than unconditional automation.
-4. **Apply least privilege to file delivery.** Course material should remain in
-   a private S3 bucket. A learner should receive access only to the permitted
-   course object, and any presigned URL should have a short lifetime.
-5. **Test failure paths, not only successful requests.** The EduCloud test plan
-   should include duplicate enrollment, unauthorised lesson completion,
-   unsupported or oversized files, interrupted multipart uploads, and cleanup
-   after failure.
-6. **A working demo is not production readiness.** Idempotency, timeout, retry,
-   audit history, and rollback or cleanup behaviour all need to be considered
-   for enrollment, progress, and upload flows.
-7. **Make cost an architecture input.** S3 storage and transfer, CloudWatch log
-   retention, and abandoned multipart uploads need limits, monitoring, and
-   lifecycle rules based on the actual workload.
-8. **Use AI with strong fundamentals.** AI can accelerate coding and incident
-   analysis, but evaluating its output still requires knowledge of APIs,
-   security, networking, testing, and cloud operations.
+I drew five main lessons from the five sessions:
+
+1. **Observability must come before automation.** A DevOps Agent can investigate
+   only when the system provides sufficient logs, metrics, traces, and deployment
+   history. My EduCloud APIs therefore need structured logs containing a request
+   ID, actor, course or lesson ID, status code, and elapsed time, while tokens,
+   credentials, and presigned URLs must be excluded.
+2. **AI supports decisions without removing human accountability.** High-impact
+   actions such as deleting an object, aborting an upload, or changing
+   infrastructure still require authorisation checks, guardrails, and an
+   explicit approval boundary.
+3. **A successful demo is not an operational service.** The Voice Agent session
+   exposed issues such as latency, interruptions, regional accents, versioning,
+   and human handoff. In the same way, EduCloud enrollment, progress, and upload
+   flows need tests for repeated requests, timeouts, invalid files, interrupted
+   connections, and cleanup after failure.
+4. **Private connectivity has a trade-off.** It reduces public exposure, but VPC
+   endpoints, DNS resolvers, load balancers, compute, and data transfer add cost
+   and complexity. I need to justify every EduCloud component rather than add
+   services simply to make the architecture look more extensive.
+5. **Technical value begins with a real problem.** The CloudThinker journey
+   reminded me to complete one useful end-to-end learner workflow before
+   expanding the feature set. Fundamentals in APIs, security, networking, and
+   testing remain necessary for evaluating AI-assisted output.
 
 ## Reflection
 
-Attending the livestream helped me understand the distance between a feature
-that works in a demonstration and a cloud system that can be operated safely.
-For my EduCloud scope, I will use the sessions as a checklist: verify behaviour
-with tests, preserve useful but non-sensitive evidence in CloudWatch, constrain
-S3 access, and document failure and cost considerations alongside the API
+Attending online allowed me to follow the presentations, demonstrations, and
+Q&A as one continuous programme. My clearest takeaway is that a trustworthy
+cloud solution cannot be evaluated only through its happy path. For EduCloud, I
+will use these lessons as a practical checklist: test both successful and failed
+flows, preserve useful but non-sensitive evidence in CloudWatch, constrain S3
+access, and document operating assumptions and cost alongside the API
 implementation.

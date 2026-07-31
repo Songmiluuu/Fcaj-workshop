@@ -75,5 +75,5 @@ supporting presigned multipart flow.
 - **Amazon Cognito:** managed user identity upstream of API authorization.
 - **AWS Amplify:** build/host the shared React frontend.
 
-Supabase PostgreSQL is an external managed database in the supplied architecture.
+Supabase PostgreSQL is an external managed database in the project architecture.
 It stores application state but does not replace Cognito authentication.

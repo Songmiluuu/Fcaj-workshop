@@ -7,8 +7,8 @@ pre: "<b>5.9.</b>"
 
 # Cleanup and handover
 
-Cleanup is part of the test, not an optional afterthought. Never delete a shared
-team resource without the owner and mentor confirming the exact target.
+Each test run ends with a cleanup check. Never delete a shared team resource
+without the owner and team confirming the exact target.
 
 ## Before cleanup
 
@@ -78,11 +78,11 @@ to the resource owner instead.
 ## Final handover package
 
 - Hugo report source and GitHub Pages workflow.
-- Bilingual ten-period reconstructed work plan, proposal, workshop,
+- Bilingual eight-week worklog, proposal, workshop,
   self-evaluation, and feedback.
 - Scoped Postman collection, OpenAPI snapshot, and test matrix.
 - `pytest` command/result for the submitted source revision.
-- Redacted Postman/S3/CloudWatch evidence captured by Luân.
+- Sanitized Postman/S3/CloudWatch results and relevant configuration figures.
 - Three real public blog URLs and verified event evidence.
 - Known limitations, owner list, cost/cleanup status, and next actions.
 

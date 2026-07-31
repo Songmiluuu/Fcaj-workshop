@@ -7,7 +7,7 @@ pre: "<b>5.4.</b>"
 
 # Enrollment APIs
 
-Implementation evidence:
+Relevant source files:
 
 - `backend/app/routes/enrollment_routes.py`
 - `backend/app/services/enrollment_service.py`
@@ -51,12 +51,19 @@ flowchart TD
     E -- Yes --> F{"enrollment already exists?"}
     F -- Yes --> R["Return existing enrollment"]
     F -- No --> I["Insert active enrollment"]
-    I --> R
+    I --> J{"commit succeeds?"}
+    J -- Yes --> R
+    J -- IntegrityError --> K["Rollback and reload enrollment"]
+    K --> L{"matching row found?"}
+    L -- Yes --> R
+    L -- No --> XDB["Re-raise database error"]
 {{</mermaid>}}
 
 This ordering avoids creating access to draft content and produces explicit domain
 errors. The existing-record branch makes normal client retries idempotent. The
-database unique index on user/course is still required for simultaneous requests.
+database unique index on user/course protects simultaneous requests. If another
+request commits first, the service catches the integrity error, rolls back the
+failed transaction, reloads the winning enrollment, and returns it.
 
 ## Load My Courses
 

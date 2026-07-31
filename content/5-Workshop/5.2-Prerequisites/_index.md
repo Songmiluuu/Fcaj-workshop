@@ -46,8 +46,23 @@ AWS_MONITORING_ENABLED=true
 AWS_CLOUDWATCH_LOG_GROUP=YOUR_ELASTIC_BEANSTALK_LOG_GROUP
 ```
 
-Do not put real values in this report, Git, Postman examples, screenshots, or
+Keep real values out of Git, report files, Postman examples, screenshots, and
 frontend `VITE_*` variables.
+
+## Shared AWS Console setup
+
+The figures record AWS configuration from the shared EduCloud team environment.
+Sensitive resource names and values remain hidden.
+
+{{< staticimage path="images/workshop/03-ssm-secure-parameters.png" alt="Shared team secure parameters in AWS Systems Manager" >}}
+
+The database URL and JWT secret are stored as `SecureString` parameters so their
+values do not need to appear in source code or ordinary environment files.
+
+{{< staticimage path="images/workshop/05-elastic-beanstalk-green.png" alt="Shared team backend environment in healthy state" >}}
+
+The backend health screen is a quick deployment check before running the API
+collection. A green environment does not replace endpoint-level tests.
 
 ## Prepare identities
 

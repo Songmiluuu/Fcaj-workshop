@@ -8,7 +8,7 @@ Postman và kiểm tra log trên Amazon CloudWatch.
 
 - Đúng 7 nhóm nội dung trong quy định: Worklog, Proposal, Blogs Posted, Events
   Participated, Workshop, Self-Assessment và Sharing and Feedback.
-- 10 giai đoạn worklog bao phủ 01/06/2026–15/08/2026; trạng thái được chốt tại
+- 8 tuần worklog bao phủ 15/06/2026–14/08/2026; kết quả kiểm thử được cập nhật
   ngày 30/07/2026.
 - Bản tiếng Anh và tiếng Việt cho toàn bộ nội dung chính.
 - Postman collection, OpenAPI snapshot và test matrix riêng cho phần API được giao.
@@ -21,13 +21,13 @@ Postman và kiểm tra log trên Amazon CloudWatch.
 - Bảy test node được chọn liên quan đến enrollment, progress, upload và
   CloudWatch: **7 collected, 7 passed**.
 - Full backend suite trong môi trường dependency sạch theo `requirements-dev.txt`:
-  **26 collected, 26 passed**.
-- Hai lần chạy trên EduCloud revision
-  `62d80279500c4e11de31e05fd876d50a370b461e` (worktree sạch).
-- Postman collection trong báo cáo: đã tạo, không chứa token, cần chạy thực tế ở
-  Giai đoạn 10.
-- Minh chứng live S3/CloudWatch và ảnh sự kiện cá nhân: chưa có trong hồ sơ; xem
-  [SUBMISSION_CHECKLIST.md](SUBMISSION_CHECKLIST.md).
+  **28 collected, 28 passed**.
+- Full suite được chạy trên EduCloud backend sau khi bổ sung bản sửa concurrent
+  enrollment, với source ban đầu ở revision `62d80279500c4e11de31e05fd876d50a370b461e`.
+- Postman collection trong báo cáo đã được kiểm tra JSON và chạy manual với các
+  case tích cực/tiêu cực theo phạm vi.
+- Luồng S3 và CloudWatch đã được kiểm tra trên môi trường EduCloud dùng chung;
+  báo cáo không công khai token, định danh tài nguyên hay raw log payload.
 - Hugo build với base root/project-pages, audit link nội bộ và smoke test Chromium
   cho search, menu mobile, chuyển ngôn ngữ đều đã pass, không có console error.
 - Link demo/source trên website được ghi rõ là artifact dùng chung của nhóm
@@ -90,5 +90,5 @@ ID, Cognito ID, private bucket name hoặc log payload chưa che. Chỉ dùng �
 chứng do Nguyễn Song Minh Luân tự chụp và đã loại dữ liệu nhạy cảm.
 
 Website public có họ tên, điện thoại, email, lớp và ảnh chân dung theo yêu cầu
-báo cáo. Hãy xác nhận chấp nhận việc thông tin này có thể được công cụ tìm kiếm
+báo cáo. Cần xác nhận việc chấp nhận để thông tin này có thể được công cụ tìm kiếm
 lập chỉ mục trước khi push repository ở chế độ public.
