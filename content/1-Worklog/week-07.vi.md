@@ -1,11 +1,11 @@
 ---
-title: "Tuần 7 - Tích hợp và regression"
+title: "Tuần 7 - Tích hợp và kiểm thử hồi quy"
 menuTitle: "Tuần 7"
 weight: 7
 pre: "<b>1.7.</b>"
 ---
 
-# Tuần 7 - Tích hợp và regression
+# Tuần 7 - Tích hợp và kiểm thử hồi quy
 
 **Thời gian:** 20–24/07/2026
 

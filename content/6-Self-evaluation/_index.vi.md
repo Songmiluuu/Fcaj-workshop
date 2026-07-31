@@ -1,6 +1,6 @@
 ---
 title: "Tự đánh giá"
-menuTitle: "Self-Assessment"
+menuTitle: "Tự đánh giá"
 weight: 6
 chapter: false
 pre: "<b>6.</b>"

@@ -1,11 +1,11 @@
 ---
-title: "API contract và toàn vẹn dữ liệu"
-menuTitle: "Contract & dữ liệu"
+title: "Hợp đồng API và toàn vẹn dữ liệu"
+menuTitle: "Hợp đồng & dữ liệu"
 weight: 3
 pre: "<b>5.3.</b>"
 ---
 
-# API contract và toàn vẹn dữ liệu
+# Hợp đồng API và toàn vẹn dữ liệu
 
 ## Bảy endpoint cốt lõi được giao
 
@@ -71,7 +71,7 @@ Route thành công dùng dạng:
 Client phải dùng HTTP status và `success`, sau đó kiểm tra `data` theo từng
 route. Không suy luận thành công chỉ từ chuỗi message.
 
-## Error contract
+## Hợp đồng lỗi
 
 | Status | Ý nghĩa trong phạm vi | Ví dụ |
 |---:|---|---|

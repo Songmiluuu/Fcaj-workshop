@@ -1,6 +1,6 @@
 ---
 title: "Chia sẻ và góp ý"
-menuTitle: "Sharing and Feedback"
+menuTitle: "Chia sẻ và góp ý"
 weight: 7
 chapter: false
 pre: "<b>7.</b>"

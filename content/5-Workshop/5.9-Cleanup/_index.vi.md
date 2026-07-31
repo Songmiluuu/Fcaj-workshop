@@ -1,11 +1,11 @@
 ---
-title: "Cleanup và bàn giao"
-menuTitle: "Cleanup & bàn giao"
+title: "Dọn dẹp và bàn giao"
+menuTitle: "Dọn dẹp & bàn giao"
 weight: 9
 pre: "<b>5.9.</b>"
 ---
 
-# Cleanup và bàn giao
+# Dọn dẹp và bàn giao
 
 Mỗi lượt kiểm thử kết thúc bằng bước kiểm tra cleanup. Không xóa tài nguyên dùng
 chung nếu owner và nhóm chưa xác nhận chính xác target.

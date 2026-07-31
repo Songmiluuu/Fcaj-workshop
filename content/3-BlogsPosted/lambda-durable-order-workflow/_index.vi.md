@@ -1,6 +1,6 @@
 ---
 title: "XỬ LÝ QUY TRÌNH ĐƠN HÀNG KHÔNG MẤT TRẠNG THÁI VỚI AWS LAMBDA DURABLE FUNCTIONS"
-menuTitle: "Lambda Durable Workflow"
+menuTitle: "Quy trình đơn hàng"
 weight: 3
 pre: "<b>3.3.</b>"
 ---

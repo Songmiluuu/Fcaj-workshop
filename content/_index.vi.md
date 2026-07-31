@@ -31,8 +31,8 @@ chapter: false
 
 <div class="contribution-card">
 <span class="contribution-eyebrow">PHẠM VI CÁ NHÂN</span>
-<h2>API ghi danh, tiến độ, upload và kiểm thử</h2>
-<p>Trong project nhóm EduCloud, hướng được phân công là backend API cho phép Student ghi danh khóa học đã publish, xem khóa đã đăng ký, đánh dấu hoàn thành bài học và tính tiến độ; đồng thời cho phép Instructor có quyền upload thumbnail, tài liệu và video. Phạm vi còn gồm kiểm thử API bằng Postman và kiểm tra log trên Amazon CloudWatch.</p>
+<h2>API ghi danh, tiến độ, tải lên và kiểm thử</h2>
+<p>Trong project nhóm EduCloud, hướng được phân công là backend API cho phép Student ghi danh khóa học đã publish, xem khóa đã đăng ký, đánh dấu hoàn thành bài học và tính tiến độ; đồng thời cho phép Instructor có quyền tải lên thumbnail, tài liệu và video. Phạm vi còn gồm kiểm thử API bằng Postman và kiểm tra log trên Amazon CloudWatch.</p>
 <div class="endpoint-chips" aria-label="Các API chính trong phạm vi">
 <code>POST /api/courses/{id}/enroll</code>
 <code>GET /api/my-courses</code>
@@ -45,13 +45,13 @@ chapter: false
 <div class="report-contents">
 <h2>Nội dung báo cáo</h2>
 <ol>
-<li><a href="1-worklog/">Worklog</a></li>
-<li><a href="2-proposal/">Proposal</a></li>
-<li><a href="3-blogsposted/">Blogs Posted</a></li>
-<li><a href="4-eventparticipated/">Events Participated</a></li>
-<li><a href="5-workshop/">Workshop</a></li>
-<li><a href="6-self-evaluation/">Self-Assessment</a></li>
-<li><a href="7-feedback/">Sharing and Feedback</a></li>
+<li><a href="1-worklog/">Nhật ký công việc</a></li>
+<li><a href="2-proposal/">Đề xuất dự án</a></li>
+<li><a href="3-blogsposted/">Bài blog đã đăng</a></li>
+<li><a href="4-eventparticipated/">Sự kiện đã tham dự</a></li>
+<li><a href="5-workshop/">Thực hành</a></li>
+<li><a href="6-self-evaluation/">Tự đánh giá</a></li>
+<li><a href="7-feedback/">Chia sẻ và góp ý</a></li>
 </ol>
 </div>
 

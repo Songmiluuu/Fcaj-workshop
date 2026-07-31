@@ -1,11 +1,11 @@
 ---
-title: "Tuần 5 - Enrollment và My Courses"
+title: "Tuần 5 - Ghi danh và khóa học của tôi"
 menuTitle: "Tuần 5"
 weight: 5
 pre: "<b>1.5.</b>"
 ---
 
-# Tuần 5 - Enrollment và My Courses
+# Tuần 5 - Ghi danh và khóa học của tôi
 
 **Thời gian:** 06–10/07/2026
 

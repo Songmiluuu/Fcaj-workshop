@@ -1,11 +1,11 @@
 ---
-title: "XỬ LÝ QUY TRÌNH ĐƠN HÀNG KHÔNG MẤT TRẠNG THÁI VỚI AWS LAMBDA DURABLE FUNCTIONS"
+title: "Processing Order Workflows Without Losing State with AWS Lambda Durable Functions"
 menuTitle: "Lambda Durable Workflow"
 weight: 3
 pre: "<b>3.3.</b>"
 ---
 
-# XỬ LÝ QUY TRÌNH ĐƠN HÀNG KHÔNG MẤT TRẠNG THÁI VỚI AWS LAMBDA DURABLE FUNCTIONS
+# Processing Order Workflows Without Losing State with AWS Lambda Durable Functions
 
 ## THE CHALLENGE OF AN ORDER WAITING FOR PAYMENT
 

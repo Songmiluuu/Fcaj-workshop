@@ -1,11 +1,11 @@
 ---
-title: "Tuần 6 - Progress và upload"
+title: "Tuần 6 - Tiến độ và tải lên"
 menuTitle: "Tuần 6"
 weight: 6
 pre: "<b>1.6.</b>"
 ---
 
-# Tuần 6 - Progress và upload
+# Tuần 6 - Tiến độ và tải lên
 
 **Thời gian:** 13–17/07/2026
 
@@ -14,7 +14,7 @@ pre: "<b>1.6.</b>"
 Triển khai và kiểm tra lesson completion, course progress, upload thumbnail,
 material và video có phân quyền.
 
-## Progress
+## Tiến độ
 
 - `POST /api/lessons/{lesson_id}/complete` lưu một completion cho Student đã xác
   thực.

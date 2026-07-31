@@ -1,6 +1,6 @@
 ---
 title: "Đề xuất dự án"
-menuTitle: "Proposal"
+menuTitle: "Đề xuất"
 weight: 2
 chapter: false
 disableTitle: true

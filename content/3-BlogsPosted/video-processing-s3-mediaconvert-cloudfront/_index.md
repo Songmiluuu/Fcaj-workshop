@@ -1,11 +1,11 @@
 ---
-title: "TỰ ĐỘNG XỬ LÝ VIDEO BÀI GIẢNG VỚI AMAZON S3, MEDIACONVERT VÀ CLOUDFRONT"
+title: "Automating Lecture Video Processing with Amazon S3, MediaConvert, and CloudFront"
 menuTitle: "Video Pipeline on AWS"
 weight: 1
 pre: "<b>3.1.</b>"
 ---
 
-# TỰ ĐỘNG XỬ LÝ VIDEO BÀI GIẢNG VỚI AMAZON S3, MEDIACONVERT VÀ CLOUDFRONT
+# Automating Lecture Video Processing with Amazon S3, MediaConvert, and CloudFront
 
 ## THE CHALLENGE OF BUILDING A VIDEO LEARNING PLATFORM
 

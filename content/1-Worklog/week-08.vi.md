@@ -1,11 +1,11 @@
 ---
-title: "Tuần 8 - Validation và bàn giao"
+title: "Tuần 8 - Kiểm thử xác nhận và bàn giao"
 menuTitle: "Tuần 8"
 weight: 8
 pre: "<b>1.8.</b>"
 ---
 
-# Tuần 8 - Validation và bàn giao
+# Tuần 8 - Kiểm thử xác nhận và bàn giao
 
 **Thời gian:** 27–31/07/2026
 

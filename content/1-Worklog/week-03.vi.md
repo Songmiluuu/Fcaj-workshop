@@ -1,11 +1,11 @@
 ---
-title: "Tuần 3 - Thiết kế API contract và dữ liệu"
+title: "Tuần 3 - Thiết kế hợp đồng API và dữ liệu"
 menuTitle: "Tuần 3"
 weight: 3
 pre: "<b>1.3.</b>"
 ---
 
-# Tuần 3 - Thiết kế API contract và dữ liệu
+# Tuần 3 - Thiết kế hợp đồng API và dữ liệu
 
 **Thời gian:** 22–26/06/2026
 

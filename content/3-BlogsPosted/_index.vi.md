@@ -1,6 +1,6 @@
 ---
-title: "Blogs Posted"
-menuTitle: "Blogs Posted"
+title: "Bài blog đã đăng"
+menuTitle: "Bài blog"
 weight: 3
 chapter: false
 pre: "<b>3.</b>"

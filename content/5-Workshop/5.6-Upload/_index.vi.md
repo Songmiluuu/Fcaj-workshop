@@ -1,11 +1,11 @@
 ---
-title: "API upload và Amazon S3"
-menuTitle: "API upload"
+title: "API tải lên và Amazon S3"
+menuTitle: "API tải lên"
 weight: 6
 pre: "<b>5.6.</b>"
 ---
 
-# API upload và Amazon S3
+# API tải lên và Amazon S3
 
 Source liên quan:
 
@@ -15,7 +15,7 @@ Source liên quan:
 - `frontend/src/services/uploadService.ts`
 - `backend/tests/test_course_lesson_api.py`
 
-Ba endpoint upload trực tiếp thuộc phạm vi cốt lõi. Import/deduplicate thumbnail
+Ba endpoint tải lên trực tiếp thuộc phạm vi cốt lõi. Import/deduplicate thumbnail
 từ xa và điều khiển multipart video là hành vi hỗ trợ trong codebase hiện tại,
 được tách khỏi nhóm endpoint cốt lõi.
 
@@ -30,7 +30,7 @@ từ xa và điều khiển multipart video là hành vi hỗ trợ trong codeba
 Mỗi route đều tải course trước và yêu cầu Instructor owner hoặc Admin. Việc sửa
 form phía client không thể bỏ qua kiểm tra server này.
 
-## Upload trực tiếp
+## Tải lên trực tiếp
 
 Cả ba loại nhận `multipart/form-data` gồm `course_id` và `file`.
 
@@ -49,7 +49,7 @@ file gốc, content type, số byte và storage strategy.
 Tên thumbnail dùng SHA-256 theo nội dung. Cùng byte thumbnail sẽ tái sử dụng object
 key. Material và video dùng UUID để không phải đọc file lớn chỉ nhằm tính hash.
 
-## Extension hỗ trợ: upload video multipart
+## Phần mở rộng hỗ trợ: tải video multipart
 
 {{<mermaid>}}
 sequenceDiagram
@@ -73,7 +73,7 @@ sequenceDiagram
 {{</mermaid>}}
 
 React client retry một part lỗi tối đa ba lần và chạy nhiều nhất ba part đồng
-thời. Nếu hàm upload throw hoặc lỗi sau retry, catch path gọi `multipart/abort`.
+thời. Nếu hàm tải lên throw hoặc lỗi sau retry, catch path gọi `multipart/abort`.
 Hàm không nhận hoặc truyền `AbortSignal`, và UI hiện không có thao tác hủy do
 người dùng kích hoạt.
 

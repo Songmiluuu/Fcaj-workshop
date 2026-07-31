@@ -1,6 +1,6 @@
 ---
 title: "Minh chứng sự kiện"
-menuTitle: "Events Participated"
+menuTitle: "Sự kiện tham dự"
 weight: 4
 chapter: false
 pre: "<b>4.</b>"
