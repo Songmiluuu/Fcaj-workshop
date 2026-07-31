@@ -134,7 +134,5 @@ Các hình ghi lại cấu hình Amplify mà nhóm EduCloud sử dụng.
 | Kiểm tra S3 và CloudWatch live | Đã hoàn tất trên môi trường dùng chung của nhóm |
 | Cấu hình AWS Console | Đã thêm ảnh cấu hình dùng chung tại bước liên quan |
 
-{{% notice warning %}}
-Không công khai bearer token, password, database URL, AWS key, presigned URL,
-account ID, Cognito ID, tên private bucket hay log payload chưa che.
-{{% /notice %}}
+**Lưu ý bảo mật:** Không công khai bearer token, password, database URL, AWS key,
+presigned URL, account ID, Cognito ID, tên private bucket hay log payload chưa che.

@@ -52,8 +52,6 @@ After completing the workshop, a reader can:
 | [5.8 Validation and evidence](5.8-validation/) | Run Postman/tests and verify CloudWatch logs |
 | [5.9 Cleanup and handover](5.9-cleanup/) | Remove test resources and package evidence |
 
-{{% notice info %}}
 The AWS Console figures show configuration from the shared EduCloud team
 environment. They are included at the setup steps where the same team resources
 were used for integration and validation.
-{{% /notice %}}

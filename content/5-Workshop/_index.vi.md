@@ -52,8 +52,6 @@ Sau workshop, người đọc có thể:
 | [5.8 Kiểm thử và minh chứng](5.8-validation/) | Chạy Postman/test và kiểm tra CloudWatch |
 | [5.9 Cleanup và bàn giao](5.9-cleanup/) | Dọn tài nguyên test và đóng gói minh chứng |
 
-{{% notice info %}}
 Các hình AWS Console ghi lại cấu hình của môi trường EduCloud dùng chung trong
 nhóm. Hình được đặt tại những bước thiết lập có sử dụng cùng tài nguyên nhóm để
 tích hợp và kiểm tra.
-{{% /notice %}}

@@ -139,7 +139,6 @@ These figures record the Amplify configuration used by the EduCloud team.
 | Live S3 and CloudWatch checks | Completed in the shared team environment |
 | AWS Console configuration | Shared team setup included at related steps |
 
-{{% notice warning %}}
-Never publish bearer tokens, passwords, database URLs, AWS keys, presigned URLs,
-account IDs, Cognito IDs, private bucket names, or unredacted log payloads.
-{{% /notice %}}
+**Security note:** Never publish bearer tokens, passwords, database URLs, AWS
+keys, presigned URLs, account IDs, Cognito IDs, private bucket names, or
+unredacted log payloads.
